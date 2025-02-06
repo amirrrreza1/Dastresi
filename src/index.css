@@ -1,0 +1,96 @@
+@import "tailwindcss";
+
+@layer base {
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Shabnam", sans-serif;
+  }
+  body {
+    direction: rtl;
+    background-color: #f6fafa;
+  }
+  ::-webkit-scrollbar {
+    width: 10px;
+  }
+  ::-webkit-scrollbar-thumb {
+    background-color: var(--color-PrimeBlue);
+  }
+}
+@layer components {
+  .Width {
+    @apply w-full max-w-[1200px] m-auto;
+  }
+  .HeaderPagesItem {
+    @apply mx-2 text-sm text-black/60 hover:text-(--color-SecondaryBlue) transition-all duration-200;
+  }
+  .HeaderNavBarActive {
+    @apply h-[40px] leading-[40px] text-(--color-PrimeOrange) border-b-[3px] text-[13px];
+  }
+  .HeaderNavBarNotActive {
+    @apply h-[40px] leading-[40px] text-(--color-TextGray) hover:text-(--color-PrimeOrange) hover:border-b-[3px] text-[13px];
+  }
+  .FooterGrayItems {
+    @apply h-full flex items-center justify-center text-center gap-1 text-[12px];
+  }
+  .FooterQuickLinks {
+    @apply text-sm text-(--color-TextGray) hover:text-black transition-all duration-300;
+  }
+  .CustomShadow {
+    box-shadow: 0 0 4px gray;
+  }
+  .MobileMenuLink {
+    @apply inline text-center text-[14px] leading-[40px] text-[#6e6e6e] hover:text-(--color-PrimeBlue);
+  }
+}
+@layer theme {
+  :root {
+    --color-PrimeOrange: #ff5f55;
+    --color-PrimeBlue: #0a5abd;
+    --color-SecondaryBlue: #0b295a;
+    --color-PrimeGray: #f7f8f9;
+    --color-TextGray: #646766;
+  }
+}
+
+@font-face {
+  font-family: "Shabnam";
+  src: url(../public/Fonts/Shabnam.eot) format("embedded-opentype"),
+    url(../public/Fonts/Shabnam.woff2) format("woff2"),
+    url(../public/Fonts/Shabnam.woff) format("woff"),
+    url(../public/Fonts/Shabnam.ttf) format("truetype");
+  font-weight: normal;
+}
+@font-face {
+  font-family: "Shabnam";
+  src: url(../public/Fonts/Shabnam-Bold.eot) format("embedded-opentype"),
+    url(../public/Fonts/Shabnam-Bold.woff2) format("woff2"),
+    url(../public/Fonts/Shabnam-Bold.woff) format("woff"),
+    url(../public/Fonts/Shabnam-Bold.ttf) format("truetype");
+  font-weight: bold;
+}
+@font-face {
+  font-family: "Shabnam";
+  src: url(../public/Fonts/Shabnam-Light.eot) format("embedded-opentype"),
+    url(../public/Fonts/Shabnam-Light.woff2) format("woff2"),
+    url(../public/Fonts/Shabnam-Light.woff) format("woff"),
+    url(../public/Fonts/Shabnam-Light.ttf) format("truetype");
+  font-weight: 300;
+}
+@font-face {
+  font-family: "Shabnam";
+  src: url(../public/Fonts/Shabnam-Medium.eot) format("embedded-opentype"),
+    url(../public/Fonts/Shabnam-Medium.woff2) format("woff2"),
+    url(../public/Fonts/Shabnam-Medium.woff) format("woff"),
+    url(../public/Fonts/Shabnam-Medium.ttf) format("truetype");
+  font-weight: 500;
+}
+@font-face {
+  font-family: "Shabnam";
+  src: url(../public/Fonts/Shabnam-Thin.eot) format("embedded-opentype"),
+    url(../public/Fonts/Shabnam-Thin.woff2) format("woff2"),
+    url(../public/Fonts/Shabnam-Thin.woff) format("woff"),
+    url(../public/Fonts/Shabnam-Thin.ttf) format("truetype");
+  font-weight: 100;
+}

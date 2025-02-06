@@ -1,0 +1,834 @@
+{
+  "Navbar": {
+    "Home": [],
+    "Accessories": [
+      {
+        "id": 1,
+        "text": "هولدر و نگهدارنده",
+        "Submenu": []
+      },
+      {
+        "id": 2,
+        "text": "تجهیزات ذخیره سازی",
+        "Submenu": [
+          {
+            "id": 1,
+            "SubMenuText": "فلش مموری"
+          },
+          {
+            "id": 2,
+            "SubMenuText": "کارت حافظه"
+          },
+          {
+            "id": 3,
+            "SubMenuText": "هارد اکسترنال"
+          }
+        ]
+      },
+      {
+        "id": 3,
+        "text": "اسپیکر",
+        "Submenu": []
+      },
+      {
+        "id": 4,
+        "text": "ماوس و کیبورد و ماوس پد",
+        "Submenu": []
+      },
+      {
+        "id": 5,
+        "text": "هندزفری , هدست و میکرفن",
+        "Submenu": [
+          {
+            "id": 1,
+            "SubMenuText": "میکرفن"
+          },
+          {
+            "id": 2,
+            "SubMenuText": "هندزفری سیم دار"
+          },
+          {
+            "id": 3,
+            "SubMenuText": "هدست سیم دار"
+          },
+          {
+            "id": 4,
+            "SubMenuText": "هدفون بلوتوثی"
+          },
+          {
+            "id": 5,
+            "SubMenuText": "هدفون بلوتوثی دو گوش"
+          },
+          {
+            "id": 6,
+            "SubMenuText": "هدفون بلوتوثی دورگردنی"
+          },
+          {
+            "id": 7,
+            "SubMenuText": "هدفون بلوتوثی تک گوش"
+          }
+        ]
+      },
+      {
+        "id": 6,
+        "text": "پاور بانک و جامپ استارتر",
+        "Submenu": []
+      },
+      {
+        "id": 7,
+        "text": "کابل شارژ",
+        "Submenu": [
+          {
+            "id": 1,
+            "SubMenuText": "میکرو یو اس بی"
+          },
+          {
+            "id": 2,
+            "SubMenuText": "تایپ سی"
+          },
+          {
+            "id": 3,
+            "SubMenuText": "لایتنینگ"
+          },
+          {
+            "id": 4,
+            "SubMenuText": "تایپ سی به لایتنینگ"
+          }
+        ]
+      },
+      {
+        "id": 8,
+        "text": "آداپتور و شارژر",
+        "Submenu": [
+          {
+            "id": 1,
+            "SubMenuText": "شارژر دیواری"
+          },
+          {
+            "id": 2,
+            "SubMenuText": "شارژر وایرلس"
+          },
+          {
+            "id": 3,
+            "SubMenuText": "شارژر رومیزی"
+          },
+          {
+            "id": 4,
+            "SubMenuText": "شارژر فندکی"
+          }
+        ]
+      },
+      {
+        "id": 9,
+        "text": "دسته بازی و خنک کننده",
+        "Submenu": []
+      },
+      {
+        "id": 10,
+        "text": "انواع تبدیل برق",
+        "Submenu": []
+      },
+      {
+        "id": 11,
+        "text": "کابل و دانگل انتقال تصویر",
+        "Submenu": []
+      },
+      {
+        "id": 12,
+        "text": "انواع هاب",
+        "Submenu": []
+      }
+    ],
+    "Cable": [
+      {
+        "id": 1,
+        "text": "کابل HDMI"
+      },
+      {
+        "id": 2,
+        "text": "کابل پرینتر"
+      },
+      {
+        "id": 3,
+        "text": "کابل هارد اکسترنال"
+      },
+      {
+        "id": 4,
+        "text": "انواع رابط و تبدیل"
+      },
+      {
+        "id": 5,
+        "text": "کابل AUX"
+      },
+      {
+        "id": 6,
+        "text": "کابل 2 به 1 صدا"
+      },
+      {
+        "id": 7,
+        "text": "کابل اپتیکال"
+      },
+      {
+        "id": 8,
+        "text": "کابل و فیش OTG"
+      }
+    ],
+    "ContentCrator": [
+      {
+        "id": 1,
+        "text": "میکفرن"
+      },
+      {
+        "id": 2,
+        "text": "رینگ لایت و پایه"
+      }
+    ],
+    "Networking": [
+      {
+        "id": 1,
+        "text": "مودم - روتر"
+      },
+      {
+        "id": 2,
+        "text": "هاب شبکه"
+      },
+      {
+        "id": 3,
+        "text": "مودم همراه"
+      },
+      {
+        "id": 4,
+        "text": "لوازم جانبی"
+      }
+    ],
+    "GameConsole": [
+      {
+        "id": 1,
+        "text": "هندزفری و هدست"
+      },
+      {
+        "id": 2,
+        "text": "دسته بازی"
+      },
+      {
+        "id": 3,
+        "text": "موس و کیبورد"
+      },
+      {
+        "id": 4,
+        "text": "کیف"
+      },
+      {
+        "id": 5,
+        "text": "کنسول"
+      },
+      {
+        "id": 6,
+        "text": "شارژر دسته بازی"
+      }
+    ],
+    "Personal": [
+      {
+        "id": 1,
+        "text": "انواع گجت های جذاب"
+      },
+      {
+        "id": 2,
+        "text": "باتری و شارژر"
+      },
+      {
+        "id": 3,
+        "text": "اندروید باکس و گیرنده دیجیتال"
+      },
+      {
+        "id": 4,
+        "text": "آنتن رومیزی"
+      },
+      {
+        "id": 5,
+        "text": "مچ بند و ساعت هوشمند"
+      },
+      {
+        "id": 6,
+        "text": "نحصولات کمبو"
+      },
+      {
+        "id": 7,
+        "text": "رابط برق و USB"
+      },
+      {
+        "id": 8,
+        "text": "اف ام پلیر"
+      }
+    ],
+    "Brands": [
+      {
+        "id": 1,
+        "PersianText": "نیکین",
+        "EnglishText": "Neekin"
+      },
+      {
+        "id": 2,
+        "PersianText": "پایونیر",
+        "EnglishText": "Pioneer"
+      },
+      {
+        "id": 3,
+        "PersianText": "جی پی",
+        "EnglishText": "GP"
+      },
+      {
+        "id": 4,
+        "PersianText": "ای فورتک",
+        "EnglishText": "A4Tech"
+      },
+      {
+        "id": 5,
+        "PersianText": "وان مور",
+        "EnglishText": "1MORE"
+      },
+      {
+        "id": 6,
+        "PersianText": "مکسل",
+        "EnglishText": "Maxell"
+      },
+      {
+        "id": 7,
+        "PersianText": "انکر",
+        "EnglishText": "Anker"
+      },
+      {
+        "id": 8,
+        "PersianText": "آینوبن",
+        "EnglishText": "InoBin"
+      },
+      {
+        "id": 9,
+        "PersianText": "مومکس",
+        "EnglishText": "Momax"
+      },
+      {
+        "id": 10,
+        "PersianText": "وسترن دیجیتال",
+        "EnglishText": "Western Digital"
+      },
+      {
+        "id": 11,
+        "PersianText": "شیائمی",
+        "EnglishText": "Xiaomi"
+      },
+      {
+        "id": 12,
+        "PersianText": "پاناسونیک",
+        "EnglishText": "Panasonic"
+      },
+      {
+        "id": 13,
+        "PersianText": "بیسوس",
+        "EnglishText": "Baseus"
+      },
+      {
+        "id": 14,
+        "PersianText": "بویا",
+        "EnglishText": "Boya"
+      },
+      {
+        "id": 15,
+        "PersianText": "مک دودو",
+        "EnglishText": "McDodo"
+      },
+      {
+        "id": 16,
+        "PersianText": "پاورلوژی",
+        "EnglishText": "Powerology"
+      },
+      {
+        "id": 17,
+        "PersianText": "راوپاور",
+        "EnglishText": "RAVPower"
+      },
+      {
+        "id": 18,
+        "PersianText": "آکی",
+        "EnglishText": "Aukey"
+      },
+      {
+        "id": 19,
+        "PersianText": "یسیدو",
+        "EnglishText": "Yesido"
+      },
+      {
+        "id": 20,
+        "PersianText": "نزدک",
+        "EnglishText": "Nasdaq"
+      },
+      {
+        "id": 21,
+        "PersianText": "پرووان",
+        "EnglishText": "ProOne"
+      },
+      {
+        "id": 22,
+        "PersianText": "ال دی نیو",
+        "EnglishText": "LDNIO"
+      },
+      {
+        "id": 23,
+        "PersianText": "دوراسل",
+        "EnglishText": "Duracell"
+      },
+      {
+        "id": 24,
+        "PersianText": "سومو",
+        "EnglishText": "Sumo"
+      },
+      {
+        "id": 25,
+        "PersianText": "هایلو",
+        "EnglishText": "Haylou"
+      },
+      {
+        "id": 26,
+        "PersianText": "دای هارد",
+        "EnglishText": "DieHard"
+      },
+      {
+        "id": 27,
+        "PersianText": "اسکال کندی",
+        "EnglishText": "Skullcandy"
+      },
+      {
+        "id": 28,
+        "PersianText": "اپل",
+        "EnglishText": "Apple"
+      },
+      {
+        "id": 29,
+        "PersianText": "کملیون",
+        "EnglishText": "Camelion"
+      },
+      {
+        "id": 30,
+        "PersianText": "کلومن پلاس",
+        "EnglishText": "Koluman Plus"
+      }
+    ]
+  },
+  "MainSlider": [
+    {
+      "id": 1,
+      "src": "./Images/MainSlider/MainSlider1.png",
+      "alt": "MainSlider1"
+    },
+    {
+      "id": 2,
+      "src": "./Images/MainSlider/MainSlider2.png",
+      "alt": "MainSlider2"
+    },
+    {
+      "id": 3,
+      "src": "./Images/MainSlider/MainSlider3.png",
+      "alt": "MainSlider3"
+    },
+    {
+      "id": 4,
+      "src": "./Images/MainSlider/MainSlider4.png",
+      "alt": "MainSlider4"
+    }
+  ],
+  "DailyOffers": {
+    "DailyOffersBig": [
+      {
+        "id": 1,
+        "src": "./Images/DailyOffer/DailyOfferBig1.png",
+        "alt": "DailyOffersBig1",
+        "Des": "جت فن پرودو مدل Porodo PD-LFST055",
+        "PurePrice": "۵,۱۵۰,۰۰۰",
+        "Off": "۵۰۰,۰۰۰",
+        "Price": "۲,۵۹۷,۰۰۰"
+      },
+      {
+        "id": 2,
+        "src": "./Images/DailyOffer/DailyOfferBig2.png",
+        "alt": "DailyOffersBig2",
+        "Des": "ماساژور تفنگی فیلیپس مدل Philips PPM3203G",
+        "PurePrice": "۳,۰۹۷,۰۰۰",
+        "Off": "۱,۰۰۰,۰۰۰",
+        "Price": "۴,۱۵۰,۰۰۰"
+      }
+    ],
+    "DailyOfferSmall": [
+      {
+        "id": 1,
+        "src": "./Images/DailyOffer/DailyOfferSmall1.png",
+        "alt": "DailyOfferSmall1",
+        "Des": "پاوربانک 20 هزار میلی آمپر 30 واتی با کابل تایپ سی پاورولوژی مدل Powerology PPBCHA67-BK",
+        "PurePrice": "۲,۹۵۰,۰۰۰",
+        "Off": "۱,۰۰۰,۰۰۰",
+        "Price": "۱,۹۵۰,۰۰۰"
+      },
+      {
+        "id": 2,
+        "src": "./Images/DailyOffer/DailyOfferSmall2.png",
+        "alt": "DailyOfferSmall2",
+        "Des": "پاوربانک 16000 میلی آمپر سولار 20 واتی پاورولوژی مدل Powerology PPBCHA70",
+        "PurePrice": "۳,۰۹۷,۰۰۰",
+        "Off": "۱,۰۰۰,۰۰۰",
+        "Price": "۲,۵۹۷,۰۰۰"
+      },
+      {
+        "id": 3,
+        "src": "./Images/DailyOffer/DailyOfferSmall3.png",
+        "alt": "DailyOfferSmall3",
+        "Des": "جت فن پرودو مدل Porodo PD-LFST055",
+        "PurePrice": "۱,۳۹۱,۰۰۰",
+        "Off": "۱۰۱,۰۰۰",
+        "Price": "۱,۲۹۰,۰۰۰"
+      }
+    ]
+  },
+  "Categories": [
+    {
+      "id": 1,
+      "src": "./Images/Categories/Categories1.png",
+      "alt": "Category1"
+    },
+    {
+      "id": 2,
+      "src": "./Images/Categories/Categories2.png",
+      "alt": "Category2"
+    },
+    {
+      "id": 3,
+      "src": "./Images/Categories/Categories3.png",
+      "alt": "Category3"
+    },
+    {
+      "id": 4,
+      "src": "./Images/Categories/Categories4.png",
+      "alt": "Category4"
+    },
+    {
+      "id": 5,
+      "src": "./Images/Categories/Categories5.png",
+      "alt": "Category5"
+    },
+    {
+      "id": 6,
+      "src": "./Images/Categories/Categories6.png",
+      "alt": "Category6"
+    },
+    {
+      "id": 7,
+      "src": "./Images/Categories/Categories7.png",
+      "alt": "Category7"
+    },
+    {
+      "id": 8,
+      "src": "./Images/Categories/Categories8.png",
+      "alt": "Category8"
+    }
+  ],
+  "NewlyAvailable": [
+    {
+      "id": 1,
+      "src": "./Images/NewlyAvailable/NewlyAvailable1.png",
+      "alt": "NewlyAvailable1",
+      "color": "black",
+      "category": "شارژر دیواری",
+      "text": "شارژر دیواری 20 واتی به همراه کابل دوسر تایپ سی انکر مدل Anker B2348",
+      "price": "690,000",
+      "Inventory": 0
+    },
+    {
+      "id": 2,
+      "src": "./Images/NewlyAvailable/NewlyAvailable2.png",
+      "alt": "NewlyAvailable2",
+      "color": "white",
+      "category": "پاوربانک و جامپ استارتر",
+      "text": "پاوربانک 50000 میلی آمپر 22.5 واتی گرین مدل Green Lion GNPWT50KPBBK",
+      "price": "2,397,000",
+      "Inventory": 1
+    },
+    {
+      "id": 3,
+      "src": "./Images/NewlyAvailable/NewlyAvailable3.png",
+      "alt": "NewlyAvailable3",
+      "color": "white",
+      "category": "تایپ سی به لایتنینگ",
+      "text": "کابل شارژ مگنتی تایپ سی به لایتنینگ 36 واتی مک دودو مدل Mcdodo CA-2010",
+      "price": "490,000",
+      "Inventory": 1
+    },
+    {
+      "id": 4,
+      "src": "./Images/NewlyAvailable/NewlyAvailable4.png",
+      "alt": "NewlyAvailable4",
+      "color": "white",
+      "category": "پاوربانک و جامپ استارتر",
+      "text": "پاوربانک 10000 میلی آمپری وایرلس مگ سیف مک دودو مدل Mcdodo MC-151",
+      "price": "1,747,000",
+      "Inventory": 0
+    },
+    {
+      "id": 5,
+      "src": "./Images/NewlyAvailable/NewlyAvailable5.png",
+      "alt": "NewlyAvailable5",
+      "color": "white",
+      "category": "سه کاره",
+      "text": "کابل شارژ 4 کاره 60 واتی مک 1.2 متری مک دودو مدل Mcdodo CA-199",
+      "price": "700,000",
+      "Inventory": 0
+    },
+    {
+      "id": 6,
+      "src": "./Images/NewlyAvailable/NewlyAvailable6.png",
+      "alt": "NewlyAvailable6",
+      "color": "white",
+      "category": "دو سر تایپ سی",
+      "text": "کابل شارژ دوسر تایپ سی اتو پاور 100 واتی مک دودو مدل Mcdodo CA-668",
+      "price": "590,000",
+      "Inventory": 1
+    },
+    {
+      "id": 7,
+      "src": "./Images/NewlyAvailable/NewlyAvailable7.png",
+      "alt": "NewlyAvailable7",
+      "color": "white",
+      "category": "شارژر فندکی",
+      "text": "شارژر فندکی 115 واتی با کابل تایپ سی پاورولوژی مدل Powerology PCCSR019",
+      "price": "1,850,000",
+      "Inventory": 1
+    },
+    {
+      "id": 8,
+      "src": "./Images/NewlyAvailable/NewlyAvailable8.png",
+      "alt": "NewlyAvailable8",
+      "color": "white",
+      "category": "اسپیکر",
+      "text": "اسپیکر بلوتوثی کارائکو گرین مدل Green Lion GNDUECH10WBG",
+      "price": "1,390,000",
+      "Inventory": 1
+    },
+    {
+      "id": 9,
+      "src": "./Images/NewlyAvailable/NewlyAvailable9.png",
+      "alt": "NewlyAvailable9",
+      "color": "white",
+      "category": "پاوربانک و جامپ استارتر",
+      "text": "پاوربانک 16000 میلی آمپر سولار 20 واتی پاورولوژی مدل Powerology PPBCHA70",
+      "price": "2,840,000",
+      "Inventory": 0
+    },
+    {
+      "id": 10,
+      "src": "./Images/NewlyAvailable/NewlyAvailable10.png",
+      "alt": "NewlyAvailable10",
+      "color": "white",
+      "category": "انواع گجت های جذاب",
+      "text": "جت فن 150 واتی گرین مدل Green Lion GNJJPBLWR2GY",
+      "price": "3,990,000",
+      "Inventory": 1
+    },
+    {
+      "id": 11,
+      "src": "./Images/NewlyAvailable/NewlyAvailable11.png",
+      "alt": "NewlyAvailable11",
+      "color": "white",
+      "category": "پاوربانک و جامپ استارتر",
+      "text": "پاوربانک 27600 میلی آمپر 130 واتی اورایمو مدل Oraimo OPB-727SQ",
+      "price": "4,690,000",
+      "Inventory": 1
+    }
+  ],
+  "MostSell": [
+    {
+      "id": 1,
+      "src": "./Images/MostSell/MostSell1.png",
+      "alt": "MostSell1",
+      "color": "black",
+      "category": "رینگ لایت و پایه",
+      "text": "رینگ لایت 18 اینچ 100 واتی هارمونی مدل Harmony FE 1100",
+      "price": "3,490,000",
+      "Inventory": 1
+    },
+    {
+      "id": 2,
+      "src": "./Images/MostSell/MostSell2.png",
+      "alt": "MostSell2",
+      "color": "black",
+      "category": "هندزفری بلوتوث دو گوش",
+      "text": "هندزفری بلوتوثی ورزشی القایی پاورولوژی مدل Powerology Pwlau008",
+      "price": "2,395,000",
+      "Inventory": 1
+    },
+
+    {
+      "id": 4,
+      "src": "./Images/MostSell/MostSell4.png",
+      "alt": "MostSell4",
+      "color": "black",
+      "category": "شارژر دیواری",
+      "text": "شارژر دیواری گان 100 واتی الدینیو مدل Ldnio Q408",
+      "price": "1,797,000",
+      "Inventory": 1
+    },
+    {
+      "id": 5,
+      "src": "./Images/MostSell/MostSell5.png",
+      "alt": "MostSell5",
+      "color": "white",
+      "category": "انواع گجت های جذاب",
+      "text": "شارژر رومیزی وایرلس و چراغ رومیزی الدینیو مدل Ldnio Y3",
+      "price": "877,000",
+      "Inventory": 0
+    },
+    {
+      "id": 6,
+      "src": "./Images/MostSell/MostSell6.png",
+      "alt": "MostSell6",
+      "color": "black",
+      "category": "دو سر تایپ سی",
+      "text": "کابل شارژ دوسر تایپ سی 1.8 متری انکر مدل Anker A8757",
+      "price": "590,000",
+      "Inventory": 0
+    },
+    {
+      "id": 7,
+      "src": "./Images/MostSell/MostSell7.png",
+      "alt": "MostSell7",
+      "color": "blue",
+      "category": "باتری آلکالاین",
+      "text": "باتری نیم قلم 10 تایی شیائومی مدل Xiaomi ZI7",
+      "price": "189,000",
+      "Inventory": 1
+    },
+    {
+      "id": 8,
+      "src": "./Images/MostSell/MostSell8.png",
+      "alt": "MostSell8",
+      "color": "blue",
+      "category": "باتری آلکالاین",
+      "text": "باتری قلمی 10تایی شیائومی مدل Xiaomi ZI5",
+      "price": "189,000",
+      "Inventory": 1
+    },
+    {
+      "id": 9,
+      "src": "./Images/MostSell/MostSell9.png",
+      "alt": "MostSell9",
+      "color": "black",
+      "category": "ماوس و کیبورد و پدموس",
+      "text": "کیبورد بلوتوثی مافی مدل Mofii Phoenix",
+      "price": "2,590,000",
+      "Inventory": 1
+    },
+    {
+      "id": 10,
+      "src": "./Images/MostSell/MostSell10.png",
+      "alt": "MostSell10",
+      "color": "black",
+      "category": "شارژر رومیزی",
+      "text": "شارژر رومیزی وایرلس مگ سیف موفی مدل Mophie 401307720",
+      "price": "2,200,000",
+      "Inventory": 0
+    },
+    {
+      "id": 11,
+      "src": "./Images/MostSell/MostSell11.png",
+      "alt": "MostSell11",
+      "color": "black",
+      "category": "پاوربانک و جامپ استارتر",
+      "text": "شارژر دیواری و پاوربانک وایرلس 10000 میلی آمپری 22.5 واتی پاورولوژی مدل Powerology PPBCHA45",
+      "price": "3,350,000",
+      "Inventory": 1
+    }
+  ],
+  "Brands": [
+    {
+      "id": 1,
+      "src": "./Images/Brands/Brands1.png",
+      "alt": "Brand1"
+    },
+    {
+      "id": 2,
+      "src": "./Images/Brands/Brands2.png",
+      "alt": "Brand2"
+    },
+    {
+      "id": 3,
+      "src": "./Images/Brands/Brands3.png",
+      "alt": "Brand3"
+    },
+    {
+      "id": 4,
+      "src": "./Images/Brands/Brands4.png",
+      "alt": "Brand4"
+    },
+    {
+      "id": 5,
+      "src": "./Images/Brands/Brands5.png",
+      "alt": "Brand5"
+    },
+    {
+      "id": 6,
+      "src": "./Images/Brands/Brands6.png",
+      "alt": "Brand6"
+    },
+    {
+      "id": 7,
+      "src": "./Images/Brands/Brands7.png",
+      "alt": "Brand7"
+    }
+  ],
+  "Blog": [
+    {
+      "id": 1,
+      "src": "./Images/Blog/Blog1.png",
+      "alt": "Blog1",
+      "text": "بهترین ساعت‌ های هوشمند صفحه گرد: قیمت و مدل‌های برتر در دسترسی"
+    },
+    {
+      "id": 2,
+      "src": "./Images/Blog/Blog2.png",
+      "alt": "Blog2",
+      "text": "بهترین پاوربانک پاورولوژی + 8 مدل از با کیفیت ترین ها"
+    },
+    {
+      "id": 3,
+      "src": "./Images/Blog/Blog3.png",
+      "alt": "Blog3",
+      "text": "راهنمای تشخیص شارژر اصلی آیفون و بهترین جایگزین‌ها"
+    },
+    {
+      "id": 4,
+      "src": "./Images/Blog/Blog4.png",
+      "alt": "Blog4",
+      "text": "چرا باید از ماساژور چشم استفاده کنید؟"
+    },
+    {
+      "id": 5,
+      "src": "./Images/Blog/Blog5.png",
+      "alt": "Blog5",
+      "text": "خرید بهترین هندزفری سیمی تا ۵۰۰ تومان"
+    },
+    {
+      "id": 6,
+      "src": "./Images/Blog/Blog6.png",
+      "alt": "Blog6",
+      "text": "معرفی ۵ مدل از بهترین میکروفون بویا"
+    },
+    {
+      "id": 7,
+      "src": "./Images/Blog/Blog7.png",
+      "alt": "Blog7",
+      "text": "راهنمای خرید بهترین میکروفون زیر ۱ میلیون تومان"
+    },
+    {
+      "id": 8,
+      "src": "./Images/Blog/Blog8.png",
+      "alt": "Blog8",
+      "text": "بهترین هارد اکسترنال SSD: سرعت و امنیت در کنار هم!"
+    }
+  ]
+}

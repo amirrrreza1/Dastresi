@@ -1,0 +1,3 @@
+export let SET_BLOG = "SET_BLOG";
+export let SET_BLOG_LOADING = "SET_BLOG_LOADING";
+export let SET_BLOG_ERROR = "SET_BLOG_ERROR";
