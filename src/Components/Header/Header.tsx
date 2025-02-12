@@ -146,12 +146,12 @@ const Header: React.FC = () => {
                   </div>
 
                   {/* User Profile */}
-                  <a
-                    href="#"
+                  <Link
+                    to="/Admin"
                     className="h-[40px] shadow leading-[40px] px-3 bg-(--color-PrimeBlue) text-white rounded-lg hover:bg-black transition-bg-color duration-300"
                   >
-                    ورود و ثبت نام
-                  </a>
+                    پنل ادمین
+                  </Link>
                 </div>
               </div>
             </div>
@@ -1321,9 +1321,9 @@ const Header: React.FC = () => {
               </div>
             </div>
 
-            <div className="w-[80%] h-[40px] text-center leading-[40px] rounded-lg bg-[#0B295A] text-white my-10 ">
-              ورود به باشگاه مشتریان
-            </div>
+            <Link to="/Admin" className="w-[80%] h-[40px] text-center leading-[40px] rounded-lg bg-[#0B295A] text-white my-10 ">
+              ورود به پنل ادمین
+            </Link>
           </div>
         </div>
       </div>

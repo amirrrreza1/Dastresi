@@ -5,7 +5,7 @@ import {
 } from "./BlogActionTypes";
 
 const initialState = {
-  blog: [],
+  blogPosts: [],
   loading: true,
   error: "",
 };
@@ -15,7 +15,7 @@ export const BlogActionReducer = (state = initialState, action: any) => {
     case SET_BLOG:
       return {
         ...state,
-        blog: action.payload,
+        blogPosts: action.payload, // تغییر name از blog به blogPosts
       };
     case SET_BLOG_LOADING:
       return {

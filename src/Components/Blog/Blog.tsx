@@ -22,14 +22,15 @@ type blogItem = {
 
 export default function Blog() {
   const dispatch = useDispatch<AppDispatch>();
-  const { blog, loading, error } = useSelector(
-    (state: any) =>
-      state.blog as {
-        blog: blogItem[];
-        loading: boolean;
-        error: string;
-      }
-  );
+const { blogPosts, loading, error } = useSelector(
+  (state: any) =>
+    state.blog as {
+      blogPosts: blogItem[];
+      loading: boolean;
+      error: string;
+    }
+);
+
 
   useEffect(() => {
     dispatch(fetchBlogData());
@@ -88,7 +89,7 @@ export default function Blog() {
             }}
             className="Width !w-[90%] my-7"
           >
-            {blog.map((item: blogItem) => (
+            {blogPosts.map((item: blogItem) => (
               <SwiperSlide
                 className="rounded-lg overflow-hidden flex-col CustomShadow mb-12 group"
                 key={item.id}

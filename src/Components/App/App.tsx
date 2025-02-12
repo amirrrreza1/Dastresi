@@ -4,7 +4,7 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import NotFound from "../../Pages/NotFound/NotFound";
 import { Provider } from "react-redux";
 import store from "../../Redux/Store";
-import Admin from "../../Pages/Admin/Admin";
+import AdminRoute from "../../Pages/Admin/AdminRout";
 
 const App: React.FC = () => {
   return (
@@ -18,8 +18,8 @@ const App: React.FC = () => {
         >
           <Routes>
             <Route path="/" element={<Home />} />
+            <Route path="/admin/*" element={<AdminRoute />} />
             <Route path="*" element={<NotFound />} />
-            <Route path="/admin" element={<Admin />} />
           </Routes>
         </BrowserRouter>
       </Provider>

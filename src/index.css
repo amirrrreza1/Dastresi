@@ -43,6 +43,57 @@
   .MobileMenuLink {
     @apply inline text-center text-[14px] leading-[40px] text-[#6e6e6e] hover:text-(--color-PrimeBlue);
   }
+  .AdminPanelLinks {
+    @apply bg-[#39ACE7] w-full text-center p-3 rounded-md hover:bg-[#0884B5] hover:scale-105 transition-all duration-200;
+  }
+  .AdminPageWrapper {
+    @apply w-[90%] lg:w-[50vw] m-auto bg-[#39ACE7] rounded-md mt-[1vh] p-3;
+  }
+  .AdminPageForm {
+    @apply w-[50vw] m-auto flex flex-col items-center justify-center gap-5  p-3 text-white;
+  }
+  .AdminPageTitle {
+    @apply text-center text-2xl text-white;
+  }
+  .AdminPageLabel {
+    @apply text-center text-lg text-white;
+  }
+  .AdminPageInput {
+    @apply w-[90%] p-2 rounded-md bg-[#0884B5] m-auto placeholder:text-center;
+  }
+  .AdminPageButton {
+    @apply p-2 m-3 rounded-md bg-[#0884B5] hover:bg-[#0b295a] transition-all duration-200;
+  }
+  .AdminPageGreenButton {
+    @apply p-2 bg-green-400 rounded-md text-white hover:bg-green-700 transition-all hover:scale-105 duration-300 cursor-pointer;
+  }
+  .AdminPageRedButton {
+    @apply p-2 bg-red-400 rounded-md text-white hover:bg-red-700 transition-all hover:scale-105 duration-300 cursor-pointer;
+  }
+  .AdminPageEditButton {
+    @apply p-2 bg-yellow-500 rounded-md text-white hover:bg-yellow-700 transition-all hover:scale-105 duration-300 cursor-pointer;
+  }
+  .AdminPageAddButton {
+    @apply fixed top-3 right-3 bg-green-400 text-white hover:bg-green-700 transition-all hover:scale-105 duration-300 rounded-md p-2 text-center cursor-pointer;
+  }
+  .AdminPageBackButton {
+    @apply fixed top-3 left-3 bg-red-500 text-white transition-all hover:scale-105 duration-300 rounded-md p-2 text-center cursor-pointer;
+  }
+
+  .confirmButtonSweetAlert {
+    background: green;
+    padding: 10px;
+    color: white;
+    margin: 0 10px;
+    border-radius: 10px;
+  }
+  .cancelButtonSweetAlert {
+    background: red;
+    padding: 10px;
+    color: white;
+    margin: 0 10px;
+    border-radius: 10px;
+  }
 }
 @layer theme {
   :root {

@@ -1,17 +1,27 @@
 import axios from "axios";
 import { SET_BLOG, SET_BLOG_LOADING, SET_BLOG_ERROR } from "./BlogActionTypes";
 
-const setBlog = (data: any) => ({
+type BlogItem = {
+  id: string;
+  src: string;
+  alt: string;
+  text: string;
+};
+
+// برای setBlog
+const setBlog = (data: BlogItem[]) => ({
   type: SET_BLOG,
   payload: data,
 });
 
-const setBlogLoading = (loading: any) => ({
+// برای setBlogLoading
+const setBlogLoading = (loading: boolean) => ({
   type: SET_BLOG_LOADING,
   payload: loading,
 });
 
-const setBlogError = (error: any) => ({
+// برای setBlogError
+const setBlogError = (error: string) => ({
   type: SET_BLOG_ERROR,
   payload: error,
 });

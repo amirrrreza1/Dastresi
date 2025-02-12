@@ -55,7 +55,7 @@ const MostSell: React.FC = () => {
       swiperRef.current.navigation.update();
       setIsReady(true);
     }
-  }, [MostSell]);
+  }, [mostSell]);
 
   return (
     <>
