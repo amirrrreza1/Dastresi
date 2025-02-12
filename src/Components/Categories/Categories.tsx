@@ -71,7 +71,7 @@ export default function Categories() {
               <PrevButton ref={prevRef} />
               <NextButton ref={nextRef} />
               <Swiper
-                onSwiper={(swiper) => (swiperRef.current = swiper)} // مقداردهی Swiper در ref
+                onSwiper={(swiper) => (swiperRef.current = swiper)}
                 slidesPerView={6}
                 spaceBetween={5}
                 loop={true}
@@ -84,7 +84,7 @@ export default function Categories() {
                   isReady
                     ? { prevEl: prevRef.current, nextEl: nextRef.current }
                     : false
-                } // مقداردهی navigation پس از آماده شدن
+                } 
                 modules={[FreeMode, Autoplay, Navigation]}
               >
                 {categories.map((item, index) => (

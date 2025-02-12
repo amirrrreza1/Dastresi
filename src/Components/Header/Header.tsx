@@ -38,7 +38,7 @@ const Header: React.FC = () => {
         error: string;
       }
   );
-  const [openSubMenu, setOpenSubMenu] = useState<string | null>(null); // کنترل باز بودن زیرمنو
+  const [openSubMenu, setOpenSubMenu] = useState<string | null>(null);
   const [openNestedSubMenu, setOpenNestedSubMenu] = useState<string | null>(
     null
   );
@@ -48,7 +48,7 @@ const Header: React.FC = () => {
 
   const toggleSubMenu = (menu: string) => {
     setOpenSubMenu(openSubMenu === menu ? null : menu);
-    setOpenNestedSubMenu(null); // بستن زیرمنوی دوم هنگام تغییر منوی اول
+    setOpenNestedSubMenu(null);
   };
   const toggleNestedSubMenu = (submenu: string) => {
     setOpenNestedSubMenu(openNestedSubMenu === submenu ? null : submenu);
@@ -235,24 +235,22 @@ const Header: React.FC = () => {
                               <div className="absolute  w-[200px] right-[250px] top-0 hidden bg-white shadow-lg group-hover/item:block">
                                 {item.Submenu.map(
                                   (subItem: any, subIndex: number) => (
-                                    <NavLink
+                                    <p
                                       key={subIndex}
-                                      to={`/${subItem.SubMenuText}`}
                                       className="block hover:bg-gray-100 px-2 text-black hover:text-(--color-PrimeBlue) font-light"
                                     >
                                       {subItem.SubMenuText}
-                                    </NavLink>
+                                    </p>
                                   )
                                 )}
                               </div>
                             </>
                           ) : (
-                            <NavLink
-                              to={`/${item.text}`}
+                            <div
                               className="block hover:bg-gray-100 text-black hover:text-(--color-PrimeBlue) font-light px-2"
                             >
                               {item.text}
-                            </NavLink>
+                            </div>
                           )}
                         </div>
                       ))}
@@ -307,24 +305,22 @@ const Header: React.FC = () => {
                               <div className="absolute  w-[200px] right-[250px] top-0 hidden bg-white shadow-lg group-hover/item:block">
                                 {item.Submenu.map(
                                   (subItem: any, subIndex: number) => (
-                                    <NavLink
+                                    <div
                                       key={subIndex}
-                                      to={`/${subItem.SubMenuText}`}
                                       className="block hover:bg-gray-100 px-2 text-black hover:text-(--color-PrimeBlue) font-light"
                                     >
                                       {subItem.SubMenuText}
-                                    </NavLink>
+                                    </div>
                                   )
                                 )}
                               </div>
                             </>
                           ) : (
-                            <NavLink
-                              to={`/${item.text}`}
+                            <div
                               className="block hover:bg-gray-100 text-black hover:text-(--color-PrimeBlue) font-light px-2"
                             >
                               {item.text}
-                            </NavLink>
+                            </div>
                           )}
                         </div>
                       ))}
@@ -379,24 +375,22 @@ const Header: React.FC = () => {
                               <div className="absolute  w-[200px] right-[250px] top-0 hidden bg-white shadow-lg group-hover/item:block">
                                 {item.Submenu.map(
                                   (subItem: any, subIndex: number) => (
-                                    <NavLink
+                                    <div
                                       key={subIndex}
-                                      to={`/${subItem.SubMenuText}`}
                                       className="block hover:bg-gray-100 px-2 text-black hover:text-(--color-PrimeBlue) font-light"
                                     >
                                       {subItem.SubMenuText}
-                                    </NavLink>
+                                    </div>
                                   )
                                 )}
                               </div>
                             </>
                           ) : (
-                            <NavLink
-                              to={`/${item.text}`}
+                            <div
                               className="block hover:bg-gray-100 text-black hover:text-(--color-PrimeBlue) font-light px-2"
                             >
                               {item.text}
-                            </NavLink>
+                            </div>
                           )}
                         </div>
                       ))}
@@ -451,24 +445,22 @@ const Header: React.FC = () => {
                               <div className="absolute  w-[200px] right-[250px] top-0 hidden bg-white shadow-lg group-hover/item:block">
                                 {item.Submenu.map(
                                   (subItem: any, subIndex: number) => (
-                                    <NavLink
+                                    <div
                                       key={subIndex}
-                                      to={`/${subItem.SubMenuText}`}
                                       className="block hover:bg-gray-100 px-2 text-black hover:text-(--color-PrimeBlue) font-light"
                                     >
                                       {subItem.SubMenuText}
-                                    </NavLink>
+                                    </div>
                                   )
                                 )}
                               </div>
                             </>
                           ) : (
-                            <NavLink
-                              to={`/${item.text}`}
+                            <div
                               className="block hover:bg-gray-100 text-black hover:text-(--color-PrimeBlue) font-light px-2"
                             >
                               {item.text}
-                            </NavLink>
+                            </div>
                           )}
                         </div>
                       ))}
@@ -523,24 +515,22 @@ const Header: React.FC = () => {
                               <div className="absolute  w-[200px] right-[250px] top-0 hidden bg-white shadow-lg group-hover/item:block">
                                 {item.Submenu.map(
                                   (subItem: any, subIndex: number) => (
-                                    <NavLink
+                                    <div
                                       key={subIndex}
-                                      to={`/${subItem.SubMenuText}`}
                                       className="block hover:bg-gray-100 px-2 text-black hover:text-(--color-PrimeBlue) font-light"
                                     >
                                       {subItem.SubMenuText}
-                                    </NavLink>
+                                    </div>
                                   )
                                 )}
                               </div>
                             </>
                           ) : (
-                            <NavLink
-                              to={`/${item.text}`}
+                            <div
                               className="block hover:bg-gray-100 text-black hover:text-(--color-PrimeBlue) font-light px-2"
                             >
                               {item.text}
-                            </NavLink>
+                            </div>
                           )}
                         </div>
                       ))}
@@ -595,24 +585,22 @@ const Header: React.FC = () => {
                               <div className="absolute  w-[200px] right-[250px] top-0 hidden bg-white shadow-lg group-hover/item:block">
                                 {item.Submenu.map(
                                   (subItem: any, subIndex: number) => (
-                                    <NavLink
+                                    <div
                                       key={subIndex}
-                                      to={`/${subItem.SubMenuText}`}
                                       className="block hover:bg-gray-100 px-2 text-black hover:text-(--color-PrimeBlue) font-light"
                                     >
                                       {subItem.SubMenuText}
-                                    </NavLink>
+                                    </div>
                                   )
                                 )}
                               </div>
                             </>
                           ) : (
-                            <NavLink
-                              to={`/${item.text}`}
+                            <div
                               className="block hover:bg-gray-100 text-black hover:text-(--color-PrimeBlue) font-light px-2"
                             >
                               {item.text}
-                            </NavLink>
+                            </div>
                           )}
                         </div>
                       ))}
@@ -664,12 +652,11 @@ const Header: React.FC = () => {
                         ))}
                       </div>
                       <hr className="w-full border-gray-200" />
-                      <Link
-                        to="/Brands"
+                      <div
                         className="w-full h-[40px] px-3 text-[12px] hover:text-(--color-PrimeBlue)"
                       >
                         مشاهده دیگر برندها {">"}
-                      </Link>
+                      </div>
                     </div>
                   </div>
                 )}
@@ -734,20 +721,17 @@ const Header: React.FC = () => {
         className={`fixed top-0 right-0 h-screen w-[300px] bg-white shadow-2xl transform transition-transform duration-300 ease-in-out z-50 
         ${isOpen ? "translate-x-0" : "translate-x-full"}`}
       >
-        {/* دکمه بستن */}
         <button
           className="absolute top-4 left-4 text-gray-600"
           onClick={() => setIsOpen(false)}
         >
           ✖
         </button>
-        {/* منوی کشویی */}
         <div
           className={`sticky  top-0 right-0  w-[300px] h-full transform transition-transform duration-300 ease-in-out zIndex 
         ${isOpen ? "translate-x-0" : "translate-x-full"}`}
           onMouseLeave={() => setIsOpen(false)}
         >
-          {/* دکمه بستن */}
           <button
             className="absolute top-4 left-4 text-gray-600"
             onClick={() => setIsOpen(false)}
@@ -773,7 +757,6 @@ const Header: React.FC = () => {
                 تماس با ما
               </Link>
               <Link to="/AboutUs" className="MobileMenuLink">
-                {" "}
                 بلاگ
               </Link>
             </div>
@@ -792,7 +775,6 @@ const Header: React.FC = () => {
                   />
                 </button>
 
-                {/* داینامیک کردن زیرمنو */}
                 {openSubMenu === "Accessories" && (
                   <div className="bg-[#F5F5F5] px-6 py-2 mr-2">
                     <Link
@@ -806,6 +788,7 @@ const Header: React.FC = () => {
                         width={12}
                       />
                     </Link>
+
                     {navbar?.Accessories?.map((item: any, index: number) => (
                       <div key={index} className="relative">
                         {item.Submenu && item.Submenu.length > 0 ? (
@@ -822,7 +805,6 @@ const Header: React.FC = () => {
                               />
                             </button>
 
-                            {/* زیرمنوی تو در تو */}
                             {openNestedSubMenu === item.text && (
                               <div className="px-4 py-1 border-r-[3px] border-(--color-PrimeOrange)">
                                 <Link
@@ -1321,7 +1303,10 @@ const Header: React.FC = () => {
               </div>
             </div>
 
-            <Link to="/Admin" className="w-[80%] h-[40px] text-center leading-[40px] rounded-lg bg-[#0B295A] text-white my-10 ">
+            <Link
+              to="/Admin"
+              className="w-[80%] h-[40px] text-center leading-[40px] rounded-lg bg-[#0B295A] text-white my-10 "
+            >
               ورود به پنل ادمین
             </Link>
           </div>

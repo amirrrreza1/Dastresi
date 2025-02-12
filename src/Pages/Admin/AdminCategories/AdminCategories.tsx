@@ -185,7 +185,6 @@ const AdminCategories = () => {
         </>
       )}
 
-      {/* Modal for Editing */}
       {isModalOpen && editCategory && (
         <div
           className="fixed inset-0 bg-black/50 flex justify-center items-center"
@@ -193,7 +192,7 @@ const AdminCategories = () => {
         >
           <div
             className="bg-white p-5 rounded-md w-[400px] shadow-lg"
-            onClick={(e) => e.stopPropagation()} // جلوگیری از بسته شدن مودال هنگام کلیک داخل فرم
+            onClick={(e) => e.stopPropagation()}
           >
             <h2 className="text-xl font-bold text-center mb-3">ویرایش</h2>
             <label className="block text-sm font-medium">تصویر</label>

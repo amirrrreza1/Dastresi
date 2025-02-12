@@ -31,8 +31,8 @@ const AdminDailyOffers = () => {
     id: "",
     src: "",
     alt: "",
-    Des: "", // Changed "text" to "Des" to match existing fields
-    PurePrice: "", // Changed "price" to "PurePrice" to match existing fields
+    Des: "",
+    PurePrice: "", 
     Off: "",
     Price: "",
   });
@@ -153,7 +153,6 @@ const AdminDailyOffers = () => {
   };
 
   const handleAddNewOffer = async () => {
-    // بررسی پر بودن تمام فیلدهای ورودی
     if (
       !newOffer.src ||
       !newOffer.alt ||
@@ -168,14 +167,13 @@ const AdminDailyOffers = () => {
         text: "لطفاً همه فیلدها را پر کنید.",
         confirmButtonText: "باشه",
       });
-      return; // جلوگیری از ادامه اجرای تابع
+      return;
     }
 
     try {
       const response = await axios.get("http://localhost:3001/DailyOffers");
       let updatedOffers = response.data;
 
-      // ایجاد آیدی رندم
       const newOfferWithId = { ...newOffer, id: Date.now() };
 
       if (newOfferType === "big") {
@@ -188,7 +186,6 @@ const AdminDailyOffers = () => {
 
       Swal.fire("افزوده شد!", "آیتم جدید با موفقیت اضافه شد.", "success");
 
-      // بستن مودال و پاک کردن مقادیر فرم
       setIsAddModalOpen(false);
       setNewOffer({
         id: "",
@@ -199,7 +196,7 @@ const AdminDailyOffers = () => {
         PurePrice: "",
         Off: "",
       });
-      setNewOfferType("big"); // مقدار پیش‌فرض
+      setNewOfferType("big");
       dispatch(fetchDailyOffersData());
     } catch (error) {
       Swal.fire("خطا!", "مشکلی در افزودن آیتم پیش آمد.", "error");
@@ -404,7 +401,7 @@ const AdminDailyOffers = () => {
                   placeholder="Alt"
                 />
                 <textarea
-                  name="Des" // تغییر به Des
+                  name="Des"
                   value={newOffer.Des}
                   onChange={handleNewOfferChange}
                   className="w-full p-2 border rounded-md"
@@ -413,7 +410,7 @@ const AdminDailyOffers = () => {
                 />
                 <input
                   type="text"
-                  name="PurePrice" // تغییر به Price
+                  name="PurePrice"
                   value={newOffer.PurePrice}
                   onChange={handleNewOfferChange}
                   className="w-full p-2 border rounded-md mb-2"
@@ -421,7 +418,7 @@ const AdminDailyOffers = () => {
                 />
                 <input
                   type="text"
-                  name="Off" // تغییر به Price
+                  name="Off"
                   value={newOffer.Off}
                   onChange={handleNewOfferChange}
                   className="w-full p-2 border rounded-md mb-2"
@@ -429,7 +426,7 @@ const AdminDailyOffers = () => {
                 />
                 <input
                   type="text"
-                  name="Price" // تغییر به Price
+                  name="Price"
                   value={newOffer.Price}
                   onChange={handleNewOfferChange}
                   className="w-full p-2 border rounded-md mb-2"

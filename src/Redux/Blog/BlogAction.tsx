@@ -8,19 +8,16 @@ type BlogItem = {
   text: string;
 };
 
-// برای setBlog
 const setBlog = (data: BlogItem[]) => ({
   type: SET_BLOG,
   payload: data,
 });
 
-// برای setBlogLoading
 const setBlogLoading = (loading: boolean) => ({
   type: SET_BLOG_LOADING,
   payload: loading,
 });
 
-// برای setBlogError
 const setBlogError = (error: string) => ({
   type: SET_BLOG_ERROR,
   payload: error,

@@ -238,15 +238,14 @@ const AdminBlog = () => {
         </div>
       )}
 
-      {/* Add Item Modal */}
       {isAddModalOpen && (
         <div
           className="fixed inset-0 bg-black/50 flex justify-center items-center"
-          onClick={() => setIsAddModalOpen(false)} // بستن مودال با کلیک روی پس‌زمینه
+          onClick={() => setIsAddModalOpen(false)}
         >
           <div
             className="bg-white p-5 rounded-lg w-[90%] max-w-[500px]"
-            onClick={(e) => e.stopPropagation()} // جلوگیری از بسته شدن مودال با کلیک داخل آن
+            onClick={(e) => e.stopPropagation()} 
           >
             <h2 className="text-xl text-center font-bold mb-4">افزودن پست جدید</h2>
             <input

@@ -32,7 +32,7 @@ const AdminMostSell = () => {
   const [editItem, setEditItem] = useState<MostSellItem | null>(null);
   const [isAddModalOpen, setIsAddModalOpen] = useState(false);
   const [newItem, setNewItem] = useState<MostSellItem>({
-    id: crypto.randomUUID(), // آیدی رندم هنگام مقداردهی اولیه
+    id: crypto.randomUUID(),
     src: "",
     alt: "",
     color: "white",
@@ -227,11 +227,11 @@ const AdminMostSell = () => {
       {isModalOpen && editItem && (
         <div
           className="fixed inset-0 bg-black/50 flex justify-center items-center"
-          onClick={() => setIsModalOpen(false)} // بستن مودال با کلیک روی پس‌زمینه
+          onClick={() => setIsModalOpen(false)}
         >
           <div
             className="bg-white p-5 rounded-lg w-[90%] max-w-[500px]"
-            onClick={(e) => e.stopPropagation()} // جلوگیری از بسته شدن با کلیک روی خود فرم
+            onClick={(e) => e.stopPropagation()}
           >
             <h2 className="text-xl text-center font-bold mb-4">ویرایش</h2>
             <label htmlFor="src" className="block mt-1 text-sm">
@@ -333,11 +333,11 @@ const AdminMostSell = () => {
       {isAddModalOpen && (
         <div
           className="fixed inset-0 bg-black/50 flex justify-center items-center"
-          onClick={() => setIsAddModalOpen(false)} // بستن مودال با کلیک روی پس‌زمینه
+          onClick={() => setIsAddModalOpen(false)} 
         >
           <div
             className="bg-white p-5 rounded-lg w-[90%] max-w-[500px]"
-            onClick={(e) => e.stopPropagation()} // جلوگیری از بسته شدن مودال با کلیک داخل آن
+            onClick={(e) => e.stopPropagation()}
           >
             <h2 className="text-xl text-center font-bold mb-4">
               افزودن آیتم جدید

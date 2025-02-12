@@ -15,7 +15,7 @@ export const BlogActionReducer = (state = initialState, action: any) => {
     case SET_BLOG:
       return {
         ...state,
-        blogPosts: action.payload, // تغییر name از blog به blogPosts
+        blogPosts: action.payload,
       };
     case SET_BLOG_LOADING:
       return {
