@@ -12,7 +12,7 @@
     background-color: #f6fafa;
   }
   ::-webkit-scrollbar {
-    width: 10px;
+    width: 7px;
   }
   ::-webkit-scrollbar-thumb {
     background-color: var(--color-PrimeBlue);
