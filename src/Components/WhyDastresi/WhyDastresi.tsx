@@ -9,7 +9,7 @@ const WhyDastresi: React.FC = () => {
       <div className="w-full flex flex-wrap justify-between items-center gap-3">
         <div className="w-[210px] flex flex-col justify-center items-center mt-6">
           <img
-            src="../../../public/Images/WhyDastresi/WhyDastresi1.png"
+            src="/Images/WhyDastresi/WhyDastresi1.png"
             alt="WhyDastresi1"
             width={64}
           />
@@ -24,7 +24,7 @@ const WhyDastresi: React.FC = () => {
         <div className="w-[210px] flex justify-between items-center">
           <div className="w-[210px] flex flex-col justify-center items-center mt-6">
             <img
-              src="../../../public/Images/WhyDastresi/WhyDastresi2.png"
+              src="/Images/WhyDastresi/WhyDastresi2.png"
               alt="WhyDastresi2"
               width={64}
             />
@@ -40,7 +40,7 @@ const WhyDastresi: React.FC = () => {
         <div className="w-[210px] flex justify-between items-center">
           <div className="w-[210px] flex flex-col justify-center items-center mt-6">
             <img
-              src="../../../public/Images/WhyDastresi/WhyDastresi3.png"
+              src="/Images/WhyDastresi/WhyDastresi3.png"
               alt="WhyDastresi3"
               width={64}
             />
@@ -56,7 +56,7 @@ const WhyDastresi: React.FC = () => {
         <div className="w-[210px] flex justify-between items-center">
           <div className="w-[210px] flex flex-col justify-center items-center mt-6">
             <img
-              src="../../../public/Images/WhyDastresi/WhyDastresi4.png"
+              src="/Images/WhyDastresi/WhyDastresi4.png"
               alt="WhyDastresi4"
               width={64}
             />

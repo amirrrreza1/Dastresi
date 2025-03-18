@@ -14,7 +14,7 @@ const Footer: React.FC = () => {
           <div className="Width h-full mx-auto block lg:flex space-y-3 lg:space-y-0  justify-between items-center flex-wrap">
             <div className="FooterGrayItems">
               <img
-                src="../../../public/Images/Icons/Phone.png"
+                src="/Images/Icons/Phone.png"
                 alt="Phone"
                 width={22}
               />
@@ -22,7 +22,7 @@ const Footer: React.FC = () => {
             </div>
             <div className="FooterGrayItems">
               <img
-                src="../../../public/Images/SVG/Clock.svg"
+                src="/Images/SVG/Clock.svg"
                 alt="Clock"
                 width={22}
               />
@@ -33,7 +33,7 @@ const Footer: React.FC = () => {
             </div>
             <div className="FooterGrayItems">
               <img
-                src="../../../public/Images/Icons/Location.png"
+                src="/Images/Icons/Location.png"
                 alt="Location"
                 width={22}
               />
@@ -48,7 +48,7 @@ const Footer: React.FC = () => {
             >
               برو بالا
               <img
-                src="../../../public/Images/Icons/Top-Triangle.png"
+                src="/Images/Icons/Top-Triangle.png"
                 alt="Triangle"
                 width={10}
               />
@@ -61,7 +61,7 @@ const Footer: React.FC = () => {
           <div className="Width h-full mx-auto block lg:flex space-y-3 lg:space-y-0  justify-around items-center flex-wrap">
             <div className="w-[95%] lg:w-[17%] mx-auto flex flex-wrap items-center justify-center lg:flex-col gap-3  p-4">
               <img
-                src="../../../public/Images/Header/logo.png"
+                src="/Images/Header/logo.png"
                 alt="Logo"
                 width={200}
               />
@@ -71,7 +71,7 @@ const Footer: React.FC = () => {
               >
                 <p className="text-sm">با ما در ارتباط باشید:</p>
                 <img
-                  src="../../../public/Images/SVG/Instagram.svg"
+                  src="/Images/SVG/Instagram.svg"
                   alt="Instagram"
                   width={40}
                 />

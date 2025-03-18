@@ -16,6 +16,7 @@ import { FreeMode, Autoplay, Navigation } from "swiper/modules";
 import { useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { NextButton, PrevButton } from "../SwiperButton/SwiperButton";
+import { Tooltip } from "react-tooltip";
 
 type newlyAvailableItem = {
   id: number;
@@ -125,9 +126,13 @@ const NewlyAvailable: React.FC = () => {
                 {newlyAvailable.map((item) => (
                   <SwiperSlide
                     key={item.id}
-                    className="cursor-pointer rounded-lg overflow-hidden flex flex-col justify-center items-center group"
+                    className="cursor-pointer rounded-lg flex flex-col justify-center items-center group "
                   >
-                    <img src={item.src} alt={item.alt} className="w-full" />
+                    <img
+                      src={item.src}
+                      alt={item.alt}
+                      className="w-full rounded-lg"
+                    />
                     <div
                       className={`w-4 h-4 rounded-full absolute top-3 left-3 shadow border-[1px] border-gray-100 ${
                         item.color === "white"
@@ -144,9 +149,19 @@ const NewlyAvailable: React.FC = () => {
                     <div className="text-[12px] text-black/60 mt-4 line-clamp-1">
                       {item.category}
                     </div>
-                    <div className="w-[85%] line-clamp-1 text-[10px] md:text-[14px] mt-2 group-hover:text-(--color-PrimeBlue) transition duration-200">
+                    <div
+                      data-tooltip-id={`NewlyAvailable${item.id}`}
+                      data-tooltip-content={item.text}
+                      data-tooltip-place="top"
+                      className="w-[85%] line-clamp-1 text-[10px] md:text-[14px] mt-2 group-hover:text-(--color-PrimeBlue) transition duration-200"
+                    >
                       {item.text}
                     </div>
+                    <Tooltip
+                      className="!z-[999]"
+                      positionStrategy="fixed"
+                      id={`NewlyAvailable${item.id}`}
+                    />
                     <div className="text-end w-full mt-4 p-0 text-[8px] md:text-[14px] flex flex-row gap-1 justify-end">
                       {item.Inventory === 0 ? (
                         <div className="w-full bg-[#FEF5F5] text-[#9B2B2C] p-2 text-center text-[10px] md:text-[16px]">

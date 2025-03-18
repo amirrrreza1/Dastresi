@@ -55,7 +55,7 @@ const { blogPosts, loading, error } = useSelector(
             <Link to="/Blog" className="flex items-center gap-2">
               <p className="font-light md:block hidden">ورود به بلاگ</p>
               <img
-                src="../../../public/Images/SVG/toleftArrowBox.svg"
+                src="/Images/SVG/ToLeftArrowBox.svg"
                 alt="To right Arrow Box"
                 width={15}
               />
