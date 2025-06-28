@@ -20,8 +20,10 @@ export function fetchCategoriesData() {
   return async (dispatch: any) => {
     dispatch(setCategoriesLoading(true));
     try {
-      const res = await axios.get("http://localhost:3001/Categories");
-      dispatch(setCategories(res.data));
+      const res = await axios.get(
+        "https://amirrrreza1.github.io/Dastresi-Link/db.json"
+      );
+      dispatch(setCategories(res.data.Categories));
     } catch (err) {
       const errorMessage =
         err instanceof Error ? err.message : "خطا در دریافت داده‌ها";

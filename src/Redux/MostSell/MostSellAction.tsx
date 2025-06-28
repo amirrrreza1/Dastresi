@@ -20,8 +20,10 @@ export function fetchMostSellData() {
   return async (dispatch: any) => {
     dispatch(setMostSellLoading(true));
     try {
-      const res = await axios.get("http://localhost:3001/MostSell");
-      dispatch(setMostSell(res.data));
+      const res = await axios.get(
+        "https://amirrrreza1.github.io/Dastresi-Link/db.json"
+      );
+      dispatch(setMostSell(res.data.MostSell));
     } catch (err) {
       const errorMessage =
         err instanceof Error ? err.message : "خطا در دریافت داده‌ها";

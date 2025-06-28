@@ -27,8 +27,8 @@ export function fetchBlogData() {
   return async (dispatch: any) => {
     dispatch(setBlogLoading(true));
     try {
-      const res = await axios.get("http://localhost:3001/Blog");
-      dispatch(setBlog(res.data));
+      const res = await axios.get("https://amirrrreza1.github.io/Dastresi-Link/db.json");
+      dispatch(setBlog(res.data.Blog));
     } catch (err) {
       const errorMessage =
         err instanceof Error ? err.message : "خطا در دریافت داده‌ها";

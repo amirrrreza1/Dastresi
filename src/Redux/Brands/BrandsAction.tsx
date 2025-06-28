@@ -20,8 +20,10 @@ export function fetchBrandsData() {
   return async (dispatch: any) => {
     dispatch(setBrandsLoading(true));
     try {
-      const res = await axios.get("http://localhost:3001/Brands");
-      dispatch(setBrands(res.data));
+      const res = await axios.get(
+        "https://amirrrreza1.github.io/Dastresi-Link/db.json"
+      );
+      dispatch(setBrands(res.data.Brands));
     } catch (err) {
       const errorMessage =
         err instanceof Error ? err.message : "خطا در دریافت داده‌ها";

@@ -19,8 +19,10 @@ const setNavbarError = (error:any) => ({
 export const fetchNavbarData = () => async (dispatch:any) => {
   dispatch(setNavbarLoading(true));
   try {
-    const res = await axios.get("http://localhost:3001/Navbar");
-    dispatch(setNavbar(res.data));
+    const res = await axios.get(
+      "https://amirrrreza1.github.io/Dastresi-Link/db.json"
+    );
+    dispatch(setNavbar(res.data.Navbar));
   } catch (err) {
     const errorMessage =
       err instanceof Error ? err.message : "خطا در دریافت داده‌ها";

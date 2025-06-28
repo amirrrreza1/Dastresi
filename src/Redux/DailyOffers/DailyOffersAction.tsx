@@ -20,8 +20,10 @@ export function fetchDailyOffersData() {
   return async (dispatch: any) => {
     dispatch(setDailyOffersLoading(true));
     try {
-      const res = await axios.get("http://localhost:3001/DailyOffers");
-      dispatch(setDailyOffers(res.data));
+      const res = await axios.get(
+        "https://amirrrreza1.github.io/Dastresi-Link/db.json"
+      );
+      dispatch(setDailyOffers(res.data.DailyOffers));
     } catch (err) {
       const errorMessage =
         err instanceof Error ? err.message : "خطا در دریافت داده‌ها";

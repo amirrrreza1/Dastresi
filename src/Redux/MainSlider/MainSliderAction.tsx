@@ -20,8 +20,10 @@ export function fetchMainSliderData() {
   return async (dispatch: any) => {
     dispatch(setMainSliderLoading(true));
     try {
-      const res = await axios.get("http://localhost:3001/MainSlider");
-      dispatch(setMainSlider(res.data));
+      const res = await axios.get(
+        "https://amirrrreza1.github.io/Dastresi-Link/db.json"
+      );
+      dispatch(setMainSlider(res.data.MainSlider));
     } catch (err) {
       const errorMessage =
         err instanceof Error ? err.message : "خطا در دریافت داده‌ها";

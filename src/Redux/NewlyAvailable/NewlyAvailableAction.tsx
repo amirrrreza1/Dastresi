@@ -24,8 +24,10 @@ export function fetchNewlyAvailableData() {
   return async (dispatch: any) => {
     dispatch(setNewlyAvailableLoading(true));
     try {
-      const res = await axios.get("http://localhost:3001/NewlyAvailable");
-      dispatch(setNewlyAvailable(res.data));
+      const res = await axios.get(
+        "https://amirrrreza1.github.io/Dastresi-Link/db.json"
+      );
+      dispatch(setNewlyAvailable(res.data.NewlyAvailable));
     } catch (err) {
       const errorMessage =
         err instanceof Error ? err.message : "خطا در دریافت داده‌ها";
