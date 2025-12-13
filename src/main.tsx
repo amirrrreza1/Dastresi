@@ -4,11 +4,8 @@ import App from "./Components/App/App.tsx";
 import "./index.css";
 
 const rootElement = document.getElementById("root");
-if (!rootElement) {
-  throw new Error("Root element not found");
-}
 
-createRoot(rootElement).render(
+createRoot(rootElement!).render(
   <StrictMode>
     <App />
   </StrictMode>
