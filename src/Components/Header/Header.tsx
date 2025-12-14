@@ -1,8 +1,6 @@
-import React, { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import React, { useState } from "react";
 import { Link, NavLink } from "react-router-dom";
-import type { AppDispatch } from "../../Redux/Store";
-import { fetchNavbarData } from "../../Redux/Navbar/NavbarAction";
+import data from "../../../db.json";
 
 type NavbarSubmenu = {
   id: number;
@@ -29,15 +27,8 @@ type NavbarItem = {
 };
 
 const Header: React.FC = () => {
-  const dispatch = useDispatch<AppDispatch>();
-  const { navbar, loading, error } = useSelector(
-    (state: any) =>
-      state.navbar as {
-        navbar: NavbarItem;
-        loading: boolean;
-        error: string;
-      }
-  );
+  const navbar: NavbarItem = data.Navbar;
+
   const [openSubMenu, setOpenSubMenu] = useState<string | null>(null);
   const [openNestedSubMenu, setOpenNestedSubMenu] = useState<string | null>(
     null
@@ -54,121 +45,126 @@ const Header: React.FC = () => {
     setOpenNestedSubMenu(openNestedSubMenu === submenu ? null : submenu);
   };
 
-  useEffect(() => {
-    dispatch(fetchNavbarData());
-  }, []);
-
   return (
     <>
-      {loading && (
-        <div className="text-center m-auto text-3xl">در حال بارگذاری...</div>
-      )}
-      {error && (
-        <div className="error-message text-red-500 text-2xl text-center leading-[60px]">
-          DailyOffers :{error}
-        </div>
-      )}
-      {/* Header Wrapper Start */}
-      {!loading && !error && (
-        <div>
-          {/* Desktop Header Start */}
-          <header className="w-full h-fit shadow-md bg-white z-70 sticky top-0 left-0 right-0 hidden lg:block">
-            {/* Top Part of the Header Start */}
-            <div className="Width h-[80px] mx-auto flex justify-between  items-center gap-[20px] px-4">
-              {/* Logo */}
-              <NavLink to="/" className="flex items-center">
+      <div>
+        <header className="w-full h-fit shadow-md bg-white z-70 sticky top-0 left-0 right-0 hidden lg:block">
+          <div className="Width h-20 mx-auto flex justify-between  items-center gap-5 px-4">
+            <NavLink to="/" className="flex items-center">
+              <img
+                src="./Images/Header/logo.png"
+                alt="Logo"
+                width="100"
+                height="40"
+              />
+            </NavLink>
+            <div className="w-[30%]">
+              <button className="w-full h-10 px-3 rounded-xl bg-(--color-PrimeGray) shadow flex items-center justify-center">
                 <img
-                  src="./Images/Header/logo.png"
-                  alt="Logo"
-                  width="100"
-                  height="40"
+                  src="./Images/SVG/SearchIcon.svg"
+                  alt=""
+                  width="20"
+                  height="20"
                 />
-              </NavLink>
-              {/* Search Bar */}
-              <div className="w-[30%]">
-                <button className="w-full h-10 px-3 rounded-xl bg-(--color-PrimeGray) shadow flex items-center justify-center">
-                  <img
-                    src="./Images/SVG/SearchIcon.svg"
-                    alt=""
-                    width="20"
-                    height="20"
-                  />
-                  <input
-                    type="text"
-                    className="w-full h-full rounded-xl px-3  text-black placeholder:(--color-PrimeGray) focus-within:border-none focus-within:outline-none"
-                    placeholder=" جستجو محصولات"
-                  />
-                </button>
+                <input
+                  type="text"
+                  className="w-full h-full rounded-xl px-3  text-black placeholder:(--color-PrimeGray) focus-within:border-none focus-within:outline-none"
+                  placeholder=" جستجو محصولات"
+                />
+              </button>
+            </div>
+            <div className="w-[60%] flex items-center justify-between max-w-[520px]">
+              <div className="flex items-center">
+                <a href="#" className="HeaderPagesItem">
+                  باشگاه مشتریان
+                </a>
+                <a href="#" className="HeaderPagesItem">
+                  بلاگ
+                </a>
+                <a href="#" className="HeaderPagesItem">
+                  ارتباط ما
+                </a>
+                <a href="#" className="HeaderPagesItem">
+                  درباره ما
+                </a>
               </div>
-              {/* User Actions */}
-              <div className="w-[60%] flex items-center justify-between max-w-[520px]">
-                {/* Pages */}
-                <div className="flex items-center">
-                  <a href="#" className="HeaderPagesItem">
-                    باشگاه مشتریان
-                  </a>
-                  <a href="#" className="HeaderPagesItem">
-                    بلاگ
-                  </a>
-                  <a href="#" className="HeaderPagesItem">
-                    ارتباط ما
-                  </a>
-                  <a href="#" className="HeaderPagesItem">
-                    درباره ما
-                  </a>
-                </div>
-                {/* Items */}
-                <div className="flex items-center">
-                  {/* Shop Basket */}
-                  <div className="w-[60px] h-[60px] relative flex justify-center items-center">
-                    <a
-                      href="#"
-                      className="w-[40px] h-[40px] bg-(--color-PrimeGray) flex items-center justify-center shadow-md rounded-lg group"
-                    >
-                      <img
-                        src="./Images/SVG/ShoppingCartOrange.svg"
-                        alt=""
-                        width="20"
-                        height="20"
-                        className="absolute w-5 h-5 flex justify-center items-center transition-opacity duration-300 group-hover:opacity-0"
-                      />
-                      <img
-                        src="./Images/SVG/ShoppingCartBlack.svg"
-                        alt=""
-                        width="20"
-                        height="20"
-                        className="absolute w-5 h-5 flex justify-center items-center opacity-0 transition-opacity duration-300 group-hover:opacity-100"
-                      />
-                    </a>
-                    <div className="w-[20px] h-[20px] text-white bg-(--color-PrimeOrange) absolute top-0 right-0 rounded-full shadow-lg leading-[20px] text-center">
-                      ۰
-                    </div>
-                  </div>
-
-                  {/* User Profile */}
-                  <Link
-                    to="/Admin"
-                    className="h-[40px] shadow leading-[40px] px-3 bg-(--color-PrimeBlue) text-white rounded-lg hover:bg-black transition-bg-color duration-300"
+              <div className="flex items-center">
+                <div className="w-15 h-15 relative flex justify-center items-center">
+                  <a
+                    href="#"
+                    className="w-10 h-10 bg-(--color-PrimeGray) flex items-center justify-center shadow-md rounded-lg group"
                   >
-                    پنل ادمین
-                  </Link>
+                    <img
+                      src="./Images/SVG/ShoppingCartOrange.svg"
+                      alt=""
+                      width="20"
+                      height="20"
+                      className="absolute w-5 h-5 flex justify-center items-center transition-opacity duration-300 group-hover:opacity-0"
+                    />
+                    <img
+                      src="./Images/SVG/ShoppingCartBlack.svg"
+                      alt=""
+                      width="20"
+                      height="20"
+                      className="absolute w-5 h-5 flex justify-center items-center opacity-0 transition-opacity duration-300 group-hover:opacity-100"
+                    />
+                  </a>
+                  <div className="w-5 h-5 text-white bg-(--color-PrimeOrange) absolute top-0 right-0 rounded-full shadow-lg leading-5 text-center">
+                    ۰
+                  </div>
                 </div>
+                <Link
+                  to="#"
+                  className="h-10 shadow leading-10 px-3 bg-(--color-PrimeBlue) text-white rounded-lg hover:bg-black transition-bg-color duration-300"
+                >
+                  پنل ادمین
+                </Link>
               </div>
             </div>
-            {/* Top Part of the Header End */}
-            {/* Navbar Start */}
-            <nav className="Width m-auto flex flex-wrap justify-between items-center px-4">
-              <NavLink
-                to="/"
-                className={(navDate) =>
-                  navDate.isActive
-                    ? "group HeaderNavBarActive"
-                    : "HeaderNavBarNotActive group"
-                }
-              >
-                {({ isActive }) => (
+          </div>
+          <nav className="Width m-auto flex flex-wrap justify-between items-center px-4">
+            <NavLink
+              to="/"
+              className={(navDate) =>
+                navDate.isActive
+                  ? "group HeaderNavBarActive"
+                  : "HeaderNavBarNotActive group"
+              }
+            >
+              {({ isActive }) => (
+                <div className="flex items-center gap-2">
+                  خانه
+                  <img
+                    src={
+                      isActive
+                        ? "/Images/SVG/TriangleOrange.svg"
+                        : "/Images/SVG/TriangleBlack.svg"
+                    }
+                    alt="Triangle Indicator"
+                    width={8}
+                    className="group-hover:hidden!"
+                  />
+                  <img
+                    src="/Images/SVG/TriangleOrange.svg"
+                    alt="Triangle Indicator Hover"
+                    width={8}
+                    className={`hidden group-hover:block!`}
+                  />
+                </div>
+              )}
+            </NavLink>
+            <NavLink
+              to="/Accessories"
+              className={({ isActive }) =>
+                isActive
+                  ? "group relative HeaderNavBarActive"
+                  : "group relative HeaderNavBarNotActive"
+              }
+            >
+              {({ isActive }) => (
+                <div className="flex flex-col items-center gap-2">
                   <div className="flex items-center gap-2">
-                    خانه
+                    لوازم جانبی موبایل و کامپیوتر
                     <img
                       src={
                         isActive
@@ -177,545 +173,487 @@ const Header: React.FC = () => {
                       }
                       alt="Triangle Indicator"
                       width={8}
-                      className="group-hover:!hidden"
+                      className="group-hover:hidden!"
                     />
                     <img
                       src="/Images/SVG/TriangleOrange.svg"
                       alt="Triangle Indicator Hover"
                       width={8}
-                      className={`hidden group-hover:!block`}
+                      className="hidden group-hover:block!"
                     />
                   </div>
-                )}
-              </NavLink>
-              <NavLink
-                to="/Accessories"
-                className={({ isActive }) =>
-                  isActive
-                    ? "group relative HeaderNavBarActive"
-                    : "group relative HeaderNavBarNotActive"
-                }
-              >
-                {({ isActive }) => (
-                  <div className="flex flex-col items-center gap-2">
-                    <div className="flex items-center gap-2">
-                      لوازم جانبی موبایل و کامپیوتر
-                      <img
-                        src={
-                          isActive
-                            ? "/Images/SVG/TriangleOrange.svg"
-                            : "/Images/SVG/TriangleBlack.svg"
-                        }
-                        alt="Triangle Indicator"
-                        width={8}
-                        className="group-hover:!hidden"
-                      />
-                      <img
-                        src="/Images/SVG/TriangleOrange.svg"
-                        alt="Triangle Indicator Hover"
-                        width={8}
-                        className="hidden group-hover:!block"
-                      />
-                    </div>
 
-                    {/* Dropdown Menu */}
-                    <div className="absolute right-0 top-[40px] hidden w-[250px] bg-white shadow-lg group-hover:block">
-                      {navbar?.Accessories?.map((item, index) => (
-                        <div key={index} className="relative group/item">
-                          {item.Submenu && item.Submenu.length > 0 ? (
-                            <>
-                              <button className="w-full text-right hover:bg-gray-100 text-black hover:text-(--color-PrimeBlue) font-light flex items-center justify-between px-2">
-                                {item.text}
-                                <img
-                                  src="./Images/SVG/ToLeftArrow.svg"
-                                  alt="to left arrow"
-                                  width={15}
-                                />
-                              </button>
-                              <div className="absolute  w-[200px] right-[250px] top-0 hidden bg-white shadow-lg group-hover/item:block">
-                                {item.Submenu.map(
-                                  (subItem: any, subIndex: number) => (
-                                    <p
-                                      key={subIndex}
-                                      className="block hover:bg-gray-100 px-2 text-black hover:text-(--color-PrimeBlue) font-light"
-                                    >
-                                      {subItem.SubMenuText}
-                                    </p>
-                                  )
-                                )}
-                              </div>
-                            </>
-                          ) : (
-                            <div
-                              className="block hover:bg-gray-100 text-black hover:text-(--color-PrimeBlue) font-light px-2"
-                            >
+                  <div className="absolute right-0 top-10 hidden w-[250px] bg-white shadow-lg group-hover:block">
+                    {navbar?.Accessories?.map((item, index) => (
+                      <div key={index} className="relative group/item">
+                        {item.Submenu && item.Submenu.length > 0 ? (
+                          <>
+                            <button className="w-full text-right hover:bg-gray-100 text-black hover:text-(--color-PrimeBlue) font-light flex items-center justify-between px-2">
                               {item.text}
+                              <img
+                                src="./Images/SVG/ToLeftArrow.svg"
+                                alt="to left arrow"
+                                width={15}
+                              />
+                            </button>
+                            <div className="absolute  w-[200px] right-[250px] top-0 hidden bg-white shadow-lg group-hover/item:block">
+                              {item.Submenu.map(
+                                (subItem: NavbarSubmenu, subIndex: number) => (
+                                  <p
+                                    key={subIndex}
+                                    className="block hover:bg-gray-100 px-2 text-black hover:text-(--color-PrimeBlue) font-light"
+                                  >
+                                    {subItem.SubMenuText}
+                                  </p>
+                                )
+                              )}
                             </div>
-                          )}
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-                )}
-              </NavLink>
-              <NavLink
-                to="/Cable"
-                className={({ isActive }) =>
-                  isActive
-                    ? "group relative HeaderNavBarActive"
-                    : "group relative HeaderNavBarNotActive"
-                }
-              >
-                {({ isActive }) => (
-                  <div className="flex flex-col items-center gap-2">
-                    <div className="flex items-center gap-2">
-                      کابل - رابط - رابط
-                      <img
-                        src={
-                          isActive
-                            ? "/Images/SVG/TriangleOrange.svg"
-                            : "/Images/SVG/TriangleBlack.svg"
-                        }
-                        alt="Triangle Indicator"
-                        width={8}
-                        className="group-hover:!hidden"
-                      />
-                      <img
-                        src="/Images/SVG/TriangleOrange.svg"
-                        alt="Triangle Indicator Hover"
-                        width={8}
-                        className="hidden group-hover:!block"
-                      />
-                    </div>
-
-                    {/* Dropdown Menu */}
-                    <div className="absolute right-0 top-[40px] hidden w-[250px] bg-white shadow-lg group-hover:block">
-                      {navbar?.Cable?.map((item, index) => (
-                        <div key={index} className="relative group/item">
-                          {item.Submenu && item.Submenu.length > 0 ? (
-                            <>
-                              <button className="w-full text-right hover:bg-gray-100 text-black hover:text-(--color-PrimeBlue) font-light flex items-center justify-between px-2">
-                                {item.text}
-                                <img
-                                  src="./Images/SVG/ToLeftArrow.svg"
-                                  alt="to left arrow"
-                                  width={15}
-                                />
-                              </button>
-                              <div className="absolute  w-[200px] right-[250px] top-0 hidden bg-white shadow-lg group-hover/item:block">
-                                {item.Submenu.map(
-                                  (subItem: any, subIndex: number) => (
-                                    <div
-                                      key={subIndex}
-                                      className="block hover:bg-gray-100 px-2 text-black hover:text-(--color-PrimeBlue) font-light"
-                                    >
-                                      {subItem.SubMenuText}
-                                    </div>
-                                  )
-                                )}
-                              </div>
-                            </>
-                          ) : (
-                            <div
-                              className="block hover:bg-gray-100 text-black hover:text-(--color-PrimeBlue) font-light px-2"
-                            >
-                              {item.text}
-                            </div>
-                          )}
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-                )}
-              </NavLink>
-              <NavLink
-                to="/ContentCrator"
-                className={({ isActive }) =>
-                  isActive
-                    ? "group relative HeaderNavBarActive"
-                    : "group relative HeaderNavBarNotActive"
-                }
-              >
-                {({ isActive }) => (
-                  <div className="flex flex-col items-center gap-2">
-                    <div className="flex items-center gap-2">
-                      لوازم تولید محتوا
-                      <img
-                        src={
-                          isActive
-                            ? "/Images/SVG/TriangleOrange.svg"
-                            : "/Images/SVG/TriangleBlack.svg"
-                        }
-                        alt="Triangle Indicator"
-                        width={8}
-                        className="group-hover:!hidden"
-                      />
-                      <img
-                        src="/Images/SVG/TriangleOrange.svg"
-                        alt="Triangle Indicator Hover"
-                        width={8}
-                        className="hidden group-hover:!block"
-                      />
-                    </div>
-
-                    {/* Dropdown Menu */}
-                    <div className="absolute right-0 top-[40px] hidden w-[250px] bg-white shadow-lg group-hover:block">
-                      {navbar?.ContentCrator?.map((item, index) => (
-                        <div key={index} className="relative group/item">
-                          {item.Submenu && item.Submenu.length > 0 ? (
-                            <>
-                              <button className="w-full text-right hover:bg-gray-100 text-black hover:text-(--color-PrimeBlue) font-light flex items-center justify-between px-2">
-                                {item.text}
-                                <img
-                                  src="./Images/SVG/ToLeftArrow.svg"
-                                  alt="to left arrow"
-                                  width={15}
-                                />
-                              </button>
-                              <div className="absolute  w-[200px] right-[250px] top-0 hidden bg-white shadow-lg group-hover/item:block">
-                                {item.Submenu.map(
-                                  (subItem: any, subIndex: number) => (
-                                    <div
-                                      key={subIndex}
-                                      className="block hover:bg-gray-100 px-2 text-black hover:text-(--color-PrimeBlue) font-light"
-                                    >
-                                      {subItem.SubMenuText}
-                                    </div>
-                                  )
-                                )}
-                              </div>
-                            </>
-                          ) : (
-                            <div
-                              className="block hover:bg-gray-100 text-black hover:text-(--color-PrimeBlue) font-light px-2"
-                            >
-                              {item.text}
-                            </div>
-                          )}
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-                )}
-              </NavLink>
-              <NavLink
-                to="/Networking"
-                className={({ isActive }) =>
-                  isActive
-                    ? "group relative HeaderNavBarActive"
-                    : "group relative HeaderNavBarNotActive"
-                }
-              >
-                {({ isActive }) => (
-                  <div className="flex flex-col items-center gap-2">
-                    <div className="flex items-center gap-2">
-                      لوازم شبکه
-                      <img
-                        src={
-                          isActive
-                            ? "/Images/SVG/TriangleOrange.svg"
-                            : "/Images/SVG/TriangleBlack.svg"
-                        }
-                        alt="Triangle Indicator"
-                        width={8}
-                        className="group-hover:!hidden"
-                      />
-                      <img
-                        src="/Images/SVG/TriangleOrange.svg"
-                        alt="Triangle Indicator Hover"
-                        width={8}
-                        className="hidden group-hover:!block"
-                      />
-                    </div>
-
-                    {/* Dropdown Menu */}
-                    <div className="absolute right-0 top-[40px] hidden w-[250px] bg-white shadow-lg group-hover:block">
-                      {navbar?.Networking?.map((item, index) => (
-                        <div key={index} className="relative group/item">
-                          {item.Submenu && item.Submenu.length > 0 ? (
-                            <>
-                              <button className="w-full text-right hover:bg-gray-100 text-black hover:text-(--color-PrimeBlue) font-light flex items-center justify-between px-2">
-                                {item.text}
-                                <img
-                                  src="./Images/SVG/ToLeftArrow.svg"
-                                  alt="to left arrow"
-                                  width={15}
-                                />
-                              </button>
-                              <div className="absolute  w-[200px] right-[250px] top-0 hidden bg-white shadow-lg group-hover/item:block">
-                                {item.Submenu.map(
-                                  (subItem: any, subIndex: number) => (
-                                    <div
-                                      key={subIndex}
-                                      className="block hover:bg-gray-100 px-2 text-black hover:text-(--color-PrimeBlue) font-light"
-                                    >
-                                      {subItem.SubMenuText}
-                                    </div>
-                                  )
-                                )}
-                              </div>
-                            </>
-                          ) : (
-                            <div
-                              className="block hover:bg-gray-100 text-black hover:text-(--color-PrimeBlue) font-light px-2"
-                            >
-                              {item.text}
-                            </div>
-                          )}
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-                )}
-              </NavLink>
-              <NavLink
-                to="/GameConsole"
-                className={({ isActive }) =>
-                  isActive
-                    ? "group relative HeaderNavBarActive"
-                    : "group relative HeaderNavBarNotActive"
-                }
-              >
-                {({ isActive }) => (
-                  <div className="flex flex-col items-center gap-2">
-                    <div className="flex items-center gap-2">
-                      کنسول بازی و لوازم جانبی
-                      <img
-                        src={
-                          isActive
-                            ? "/Images/SVG/TriangleOrange.svg"
-                            : "/Images/SVG/TriangleBlack.svg"
-                        }
-                        alt="Triangle Indicator"
-                        width={8}
-                        className="group-hover:!hidden"
-                      />
-                      <img
-                        src="/Images/SVG/TriangleOrange.svg"
-                        alt="Triangle Indicator Hover"
-                        width={8}
-                        className="hidden group-hover:!block"
-                      />
-                    </div>
-
-                    {/* Dropdown Menu */}
-                    <div className="absolute right-0 top-[40px] hidden w-[250px] bg-white shadow-lg group-hover:block">
-                      {navbar?.GameConsole?.map((item, index) => (
-                        <div key={index} className="relative group/item">
-                          {item.Submenu && item.Submenu.length > 0 ? (
-                            <>
-                              <button className="w-full text-right hover:bg-gray-100 text-black hover:text-(--color-PrimeBlue) font-light flex items-center justify-between px-2">
-                                {item.text}
-                                <img
-                                  src="./Images/SVG/ToLeftArrow.svg"
-                                  alt="to left arrow"
-                                  width={15}
-                                />
-                              </button>
-                              <div className="absolute  w-[200px] right-[250px] top-0 hidden bg-white shadow-lg group-hover/item:block">
-                                {item.Submenu.map(
-                                  (subItem: any, subIndex: number) => (
-                                    <div
-                                      key={subIndex}
-                                      className="block hover:bg-gray-100 px-2 text-black hover:text-(--color-PrimeBlue) font-light"
-                                    >
-                                      {subItem.SubMenuText}
-                                    </div>
-                                  )
-                                )}
-                              </div>
-                            </>
-                          ) : (
-                            <div
-                              className="block hover:bg-gray-100 text-black hover:text-(--color-PrimeBlue) font-light px-2"
-                            >
-                              {item.text}
-                            </div>
-                          )}
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-                )}
-              </NavLink>
-              <NavLink
-                to="/Personal"
-                className={({ isActive }) =>
-                  isActive
-                    ? "group relative HeaderNavBarActive"
-                    : "group relative HeaderNavBarNotActive"
-                }
-              >
-                {({ isActive }) => (
-                  <div className="flex flex-col items-center gap-2">
-                    <div className="flex items-center gap-2">
-                      لوازم خانگی و شخصی
-                      <img
-                        src={
-                          isActive
-                            ? "/Images/SVG/TriangleOrange.svg"
-                            : "/Images/SVG/TriangleBlack.svg"
-                        }
-                        alt="Triangle Indicator"
-                        width={8}
-                        className="group-hover:!hidden"
-                      />
-                      <img
-                        src="/Images/SVG/TriangleOrange.svg"
-                        alt="Triangle Indicator Hover"
-                        width={8}
-                        className="hidden group-hover:!block"
-                      />
-                    </div>
-
-                    {/* Dropdown Menu */}
-                    <div className="absolute right-0 top-[40px] hidden w-[250px] bg-white shadow-lg group-hover:block">
-                      {navbar?.Personal?.map((item, index) => (
-                        <div key={index} className="relative group/item">
-                          {item.Submenu && item.Submenu.length > 0 ? (
-                            <>
-                              <button className="w-full text-right hover:bg-gray-100 text-black hover:text-(--color-PrimeBlue) font-light flex items-center justify-between px-2">
-                                {item.text}
-                                <img
-                                  src="./Images/SVG/ToLeftArrow.svg"
-                                  alt="to left arrow"
-                                  width={15}
-                                />
-                              </button>
-                              <div className="absolute  w-[200px] right-[250px] top-0 hidden bg-white shadow-lg group-hover/item:block">
-                                {item.Submenu.map(
-                                  (subItem: any, subIndex: number) => (
-                                    <div
-                                      key={subIndex}
-                                      className="block hover:bg-gray-100 px-2 text-black hover:text-(--color-PrimeBlue) font-light"
-                                    >
-                                      {subItem.SubMenuText}
-                                    </div>
-                                  )
-                                )}
-                              </div>
-                            </>
-                          ) : (
-                            <div
-                              className="block hover:bg-gray-100 text-black hover:text-(--color-PrimeBlue) font-light px-2"
-                            >
-                              {item.text}
-                            </div>
-                          )}
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-                )}
-              </NavLink>
-              <NavLink
-                to="/Brands"
-                className={({ isActive }) =>
-                  isActive
-                    ? "group  HeaderNavBarActive"
-                    : "group  HeaderNavBarNotActive"
-                }
-              >
-                {({ isActive }) => (
-                  <div className="flex flex-col items-center gap-2">
-                    <div className="flex items-center gap-2">
-                      برند ها
-                      <img
-                        src={
-                          isActive
-                            ? "/Images/SVG/TriangleOrange.svg"
-                            : "/Images/SVG/TriangleBlack.svg"
-                        }
-                        alt="Triangle Indicator"
-                        width={8}
-                        className="group-hover:!hidden"
-                      />
-                      <img
-                        src="/Images/SVG/TriangleOrange.svg"
-                        alt="Triangle Indicator Hover"
-                        width={8}
-                        className="hidden group-hover:!block"
-                      />
-                    </div>
-
-                    {/* Dropdown Menu */}
-                    <div className="absolute left-1/2 top-[120px] hidden Width w-[98%]  bg-white shadow-2xl transform -translate-x-1/2  group-hover:block overflow-hidden">
-                      <div className="group-hover:flex flex-wrap">
-                        {navbar?.Brands?.map((item, index) => (
-                          <div
-                            key={index}
-                            className="w-[20%] !flex items-center justify-between border-x border-gray-200 px-2 text-black hover:bg-gray-100 hover:text-(--color-PrimeBlue) font-light text-[11px]"
-                          >
-                            <p>{item.PersianText}</p>
-                            <p>{item.EnglishText}</p>
+                          </>
+                        ) : (
+                          <div className="block hover:bg-gray-100 text-black hover:text-(--color-PrimeBlue) font-light px-2">
+                            {item.text}
                           </div>
-                        ))}
+                        )}
                       </div>
-                      <hr className="w-full border-gray-200" />
-                      <div
-                        className="w-full h-[40px] px-3 text-[12px] hover:text-(--color-PrimeBlue)"
-                      >
-                        مشاهده دیگر برندها {">"}
+                    ))}
+                  </div>
+                </div>
+              )}
+            </NavLink>
+            <NavLink
+              to="/Cable"
+              className={({ isActive }) =>
+                isActive
+                  ? "group relative HeaderNavBarActive"
+                  : "group relative HeaderNavBarNotActive"
+              }
+            >
+              {({ isActive }) => (
+                <div className="flex flex-col items-center gap-2">
+                  <div className="flex items-center gap-2">
+                    کابل - رابط - رابط
+                    <img
+                      src={
+                        isActive
+                          ? "/Images/SVG/TriangleOrange.svg"
+                          : "/Images/SVG/TriangleBlack.svg"
+                      }
+                      alt="Triangle Indicator"
+                      width={8}
+                      className="group-hover:hidden!"
+                    />
+                    <img
+                      src="/Images/SVG/TriangleOrange.svg"
+                      alt="Triangle Indicator Hover"
+                      width={8}
+                      className="hidden group-hover:block!"
+                    />
+                  </div>
+
+                  <div className="absolute right-0 top-10 hidden w-[250px] bg-white shadow-lg group-hover:block">
+                    {navbar?.Cable?.map((item, index) => (
+                      <div key={index} className="relative group/item">
+                        {item.Submenu && item.Submenu.length > 0 ? (
+                          <>
+                            <button className="w-full text-right hover:bg-gray-100 text-black hover:text-(--color-PrimeBlue) font-light flex items-center justify-between px-2">
+                              {item.text}
+                              <img
+                                src="./Images/SVG/ToLeftArrow.svg"
+                                alt="to left arrow"
+                                width={15}
+                              />
+                            </button>
+                            <div className="absolute  w-[200px] right-[250px] top-0 hidden bg-white shadow-lg group-hover/item:block">
+                              {item.Submenu.map(
+                                (subItem: NavbarSubmenu, subIndex: number) => (
+                                  <div
+                                    key={subIndex}
+                                    className="block hover:bg-gray-100 px-2 text-black hover:text-(--color-PrimeBlue) font-light"
+                                  >
+                                    {subItem.SubMenuText}
+                                  </div>
+                                )
+                              )}
+                            </div>
+                          </>
+                        ) : (
+                          <div className="block hover:bg-gray-100 text-black hover:text-(--color-PrimeBlue) font-light px-2">
+                            {item.text}
+                          </div>
+                        )}
                       </div>
+                    ))}
+                  </div>
+                </div>
+              )}
+            </NavLink>
+            <NavLink
+              to="/ContentCrator"
+              className={({ isActive }) =>
+                isActive
+                  ? "group relative HeaderNavBarActive"
+                  : "group relative HeaderNavBarNotActive"
+              }
+            >
+              {({ isActive }) => (
+                <div className="flex flex-col items-center gap-2">
+                  <div className="flex items-center gap-2">
+                    لوازم تولید محتوا
+                    <img
+                      src={
+                        isActive
+                          ? "/Images/SVG/TriangleOrange.svg"
+                          : "/Images/SVG/TriangleBlack.svg"
+                      }
+                      alt="Triangle Indicator"
+                      width={8}
+                      className="group-hover:hidden!"
+                    />
+                    <img
+                      src="/Images/SVG/TriangleOrange.svg"
+                      alt="Triangle Indicator Hover"
+                      width={8}
+                      className="hidden group-hover:block!"
+                    />
+                  </div>
+
+                  <div className="absolute right-0 top-10 hidden w-[250px] bg-white shadow-lg group-hover:block">
+                    {navbar?.ContentCrator?.map((item, index) => (
+                      <div key={index} className="relative group/item">
+                        {item.Submenu && item.Submenu.length > 0 ? (
+                          <>
+                            <button className="w-full text-right hover:bg-gray-100 text-black hover:text-(--color-PrimeBlue) font-light flex items-center justify-between px-2">
+                              {item.text}
+                              <img
+                                src="./Images/SVG/ToLeftArrow.svg"
+                                alt="to left arrow"
+                                width={15}
+                              />
+                            </button>
+                            <div className="absolute  w-[200px] right-[250px] top-0 hidden bg-white shadow-lg group-hover/item:block">
+                              {item.Submenu.map(
+                                (subItem: NavbarSubmenu, subIndex: number) => (
+                                  <div
+                                    key={subIndex}
+                                    className="block hover:bg-gray-100 px-2 text-black hover:text-(--color-PrimeBlue) font-light"
+                                  >
+                                    {subItem.SubMenuText}
+                                  </div>
+                                )
+                              )}
+                            </div>
+                          </>
+                        ) : (
+                          <div className="block hover:bg-gray-100 text-black hover:text-(--color-PrimeBlue) font-light px-2">
+                            {item.text}
+                          </div>
+                        )}
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
+            </NavLink>
+            <NavLink
+              to="/Networking"
+              className={({ isActive }) =>
+                isActive
+                  ? "group relative HeaderNavBarActive"
+                  : "group relative HeaderNavBarNotActive"
+              }
+            >
+              {({ isActive }) => (
+                <div className="flex flex-col items-center gap-2">
+                  <div className="flex items-center gap-2">
+                    لوازم شبکه
+                    <img
+                      src={
+                        isActive
+                          ? "/Images/SVG/TriangleOrange.svg"
+                          : "/Images/SVG/TriangleBlack.svg"
+                      }
+                      alt="Triangle Indicator"
+                      width={8}
+                      className="group-hover:hidden!"
+                    />
+                    <img
+                      src="/Images/SVG/TriangleOrange.svg"
+                      alt="Triangle Indicator Hover"
+                      width={8}
+                      className="hidden group-hover:block!"
+                    />
+                  </div>
+
+                  <div className="absolute right-0 top-10 hidden w-[250px] bg-white shadow-lg group-hover:block">
+                    {navbar?.Networking?.map((item, index) => (
+                      <div key={index} className="relative group/item">
+                        {item.Submenu && item.Submenu.length > 0 ? (
+                          <>
+                            <button className="w-full text-right hover:bg-gray-100 text-black hover:text-(--color-PrimeBlue) font-light flex items-center justify-between px-2">
+                              {item.text}
+                              <img
+                                src="./Images/SVG/ToLeftArrow.svg"
+                                alt="to left arrow"
+                                width={15}
+                              />
+                            </button>
+                            <div className="absolute  w-[200px] right-[250px] top-0 hidden bg-white shadow-lg group-hover/item:block">
+                              {item.Submenu.map(
+                                (subItem: NavbarSubmenu, subIndex: number) => (
+                                  <div
+                                    key={subIndex}
+                                    className="block hover:bg-gray-100 px-2 text-black hover:text-(--color-PrimeBlue) font-light"
+                                  >
+                                    {subItem.SubMenuText}
+                                  </div>
+                                )
+                              )}
+                            </div>
+                          </>
+                        ) : (
+                          <div className="block hover:bg-gray-100 text-black hover:text-(--color-PrimeBlue) font-light px-2">
+                            {item.text}
+                          </div>
+                        )}
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
+            </NavLink>
+            <NavLink
+              to="/GameConsole"
+              className={({ isActive }) =>
+                isActive
+                  ? "group relative HeaderNavBarActive"
+                  : "group relative HeaderNavBarNotActive"
+              }
+            >
+              {({ isActive }) => (
+                <div className="flex flex-col items-center gap-2">
+                  <div className="flex items-center gap-2">
+                    کنسول بازی و لوازم جانبی
+                    <img
+                      src={
+                        isActive
+                          ? "/Images/SVG/TriangleOrange.svg"
+                          : "/Images/SVG/TriangleBlack.svg"
+                      }
+                      alt="Triangle Indicator"
+                      width={8}
+                      className="group-hover:hidden!"
+                    />
+                    <img
+                      src="/Images/SVG/TriangleOrange.svg"
+                      alt="Triangle Indicator Hover"
+                      width={8}
+                      className="hidden group-hover:block!"
+                    />
+                  </div>
+
+                  {/* Dropdown Menu */}
+                  <div className="absolute right-0 top-10 hidden w-[250px] bg-white shadow-lg group-hover:block">
+                    {navbar?.GameConsole?.map((item, index) => (
+                      <div key={index} className="relative group/item">
+                        {item.Submenu && item.Submenu.length > 0 ? (
+                          <>
+                            <button className="w-full text-right hover:bg-gray-100 text-black hover:text-(--color-PrimeBlue) font-light flex items-center justify-between px-2">
+                              {item.text}
+                              <img
+                                src="./Images/SVG/ToLeftArrow.svg"
+                                alt="to left arrow"
+                                width={15}
+                              />
+                            </button>
+                            <div className="absolute  w-[200px] right-[250px] top-0 hidden bg-white shadow-lg group-hover/item:block">
+                              {item.Submenu.map(
+                                (subItem: NavbarSubmenu, subIndex: number) => (
+                                  <div
+                                    key={subIndex}
+                                    className="block hover:bg-gray-100 px-2 text-black hover:text-(--color-PrimeBlue) font-light"
+                                  >
+                                    {subItem.SubMenuText}
+                                  </div>
+                                )
+                              )}
+                            </div>
+                          </>
+                        ) : (
+                          <div className="block hover:bg-gray-100 text-black hover:text-(--color-PrimeBlue) font-light px-2">
+                            {item.text}
+                          </div>
+                        )}
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
+            </NavLink>
+            <NavLink
+              to="/Personal"
+              className={({ isActive }) =>
+                isActive
+                  ? "group relative HeaderNavBarActive"
+                  : "group relative HeaderNavBarNotActive"
+              }
+            >
+              {({ isActive }) => (
+                <div className="flex flex-col items-center gap-2">
+                  <div className="flex items-center gap-2">
+                    لوازم خانگی و شخصی
+                    <img
+                      src={
+                        isActive
+                          ? "/Images/SVG/TriangleOrange.svg"
+                          : "/Images/SVG/TriangleBlack.svg"
+                      }
+                      alt="Triangle Indicator"
+                      width={8}
+                      className="group-hover:hidden!"
+                    />
+                    <img
+                      src="/Images/SVG/TriangleOrange.svg"
+                      alt="Triangle Indicator Hover"
+                      width={8}
+                      className="hidden group-hover:block!"
+                    />
+                  </div>
+
+                  {/* Dropdown Menu */}
+                  <div className="absolute right-0 top-10 hidden w-[250px] bg-white shadow-lg group-hover:block">
+                    {navbar?.Personal?.map((item, index) => (
+                      <div key={index} className="relative group/item">
+                        {item.Submenu && item.Submenu.length > 0 ? (
+                          <>
+                            <button className="w-full text-right hover:bg-gray-100 text-black hover:text-(--color-PrimeBlue) font-light flex items-center justify-between px-2">
+                              {item.text}
+                              <img
+                                src="./Images/SVG/ToLeftArrow.svg"
+                                alt="to left arrow"
+                                width={15}
+                              />
+                            </button>
+                            <div className="absolute  w-[200px] right-[250px] top-0 hidden bg-white shadow-lg group-hover/item:block">
+                              {item.Submenu.map(
+                                (subItem: NavbarSubmenu, subIndex: number) => (
+                                  <div
+                                    key={subIndex}
+                                    className="block hover:bg-gray-100 px-2 text-black hover:text-(--color-PrimeBlue) font-light"
+                                  >
+                                    {subItem.SubMenuText}
+                                  </div>
+                                )
+                              )}
+                            </div>
+                          </>
+                        ) : (
+                          <div className="block hover:bg-gray-100 text-black hover:text-(--color-PrimeBlue) font-light px-2">
+                            {item.text}
+                          </div>
+                        )}
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
+            </NavLink>
+            <NavLink
+              to="/Brands"
+              className={({ isActive }) =>
+                isActive
+                  ? "group  HeaderNavBarActive"
+                  : "group  HeaderNavBarNotActive"
+              }
+            >
+              {({ isActive }) => (
+                <div className="flex flex-col items-center gap-2">
+                  <div className="flex items-center gap-2">
+                    برند ها
+                    <img
+                      src={
+                        isActive
+                          ? "/Images/SVG/TriangleOrange.svg"
+                          : "/Images/SVG/TriangleBlack.svg"
+                      }
+                      alt="Triangle Indicator"
+                      width={8}
+                      className="group-hover:hidden!"
+                    />
+                    <img
+                      src="/Images/SVG/TriangleOrange.svg"
+                      alt="Triangle Indicator Hover"
+                      width={8}
+                      className="hidden group-hover:block!"
+                    />
+                  </div>
+
+                  {/* Dropdown Menu */}
+                  <div className="absolute left-1/2 top-[120px] hidden Width w-[98%]  bg-white shadow-2xl transform -translate-x-1/2  group-hover:block overflow-hidden">
+                    <div className="group-hover:flex flex-wrap">
+                      {navbar?.Brands?.map((item, index) => (
+                        <div
+                          key={index}
+                          className="w-[20%] !flex items-center justify-between border-x border-gray-200 px-2 text-black hover:bg-gray-100 hover:text-(--color-PrimeBlue) font-light text-[11px]"
+                        >
+                          <p>{item.PersianText}</p>
+                          <p>{item.EnglishText}</p>
+                        </div>
+                      ))}
+                    </div>
+                    <hr className="w-full border-gray-200" />
+                    <div className="w-full h-10 px-3 text-[12px] hover:text-(--color-PrimeBlue)">
+                      مشاهده دیگر برندها {">"}
                     </div>
                   </div>
-                )}
-              </NavLink>
-            </nav>
-            {/* Navbar End */}
-          </header>
-          {/* Desktop Header End */}
-          {/* Desktop Mobile Strat */}
-          <header className="w-full h-[60px] shadow-md bg-white z-40 fixed top-0 left-0 right-0 flex lg:hidden justify-between items-center p-3">
-            <div className="flex items-center gap-3">
-              <button onClick={() => setIsOpen(true)}>
-                <img
-                  src="./Images/SVG/MenuIcon.svg"
-                  alt="Menu Icon"
-                  width="30"
-                />
-              </button>
-              <Link to="/">
-                <img src="./Images/Header/logo.png" alt="Logo" width="60" />
-              </Link>
-            </div>
-            <div className="flex items-center gap-3">
-              <div className="">
-                <img
-                  src="./Images/SVG/SearchIconBlack.svg"
-                  alt="SearchIcon"
-                  width="25"
-                />
-              </div>
-              <Link to="/Profile">
-                <img
-                  src="./Images/SVG/UserIcon.svg"
-                  alt="UserIcon"
-                  width="25"
-                />
-              </Link>
-              <div className="w-[45px] h-[45px] relative flex justify-center items-center">
-                <Link
-                  to="/"
-                  className="w-[40px] h-[40px] flex items-center justify-center  group"
-                >
-                  <img
-                    src="./Images/SVG/ShoppingCartBlack.svg"
-                    alt=""
-                    width="20"
-                    height="20"
-                    className="absolute w-5 h-5 flex justify-center items-center"
-                  />
-                </Link>
-                <div className="w-[20px] h-[20px] text-white bg-(--color-PrimeOrange) absolute top-0 right-0 rounded-full shadow-lg leading-[20px] text-center">
-                  ۰
                 </div>
+              )}
+            </NavLink>
+          </nav>
+          {/* Navbar End */}
+        </header>
+        {/* Desktop Header End */}
+        {/* Desktop Mobile Strat */}
+        <header className="w-full h-15 shadow-md bg-white z-40 fixed top-0 left-0 right-0 flex lg:hidden justify-between items-center p-3">
+          <div className="flex items-center gap-3">
+            <button onClick={() => setIsOpen(true)}>
+              <img src="./Images/SVG/MenuIcon.svg" alt="Menu Icon" width="30" />
+            </button>
+            <Link to="/">
+              <img src="./Images/Header/logo.png" alt="Logo" width="60" />
+            </Link>
+          </div>
+          <div className="flex items-center gap-3">
+            <div className="">
+              <img
+                src="./Images/SVG/SearchIconBlack.svg"
+                alt="SearchIcon"
+                width="25"
+              />
+            </div>
+            <Link to="/Profile">
+              <img src="./Images/SVG/UserIcon.svg" alt="UserIcon" width="25" />
+            </Link>
+            <div className="w-[45px] h-[45px] relative flex justify-center items-center">
+              <Link
+                to="/"
+                className="w-10 h-10 flex items-center justify-center  group"
+              >
+                <img
+                  src="./Images/SVG/ShoppingCartBlack.svg"
+                  alt=""
+                  width="20"
+                  height="20"
+                  className="absolute w-5 h-5 flex justify-center items-center"
+                />
+              </Link>
+              <div className="w-5 h-5 text-white bg-(--color-PrimeOrange) absolute top-0 right-0 rounded-full shadow-lg leading-5 text-center">
+                ۰
               </div>
             </div>
-          </header>
-          {/* Desktop Mobile End */}
-        </div>
-      )}
+          </div>
+        </header>
+        {/* Desktop Mobile End */}
+      </div>
       {/* Header Wrapper End */}
       <div
         className={`fixed top-0 right-0 h-screen w-[300px] bg-white shadow-2xl transform transition-transform duration-300 ease-in-out z-50 
@@ -789,61 +727,66 @@ const Header: React.FC = () => {
                       />
                     </Link>
 
-                    {navbar?.Accessories?.map((item: any, index: number) => (
-                      <div key={index} className="relative">
-                        {item.Submenu && item.Submenu.length > 0 ? (
-                          <>
-                            <button
-                              className="w-full text-right flex justify-between items-center py-1 text-[14px]"
-                              onClick={() => toggleNestedSubMenu(item.text)}
+                    {navbar?.Accessories?.map(
+                      (item: NavbarData, index: number) => (
+                        <div key={index} className="relative">
+                          {item.Submenu && item.Submenu.length > 0 ? (
+                            <>
+                              <button
+                                className="w-full text-right flex justify-between items-center py-1 text-[14px]"
+                                onClick={() => toggleNestedSubMenu(item.text)}
+                              >
+                                {item.text}
+                                <img
+                                  src="/Images/SVG/TriangleBlack.svg"
+                                  alt="Arrow"
+                                  width={8}
+                                />
+                              </button>
+
+                              {openNestedSubMenu === item.text && (
+                                <div className="px-4 py-1 border-r-[3px] border-(--color-PrimeOrange)">
+                                  <Link
+                                    to={`/${openSubMenu}`}
+                                    className="py-1 text-[12px] flex items-center text-(--color-TextGray)"
+                                  >
+                                    همه موارد این دسته
+                                    <img
+                                      src="/Images/SVG/ToLeftArrow.svg"
+                                      alt="Arrow"
+                                      width={12}
+                                    />
+                                  </Link>
+                                  {item.Submenu.map(
+                                    (
+                                      subItem: NavbarSubmenu,
+                                      subIndex: number
+                                    ) => (
+                                      <NavLink
+                                        key={subIndex}
+                                        to={`/${subItem.SubMenuText}`}
+                                        className="block py-1 text-[12px]"
+                                        onClick={toggleMenu}
+                                      >
+                                        {subItem.SubMenuText}
+                                      </NavLink>
+                                    )
+                                  )}
+                                </div>
+                              )}
+                            </>
+                          ) : (
+                            <NavLink
+                              to={`/${item.text}`}
+                              className="block py-1 text-[14px]"
+                              onClick={toggleMenu}
                             >
                               {item.text}
-                              <img
-                                src="/Images/SVG/TriangleBlack.svg"
-                                alt="Arrow"
-                                width={8}
-                              />
-                            </button>
-
-                            {openNestedSubMenu === item.text && (
-                              <div className="px-4 py-1 border-r-[3px] border-(--color-PrimeOrange)">
-                                <Link
-                                  to={`/${openSubMenu}`}
-                                  className="py-1 text-[12px] flex items-center text-(--color-TextGray)"
-                                >
-                                  همه موارد این دسته
-                                  <img
-                                    src="/Images/SVG/ToLeftArrow.svg"
-                                    alt="Arrow"
-                                    width={12}
-                                  />
-                                </Link>
-                                {item.Submenu.map(
-                                  (subItem: any, subIndex: number) => (
-                                    <NavLink
-                                      key={subIndex}
-                                      to={`/${subItem.SubMenuText}`}
-                                      className="block py-1 text-[12px]"
-                                      onClick={toggleMenu}
-                                    >
-                                      {subItem.SubMenuText}
-                                    </NavLink>
-                                  )
-                                )}
-                              </div>
-                            )}
-                          </>
-                        ) : (
-                          <NavLink
-                            to={`/${item.text}`}
-                            className="block py-1 text-[14px]"
-                            onClick={toggleMenu}
-                          >
-                            {item.text}
-                          </NavLink>
-                        )}
-                      </div>
-                    ))}
+                            </NavLink>
+                          )}
+                        </div>
+                      )
+                    )}
                   </div>
                 )}
               </div>
@@ -874,7 +817,7 @@ const Header: React.FC = () => {
                         width={12}
                       />
                     </Link>
-                    {navbar?.Cable?.map((item: any, index: number) => (
+                    {navbar?.Cable?.map((item: NavbarData, index: number) => (
                       <div key={index} className="relative">
                         {item.Submenu && item.Submenu.length > 0 ? (
                           <>
@@ -905,7 +848,10 @@ const Header: React.FC = () => {
                                   />
                                 </Link>
                                 {item.Submenu.map(
-                                  (subItem: any, subIndex: number) => (
+                                  (
+                                    subItem: NavbarSubmenu,
+                                    subIndex: number
+                                  ) => (
                                     <NavLink
                                       key={subIndex}
                                       to={`/${subItem.SubMenuText}`}
@@ -960,62 +906,67 @@ const Header: React.FC = () => {
                         width={12}
                       />
                     </Link>
-                    {navbar?.ContentCrator?.map((item: any, index: number) => (
-                      <div key={index} className="relative">
-                        {item.Submenu && item.Submenu.length > 0 ? (
-                          <>
-                            <button
-                              className="w-full text-right flex justify-between items-center py-1 text-[14px]"
-                              onClick={() => toggleNestedSubMenu(item.text)}
+                    {navbar?.ContentCrator?.map(
+                      (item: NavbarData, index: number) => (
+                        <div key={index} className="relative">
+                          {item.Submenu && item.Submenu.length > 0 ? (
+                            <>
+                              <button
+                                className="w-full text-right flex justify-between items-center py-1 text-[14px]"
+                                onClick={() => toggleNestedSubMenu(item.text)}
+                              >
+                                {item.text}
+                                <img
+                                  src="/Images/SVG/TriangleBlack.svg"
+                                  alt="Arrow"
+                                  width={8}
+                                />
+                              </button>
+
+                              {/* زیرمنوی تو در تو */}
+                              {openNestedSubMenu === item.text && (
+                                <div className="px-4 py-1 border-r-[3px] border-(--color-PrimeOrange)">
+                                  <Link
+                                    to={`/${openSubMenu}`}
+                                    className="py-1 text-[12px] flex items-center text-(--color-TextGray)"
+                                  >
+                                    همه موارد این دسته
+                                    <img
+                                      src="/Images/SVG/ToLeftArrow.svg"
+                                      alt="Arrow"
+                                      width={12}
+                                    />
+                                  </Link>
+                                  {item.Submenu.map(
+                                    (
+                                      subItem: NavbarSubmenu,
+                                      subIndex: number
+                                    ) => (
+                                      <NavLink
+                                        key={subIndex}
+                                        to={`/${subItem.SubMenuText}`}
+                                        className="block py-1 text-[12px]"
+                                        onClick={toggleMenu}
+                                      >
+                                        {subItem.SubMenuText}
+                                      </NavLink>
+                                    )
+                                  )}
+                                </div>
+                              )}
+                            </>
+                          ) : (
+                            <NavLink
+                              to={`/${item.text}`}
+                              className="block py-1 text-[14px]"
+                              onClick={toggleMenu}
                             >
                               {item.text}
-                              <img
-                                src="/Images/SVG/TriangleBlack.svg"
-                                alt="Arrow"
-                                width={8}
-                              />
-                            </button>
-
-                            {/* زیرمنوی تو در تو */}
-                            {openNestedSubMenu === item.text && (
-                              <div className="px-4 py-1 border-r-[3px] border-(--color-PrimeOrange)">
-                                <Link
-                                  to={`/${openSubMenu}`}
-                                  className="py-1 text-[12px] flex items-center text-(--color-TextGray)"
-                                >
-                                  همه موارد این دسته
-                                  <img
-                                    src="/Images/SVG/ToLeftArrow.svg"
-                                    alt="Arrow"
-                                    width={12}
-                                  />
-                                </Link>
-                                {item.Submenu.map(
-                                  (subItem: any, subIndex: number) => (
-                                    <NavLink
-                                      key={subIndex}
-                                      to={`/${subItem.SubMenuText}`}
-                                      className="block py-1 text-[12px]"
-                                      onClick={toggleMenu}
-                                    >
-                                      {subItem.SubMenuText}
-                                    </NavLink>
-                                  )
-                                )}
-                              </div>
-                            )}
-                          </>
-                        ) : (
-                          <NavLink
-                            to={`/${item.text}`}
-                            className="block py-1 text-[14px]"
-                            onClick={toggleMenu}
-                          >
-                            {item.text}
-                          </NavLink>
-                        )}
-                      </div>
-                    ))}
+                            </NavLink>
+                          )}
+                        </div>
+                      )
+                    )}
                   </div>
                 )}
               </div>
@@ -1046,62 +997,67 @@ const Header: React.FC = () => {
                         width={12}
                       />
                     </Link>
-                    {navbar?.Networking?.map((item: any, index: number) => (
-                      <div key={index} className="relative">
-                        {item.Submenu && item.Submenu.length > 0 ? (
-                          <>
-                            <button
-                              className="w-full text-right flex justify-between items-center py-1 text-[14px]"
-                              onClick={() => toggleNestedSubMenu(item.text)}
+                    {navbar?.Networking?.map(
+                      (item: NavbarData, index: number) => (
+                        <div key={index} className="relative">
+                          {item.Submenu && item.Submenu.length > 0 ? (
+                            <>
+                              <button
+                                className="w-full text-right flex justify-between items-center py-1 text-[14px]"
+                                onClick={() => toggleNestedSubMenu(item.text)}
+                              >
+                                {item.text}
+                                <img
+                                  src="/Images/SVG/TriangleBlack.svg"
+                                  alt="Arrow"
+                                  width={8}
+                                />
+                              </button>
+
+                              {/* زیرمنوی تو در تو */}
+                              {openNestedSubMenu === item.text && (
+                                <div className="px-4 py-1 border-r-[3px] border-(--color-PrimeOrange)">
+                                  <Link
+                                    to={`/${openSubMenu}`}
+                                    className="py-1 text-[12px] flex items-center text-(--color-TextGray)"
+                                  >
+                                    همه موارد این دسته
+                                    <img
+                                      src="/Images/SVG/ToLeftArrow.svg"
+                                      alt="Arrow"
+                                      width={12}
+                                    />
+                                  </Link>
+                                  {item.Submenu.map(
+                                    (
+                                      subItem: NavbarSubmenu,
+                                      subIndex: number
+                                    ) => (
+                                      <NavLink
+                                        key={subIndex}
+                                        to={`/${subItem.SubMenuText}`}
+                                        className="block py-1 text-[12px]"
+                                        onClick={toggleMenu}
+                                      >
+                                        {subItem.SubMenuText}
+                                      </NavLink>
+                                    )
+                                  )}
+                                </div>
+                              )}
+                            </>
+                          ) : (
+                            <NavLink
+                              to={`/${item.text}`}
+                              className="block py-1 text-[14px]"
+                              onClick={toggleMenu}
                             >
                               {item.text}
-                              <img
-                                src="/Images/SVG/TriangleBlack.svg"
-                                alt="Arrow"
-                                width={8}
-                              />
-                            </button>
-
-                            {/* زیرمنوی تو در تو */}
-                            {openNestedSubMenu === item.text && (
-                              <div className="px-4 py-1 border-r-[3px] border-(--color-PrimeOrange)">
-                                <Link
-                                  to={`/${openSubMenu}`}
-                                  className="py-1 text-[12px] flex items-center text-(--color-TextGray)"
-                                >
-                                  همه موارد این دسته
-                                  <img
-                                    src="/Images/SVG/ToLeftArrow.svg"
-                                    alt="Arrow"
-                                    width={12}
-                                  />
-                                </Link>
-                                {item.Submenu.map(
-                                  (subItem: any, subIndex: number) => (
-                                    <NavLink
-                                      key={subIndex}
-                                      to={`/${subItem.SubMenuText}`}
-                                      className="block py-1 text-[12px]"
-                                      onClick={toggleMenu}
-                                    >
-                                      {subItem.SubMenuText}
-                                    </NavLink>
-                                  )
-                                )}
-                              </div>
-                            )}
-                          </>
-                        ) : (
-                          <NavLink
-                            to={`/${item.text}`}
-                            className="block py-1 text-[14px]"
-                            onClick={toggleMenu}
-                          >
-                            {item.text}
-                          </NavLink>
-                        )}
-                      </div>
-                    ))}
+                            </NavLink>
+                          )}
+                        </div>
+                      )
+                    )}
                   </div>
                 )}
               </div>
@@ -1118,7 +1074,6 @@ const Header: React.FC = () => {
                   />
                 </button>
 
-                {/* داینامیک کردن زیرمنو */}
                 {openSubMenu === "GameConsole" && (
                   <div className="bg-[#F5F5F5] px-6 py-2 mr-2">
                     <Link
@@ -1132,62 +1087,66 @@ const Header: React.FC = () => {
                         width={12}
                       />
                     </Link>
-                    {navbar?.GameConsole?.map((item: any, index: number) => (
-                      <div key={index} className="relative">
-                        {item.Submenu && item.Submenu.length > 0 ? (
-                          <>
-                            <button
-                              className="w-full text-right flex justify-between items-center py-1 text-[14px]"
-                              onClick={() => toggleNestedSubMenu(item.text)}
+                    {navbar?.GameConsole?.map(
+                      (item: NavbarData, index: number) => (
+                        <div key={index} className="relative">
+                          {item.Submenu && item.Submenu.length > 0 ? (
+                            <>
+                              <button
+                                className="w-full text-right flex justify-between items-center py-1 text-[14px]"
+                                onClick={() => toggleNestedSubMenu(item.text)}
+                              >
+                                {item.text}
+                                <img
+                                  src="/Images/SVG/TriangleBlack.svg"
+                                  alt="Arrow"
+                                  width={8}
+                                />
+                              </button>
+
+                              {openNestedSubMenu === item.text && (
+                                <div className="px-4 py-1 border-r-[3px] border-(--color-PrimeOrange)">
+                                  <Link
+                                    to={`/${openSubMenu}`}
+                                    className="py-1 text-[12px] flex items-center text-(--color-TextGray)"
+                                  >
+                                    همه موارد این دسته
+                                    <img
+                                      src="/Images/SVG/ToLeftArrow.svg"
+                                      alt="Arrow"
+                                      width={12}
+                                    />
+                                  </Link>
+                                  {item.Submenu.map(
+                                    (
+                                      subItem: NavbarSubmenu,
+                                      subIndex: number
+                                    ) => (
+                                      <NavLink
+                                        key={subIndex}
+                                        to={`/${subItem.SubMenuText}`}
+                                        className="block py-1 text-[12px]"
+                                        onClick={toggleMenu}
+                                      >
+                                        {subItem.SubMenuText}
+                                      </NavLink>
+                                    )
+                                  )}
+                                </div>
+                              )}
+                            </>
+                          ) : (
+                            <NavLink
+                              to={`/${item.text}`}
+                              className="block py-1 text-[14px]"
+                              onClick={toggleMenu}
                             >
                               {item.text}
-                              <img
-                                src="/Images/SVG/TriangleBlack.svg"
-                                alt="Arrow"
-                                width={8}
-                              />
-                            </button>
-
-                            {/* زیرمنوی تو در تو */}
-                            {openNestedSubMenu === item.text && (
-                              <div className="px-4 py-1 border-r-[3px] border-(--color-PrimeOrange)">
-                                <Link
-                                  to={`/${openSubMenu}`}
-                                  className="py-1 text-[12px] flex items-center text-(--color-TextGray)"
-                                >
-                                  همه موارد این دسته
-                                  <img
-                                    src="/Images/SVG/ToLeftArrow.svg"
-                                    alt="Arrow"
-                                    width={12}
-                                  />
-                                </Link>
-                                {item.Submenu.map(
-                                  (subItem: any, subIndex: number) => (
-                                    <NavLink
-                                      key={subIndex}
-                                      to={`/${subItem.SubMenuText}`}
-                                      className="block py-1 text-[12px]"
-                                      onClick={toggleMenu}
-                                    >
-                                      {subItem.SubMenuText}
-                                    </NavLink>
-                                  )
-                                )}
-                              </div>
-                            )}
-                          </>
-                        ) : (
-                          <NavLink
-                            to={`/${item.text}`}
-                            className="block py-1 text-[14px]"
-                            onClick={toggleMenu}
-                          >
-                            {item.text}
-                          </NavLink>
-                        )}
-                      </div>
-                    ))}
+                            </NavLink>
+                          )}
+                        </div>
+                      )
+                    )}
                   </div>
                 )}
               </div>
@@ -1204,7 +1163,6 @@ const Header: React.FC = () => {
                   />
                 </button>
 
-                {/* داینامیک کردن زیرمنو */}
                 {openSubMenu === "Personal" && (
                   <div className="bg-[#F5F5F5] px-6 py-2 mr-2">
                     <Link
@@ -1218,62 +1176,66 @@ const Header: React.FC = () => {
                         width={12}
                       />
                     </Link>
-                    {navbar?.Personal?.map((item: any, index: number) => (
-                      <div key={index} className="relative">
-                        {item.Submenu && item.Submenu.length > 0 ? (
-                          <>
-                            <button
-                              className="w-full text-right flex justify-between items-center py-1 text-[14px]"
-                              onClick={() => toggleNestedSubMenu(item.text)}
+                    {navbar?.Personal?.map(
+                      (item: NavbarData, index: number) => (
+                        <div key={index} className="relative">
+                          {item.Submenu && item.Submenu.length > 0 ? (
+                            <>
+                              <button
+                                className="w-full text-right flex justify-between items-center py-1 text-[14px]"
+                                onClick={() => toggleNestedSubMenu(item.text)}
+                              >
+                                {item.text}
+                                <img
+                                  src="/Images/SVG/TriangleBlack.svg"
+                                  alt="Arrow"
+                                  width={8}
+                                />
+                              </button>
+
+                              {openNestedSubMenu === item.text && (
+                                <div className="px-4 py-1 border-r-[3px] border-(--color-PrimeOrange)">
+                                  <Link
+                                    to={`/${openSubMenu}`}
+                                    className="py-1 text-[12px] flex items-center text-(--color-TextGray)"
+                                  >
+                                    همه موارد این دسته
+                                    <img
+                                      src="/Images/SVG/ToLeftArrow.svg"
+                                      alt="Arrow"
+                                      width={12}
+                                    />
+                                  </Link>
+                                  {item.Submenu.map(
+                                    (
+                                      subItem: NavbarSubmenu,
+                                      subIndex: number
+                                    ) => (
+                                      <NavLink
+                                        key={subIndex}
+                                        to={`/${subItem.SubMenuText}`}
+                                        className="block py-1 text-[12px]"
+                                        onClick={toggleMenu}
+                                      >
+                                        {subItem.SubMenuText}
+                                      </NavLink>
+                                    )
+                                  )}
+                                </div>
+                              )}
+                            </>
+                          ) : (
+                            <NavLink
+                              to={`/${item.text}`}
+                              className="block py-1 text-[14px]"
+                              onClick={toggleMenu}
                             >
                               {item.text}
-                              <img
-                                src="/Images/SVG/TriangleBlack.svg"
-                                alt="Arrow"
-                                width={8}
-                              />
-                            </button>
-
-                            {/* زیرمنوی تو در تو */}
-                            {openNestedSubMenu === item.text && (
-                              <div className="px-4 py-1 border-r-[3px] border-(--color-PrimeOrange)">
-                                <Link
-                                  to={`/${openSubMenu}`}
-                                  className="py-1 text-[12px] flex items-center text-(--color-TextGray)"
-                                >
-                                  همه موارد این دسته
-                                  <img
-                                    src="/Images/SVG/ToLeftArrow.svg"
-                                    alt="Arrow"
-                                    width={12}
-                                  />
-                                </Link>
-                                {item.Submenu.map(
-                                  (subItem: any, subIndex: number) => (
-                                    <NavLink
-                                      key={subIndex}
-                                      to={`/${subItem.SubMenuText}`}
-                                      className="block py-1 text-[12px]"
-                                      onClick={toggleMenu}
-                                    >
-                                      {subItem.SubMenuText}
-                                    </NavLink>
-                                  )
-                                )}
-                              </div>
-                            )}
-                          </>
-                        ) : (
-                          <NavLink
-                            to={`/${item.text}`}
-                            className="block py-1 text-[14px]"
-                            onClick={toggleMenu}
-                          >
-                            {item.text}
-                          </NavLink>
-                        )}
-                      </div>
-                    ))}
+                            </NavLink>
+                          )}
+                        </div>
+                      )
+                    )}
                   </div>
                 )}
               </div>
@@ -1293,7 +1255,7 @@ const Header: React.FC = () => {
                 {/* داینامیک کردن زیرمنو */}
                 {openSubMenu === "Brands" && (
                   <>
-                    {navbar?.Brands?.map((item: any, index: number) => (
+                    {navbar?.Brands?.map((item: NavbarData, index: number) => (
                       <div key={index} className="relative px-4 py-1">
                         {item.PersianText} | {item.EnglishText}
                       </div>
@@ -1304,8 +1266,8 @@ const Header: React.FC = () => {
             </div>
 
             <Link
-              to="/Admin"
-              className="w-[80%] h-[40px] text-center leading-[40px] rounded-lg bg-[#0B295A] text-white my-10 "
+              to="/#"
+              className="w-[80%] h-10 text-center leading-10 rounded-lg bg-[#0B295A] text-white my-10 "
             >
               ورود به پنل ادمین
             </Link>
