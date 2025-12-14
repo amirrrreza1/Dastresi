@@ -114,7 +114,7 @@ const Header: React.FC = () => {
                   </div>
                 </div>
                 <Link
-                  to="/Admin"
+                  to="#"
                   className="h-10 shadow leading-10 px-3 bg-(--color-PrimeBlue) text-white rounded-lg hover:bg-black transition-bg-color duration-300"
                 >
                   پنل ادمین
@@ -1266,7 +1266,7 @@ const Header: React.FC = () => {
             </div>
 
             <Link
-              to="/Admin"
+              to="/#"
               className="w-[80%] h-10 text-center leading-10 rounded-lg bg-[#0B295A] text-white my-10 "
             >
               ورود به پنل ادمین
