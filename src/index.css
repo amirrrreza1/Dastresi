@@ -7,75 +7,98 @@
     box-sizing: border-box;
     font-family: "Shabnam", sans-serif;
   }
+
   body {
     direction: rtl;
     background-color: #f6fafa;
   }
+
   ::-webkit-scrollbar {
     width: 7px;
   }
+
   ::-webkit-scrollbar-thumb {
     background-color: var(--color-PrimeBlue);
   }
 }
+
 @layer components {
   .Width {
     @apply w-full max-w-[1200px] m-auto;
   }
+
   .HeaderPagesItem {
     @apply mx-2 text-sm text-black/60 hover:text-(--color-SecondaryBlue) transition-all duration-200;
   }
+
   .HeaderNavBarActive {
     @apply h-[40px] leading-[40px] text-(--color-PrimeOrange) border-b-[3px] text-[13px];
   }
+
   .HeaderNavBarNotActive {
     @apply h-[40px] leading-[40px] text-(--color-TextGray) hover:text-(--color-PrimeOrange) hover:border-b-[3px] text-[13px];
   }
+
   .FooterGrayItems {
     @apply h-full flex items-center justify-center text-center gap-1 text-[12px];
   }
+
   .FooterQuickLinks {
     @apply text-sm text-(--color-TextGray) hover:text-black transition-all duration-300;
   }
+
   .CustomShadow {
     box-shadow: 0 0 4px gray;
   }
+
   .MobileMenuLink {
     @apply inline text-center text-[14px] leading-[40px] text-[#6e6e6e] hover:text-(--color-PrimeBlue);
   }
+
   .AdminPanelLinks {
     @apply bg-[#39ACE7] w-full text-center p-3 rounded-md hover:bg-[#0884B5] hover:scale-105 transition-all duration-200;
   }
+
   .AdminPageWrapper {
     @apply w-[90%] lg:w-[50vw] m-auto bg-[#39ACE7] rounded-md mt-[1vh] p-3;
   }
+
   .AdminPageForm {
-    @apply w-[50vw] m-auto flex flex-col items-center justify-center gap-5  p-3 text-white;
+    @apply w-[50vw] m-auto flex flex-col items-center justify-center gap-5 p-3 text-white;
   }
+
   .AdminPageTitle {
     @apply text-center text-2xl text-white;
   }
+
   .AdminPageLabel {
     @apply text-center text-lg text-white;
   }
+
   .AdminPageInput {
     @apply w-[90%] p-2 rounded-md bg-[#0884B5] m-auto placeholder:text-center;
   }
+
   .AdminPageButton {
     @apply p-2 m-3 rounded-md bg-[#0884B5] hover:bg-[#0b295a] transition-all duration-200;
   }
+
   .AdminPageGreenButton {
     @apply p-2 bg-green-400 rounded-md text-white hover:bg-green-700 transition-all hover:scale-105 duration-300 cursor-pointer;
   }
+
   .AdminPageRedButton {
     @apply p-2 bg-red-400 rounded-md text-white hover:bg-red-700 transition-all hover:scale-105 duration-300 cursor-pointer;
   }
+
   .AdminPageEditButton {
     @apply p-2 bg-yellow-500 rounded-md text-white hover:bg-yellow-700 transition-all hover:scale-105 duration-300 cursor-pointer;
   }
+
   .AdminPageAddButton {
     @apply fixed top-3 right-3 bg-green-400 text-white hover:bg-green-700 transition-all hover:scale-105 duration-300 rounded-md p-2 text-center cursor-pointer;
   }
+
   .AdminPageBackButton {
     @apply fixed top-3 left-3 bg-red-500 text-white transition-all hover:scale-105 duration-300 rounded-md p-2 text-center cursor-pointer;
   }
@@ -87,6 +110,7 @@
     margin: 0 10px;
     border-radius: 10px;
   }
+
   .cancelButtonSweetAlert {
     background: red;
     padding: 10px;
@@ -95,6 +119,7 @@
     border-radius: 10px;
   }
 }
+
 @layer theme {
   :root {
     --color-PrimeOrange: #ff5f55;
@@ -113,6 +138,7 @@
     url(../public/Fonts/Shabnam.ttf) format("truetype");
   font-weight: normal;
 }
+
 @font-face {
   font-family: "Shabnam";
   src: url(../public/Fonts/Shabnam-Bold.eot) format("embedded-opentype"),
@@ -121,6 +147,7 @@
     url(../public/Fonts/Shabnam-Bold.ttf) format("truetype");
   font-weight: bold;
 }
+
 @font-face {
   font-family: "Shabnam";
   src: url(../public/Fonts/Shabnam-Light.eot) format("embedded-opentype"),
@@ -129,6 +156,7 @@
     url(../public/Fonts/Shabnam-Light.ttf) format("truetype");
   font-weight: 300;
 }
+
 @font-face {
   font-family: "Shabnam";
   src: url(../public/Fonts/Shabnam-Medium.eot) format("embedded-opentype"),
@@ -137,6 +165,7 @@
     url(../public/Fonts/Shabnam-Medium.ttf) format("truetype");
   font-weight: 500;
 }
+
 @font-face {
   font-family: "Shabnam";
   src: url(../public/Fonts/Shabnam-Thin.eot) format("embedded-opentype"),
