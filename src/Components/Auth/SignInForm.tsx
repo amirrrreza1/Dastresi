@@ -5,9 +5,10 @@ import { getErrorMessage } from "../../Utils/Errors";
 type Props = {
   onModeChange: (mode: "signin" | "signup" | "forgot" | "reset") => void;
   onDone?: () => void;
+  onGuest?: () => void;
 };
 
-export default function SignInForm({ onModeChange, onDone }: Props) {
+export default function SignInForm({ onModeChange, onDone, onGuest }: Props) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -41,10 +42,10 @@ export default function SignInForm({ onModeChange, onDone }: Props) {
   return (
     <form onSubmit={onSubmit} className="space-y-4">
       <div className="space-y-2">
-        <label className="text-sm text-slate-200">Email</label>
+        <label className="text-sm text-(--color-SecondaryBlue)">ایمیل</label>
         <input
-          className="w-full rounded-xl border border-white/10 bg-white/5 px-3 py-2 text-sm outline-none
-                     focus:border-white/20 focus:ring-2 focus:ring-white/10"
+          className="w-full rounded-xl border border-[#0a5abd]/20 bg-white px-3 py-2 text-sm text-(--color-SecondaryBlue) outline-none
+                     focus:border-[#0a5abd]/40 focus:ring-2 focus:ring-[#0a5abd]/15"
           type="email"
           autoComplete="email"
           value={email}
@@ -54,10 +55,12 @@ export default function SignInForm({ onModeChange, onDone }: Props) {
       </div>
 
       <div className="space-y-2">
-        <label className="text-sm text-slate-200">Password</label>
+        <label className="text-sm text-(--color-SecondaryBlue)">
+          رمز عبور
+        </label>
         <input
-          className="w-full rounded-xl border border-white/10 bg-white/5 px-3 py-2 text-sm outline-none
-                     focus:border-white/20 focus:ring-2 focus:ring-white/10"
+          className="w-full rounded-xl border border-[#0a5abd]/20 bg-white px-3 py-2 text-sm text-(--color-SecondaryBlue) outline-none
+                     focus:border-[#0a5abd]/40 focus:ring-2 focus:ring-[#0a5abd]/15"
           type="password"
           autoComplete="current-password"
           value={password}
@@ -68,7 +71,7 @@ export default function SignInForm({ onModeChange, onDone }: Props) {
       </div>
 
       {error ? (
-        <div className="rounded-xl border border-rose-500/30 bg-rose-500/10 px-3 py-2 text-sm text-rose-200">
+        <div className="rounded-xl border border-rose-500/30 bg-rose-50 px-3 py-2 text-sm text-rose-700">
           {error}
         </div>
       ) : null}
@@ -76,27 +79,36 @@ export default function SignInForm({ onModeChange, onDone }: Props) {
       <button
         type="submit"
         disabled={loading}
-        className="w-full rounded-xl bg-white text-slate-900 py-2 text-sm font-semibold
-                   hover:bg-slate-100 disabled:opacity-60 disabled:cursor-not-allowed"
+        className="w-full cursor-pointer rounded-xl bg-(--color-PrimeBlue) py-2 text-sm font-semibold text-white
+                   hover:bg-(--color-SecondaryBlue) disabled:opacity-60 disabled:cursor-not-allowed"
       >
-        {loading ? "Signing in…" : "Sign in"}
+        {loading ? "در حال ورود..." : "ورود به حساب"}
+      </button>
+
+      <button
+        type="button"
+        onClick={onGuest}
+        className="w-full cursor-pointer rounded-xl border border-[#0a5abd]/20 bg-white py-2 text-sm font-semibold text-(--color-SecondaryBlue)
+                   hover:bg-[#0a5abd]/5"
+      >
+        ورود به عنوان مهمان
       </button>
 
       <div className="flex items-center justify-between text-sm">
         <button
           type="button"
           onClick={() => onModeChange("forgot")}
-          className="text-slate-300 hover:text-white underline underline-offset-4"
+          className="cursor-pointer text-(--color-TextGray) hover:text-(--color-SecondaryBlue) underline underline-offset-4"
         >
-          Forgot password?
+          رمز عبور را فراموش کرده اید؟
         </button>
 
         <button
           type="button"
           onClick={() => onModeChange("signup")}
-          className="text-slate-300 hover:text-white underline underline-offset-4"
+          className="cursor-pointer text-(--color-TextGray) hover:text-(--color-SecondaryBlue) underline underline-offset-4"
         >
-          Create account
+          ساخت حساب کاربری
         </button>
       </div>
     </form>

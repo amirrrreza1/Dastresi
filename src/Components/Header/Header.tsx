@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Link, NavLink } from "react-router-dom";
 import data from "../../../db.json";
+import { hasValidToken } from "../../Utils/validateToken";
 
 type NavbarSubmenu = {
   id: number;
@@ -44,6 +45,8 @@ const Header: React.FC = () => {
   const toggleNestedSubMenu = (submenu: string) => {
     setOpenNestedSubMenu(openNestedSubMenu === submenu ? null : submenu);
   };
+
+  const isLogin = hasValidToken();
 
   return (
     <>
@@ -114,10 +117,10 @@ const Header: React.FC = () => {
                   </div>
                 </div>
                 <Link
-                  to="#"
+                  to="/dashboard"
                   className="h-10 shadow leading-10 px-3 bg-(--color-PrimeBlue) text-white rounded-lg hover:bg-black transition-bg-color duration-300"
                 >
-                  پنل ادمین
+                  {isLogin ? "داشبورد" : "ورود / ثبت نام"}
                 </Link>
               </div>
             </div>
@@ -630,7 +633,7 @@ const Header: React.FC = () => {
                 width="25"
               />
             </div>
-            <Link to="/Profile">
+            <Link to="/dashboard">
               <img src="./Images/SVG/UserIcon.svg" alt="UserIcon" width="25" />
             </Link>
             <div className="w-[45px] h-[45px] relative flex justify-center items-center">
@@ -923,7 +926,6 @@ const Header: React.FC = () => {
                                 />
                               </button>
 
-                              {/* زیرمنوی تو در تو */}
                               {openNestedSubMenu === item.text && (
                                 <div className="px-4 py-1 border-r-[3px] border-(--color-PrimeOrange)">
                                   <Link
@@ -983,7 +985,6 @@ const Header: React.FC = () => {
                   />
                 </button>
 
-                {/* داینامیک کردن زیرمنو */}
                 {openSubMenu === "Networking" && (
                   <div className="bg-[#F5F5F5] px-6 py-2 mr-2">
                     <Link
@@ -1252,7 +1253,6 @@ const Header: React.FC = () => {
                   />
                 </button>
 
-                {/* داینامیک کردن زیرمنو */}
                 {openSubMenu === "Brands" && (
                   <>
                     {navbar?.Brands?.map((item: NavbarData, index: number) => (
@@ -1266,10 +1266,10 @@ const Header: React.FC = () => {
             </div>
 
             <Link
-              to="/#"
+              to="/dashboard"
               className="w-[80%] h-10 text-center leading-10 rounded-lg bg-[#0B295A] text-white my-10 "
             >
-              ورود به پنل ادمین
+              {isLogin ? "ورود به داشبورد" : "ورود / ثبت نام"}
             </Link>
           </div>
         </div>
