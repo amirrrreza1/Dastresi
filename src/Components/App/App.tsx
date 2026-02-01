@@ -11,6 +11,7 @@ import {
 import Dashboard from "../Dashboard/Dashboard";
 import AuthPage from "../../Pages/Auth/AuthPage";
 import { initSupabaseCookieSync } from "../../Utils/syncAuthCookie";
+import AdminLayout from "../../Layouts/AdminLayout";
 
 const App: React.FC = () => {
   useEffect(() => {
@@ -33,7 +34,15 @@ const App: React.FC = () => {
         </Route>
 
         <Route element={<RequireUserOrGuest />}>
-          <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/dashboard" element={<AdminLayout />}>
+            <Route index element={<AdminDashboard />} />
+            <Route path="products" element={<div>Products</div>} />
+            <Route path="categories" element={<div>Categories</div>} />
+            <Route path="sliders" element={<div>Sliders</div>} />
+            <Route path="new" element={<div>Newly Available</div>} />
+            <Route path="brands" element={<div>Brands</div>} />
+            <Route path="blogs" element={<div>Blogs</div>} />
+          </Route>
         </Route>
 
         <Route element={<RequireAdmin />}>
