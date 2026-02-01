@@ -1,3 +1,5 @@
+"use client";
+
 import { Swiper, SwiperSlide } from "swiper/react";
 import { FreeMode, Pagination } from "swiper/modules";
 import { Link } from "react-router-dom";
@@ -11,16 +13,43 @@ import "swiper/css/free-mode";
 import "swiper/css/navigation";
 
 import "./Blog.css";
+import { supabase } from "../../supabase";
+import { useEffect, useState } from "react";
 
 type blogItem = {
   id: string;
-  src: string;
-  alt: string;
-  text: string;
+  image_url: string;
+  title: string;
 };
 
 export default function Blog() {
-  const blogPosts: blogItem[] = data.Blog;
+  const [blogs, setBlogs] = useState<blogItem[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchBlogs = async () => {
+      try {
+        const { data, error } = await supabase
+          .from("blogs")
+          .select("*")
+          .order("created_at", { ascending: false });
+
+        if (error) throw error;
+        if (data) setBlogs(data);
+      } catch (err) {
+        console.error("Error fetching blogs:", err);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchBlogs();
+  }, []);
+
+  if (loading)
+    return (
+      <div className="w-[90%] max-w-[1200px] h-[240px] mx-auto bg-gray-200 animate-pulse rounded-2xl mb-12" />
+    );
 
   return (
     <>
@@ -66,14 +95,18 @@ export default function Blog() {
           }}
           className="Width w-[90%]! my-7"
         >
-          {blogPosts.map((item: blogItem) => (
+          {blogs.map((item: blogItem) => (
             <SwiperSlide
               className="rounded-lg overflow-hidden flex-col CustomShadow mb-12 group"
               key={item.id}
             >
-              <img src={item.src} alt={item.alt} className="rounded-lg " />
+              <img
+                src={item.image_url}
+                alt={item.title}
+                className="rounded-lg "
+              />
               <p className="text-[13px] w-[90%]  h-[70px] flex justify-center items-center text-center group-hover:text-(--color-PrimeBlue) transition duration-200">
-                {item.text}
+                {item.title}
               </p>
             </SwiperSlide>
           ))}
