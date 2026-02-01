@@ -11,6 +11,7 @@ import AdminDashboard from "../Dashboard/AdminDashboard";
 import AdminSliders from "../Dashboard/Admin/Slider";
 import { ToastContainer } from "react-toastify";
 import AdminBlogs from "../Dashboard/Admin/Blogs";
+import AdminBrands from "../Dashboard/Admin/Brands";
 
 const App: React.FC = () => {
   useEffect(() => {
@@ -35,7 +36,7 @@ const App: React.FC = () => {
             <Route path="categories" element={<div>Categories</div>} />
             <Route path="sliders" element={<AdminSliders />} />
             <Route path="new" element={<div>Newly Available</div>} />
-            <Route path="brands" element={<div>Brands</div>} />
+            <Route path="brands" element={<AdminBrands />} />
             <Route path="blogs" element={<AdminBlogs />} />
           </Route>
         </Route>

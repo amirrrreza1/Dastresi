@@ -1,8 +1,8 @@
+"use client";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { FreeMode, Autoplay, Navigation } from "swiper/modules";
 import { useEffect, useRef, useState } from "react";
 import { NextButton, PrevButton } from "../SwiperButton/SwiperButton";
-import data from "../../../db.json";
 
 // @ts-expect-error ts-migrate(2339) FIXME: Property 'freeMode' does not exist on type 'SwiperOptions'.
 import "swiper/css";
@@ -12,15 +12,37 @@ import "swiper/css/free-mode";
 import "swiper/css/navigation";
 
 import "./Brands.css";
+import { supabase } from "../../supabase";
 
 type BrandItem = {
   id: string;
-  src: string;
-  alt: string;
+  image_url: string;
+  name: string;
 };
 
 const Brands: React.FC = () => {
-  const brands: BrandItem[] = data.Brands;
+  const [brands, setBrands] = useState<BrandItem[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchBrands = async () => {
+      try {
+        const { data, error } = await supabase
+          .from("brands")
+          .select("*")
+          .order("created_at", { ascending: false });
+
+        if (error) throw error;
+        if (data) setBrands(data);
+      } catch (err) {
+        console.error("Error fetching brands:", err);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchBrands();
+  }, []);
 
   const swiperRef = useRef<any>(null);
   const prevRef = useRef(null);
@@ -35,6 +57,11 @@ const Brands: React.FC = () => {
       setIsReady(true);
     }
   }, [brands]);
+
+  if (loading)
+    return (
+      <div className="w-[90%] max-w-[1200px] h-[220px] mx-auto bg-gray-200 animate-pulse rounded-2xl mb-12" />
+    );
 
   return (
     <>
@@ -84,8 +111,8 @@ const Brands: React.FC = () => {
                 <SwiperSlide key={item.id} className="group">
                   <div className="cursor-pointer  shadow rounded-lg overflow-hidden flex flex-col justify-center items-center my-6 group-hover:-translate-y-2.5 transition duration-200">
                     <img
-                      src={item.src}
-                      alt={item.alt}
+                      src={item.image_url}
+                      alt={item.name}
                       className="px-2 lg:px-7"
                     />
                   </div>
