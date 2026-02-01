@@ -1,6 +1,6 @@
-import { NavLink, useNavigate } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 import { useState } from "react";
-import { LogOut, Menu, Plus, X } from "lucide-react";
+import { Home, LogOut, Menu, Plus, X } from "lucide-react";
 import HoveredButton from "../../UI/Buttons/HoveredButton";
 
 const menuItems = [
@@ -44,10 +44,14 @@ const Sidebar = () => {
       <img
         alt="Logo"
         width="60"
-        src="./Images/Header/logo.png"
+        src="/Images/Header/logo.png"
         className="md:hidden fixed top-4 left-4 "
-          />
-      <HoveredButton text="افزودن محصول" icon={<Plus className="w-5! h-5!" color="black"/> } className="w-9 h-9 fixed top-4 right-15" />
+      />
+      <HoveredButton
+        text="افزودن محصول"
+        icon={<Plus className="w-5! h-5!" color="black" />}
+        className="w-9 h-9 fixed top-4 right-15"
+      />
 
       {open && (
         <div
@@ -61,7 +65,7 @@ const Sidebar = () => {
           fixed z-50 h-screen w-64 bg-white shadow-lg flex flex-col
           transform transition-transform duration-300
           ${open ? "translate-x-0" : "translate-x-full"}
-          md:static md:translate-x-0
+          md:sticky md:top-0 md:translate-x-0
         `}
       >
         <div className="p-3 border-b border-gray-400 flex items-center justify-between">
@@ -96,10 +100,16 @@ const Sidebar = () => {
           ))}
         </nav>
 
-        <div className="p-4">
+        <div className="p-4 space-y-2">
+          <Link
+            to={"/"}
+            className="w-full rounded-xl bg-(--color-PrimeBlue) py-2 text-sm font-semibold text-white hover:opacity-90 flex justify-center items-center cursor-pointer"
+          >
+            <Home className="w-5! h-5! ml-2" /> صفحه اصلی
+          </Link>
           <button
             onClick={logoutHandler}
-            className="w-full rounded-xl bg-(--color-PrimeOrange) py-2 text-sm font-semibold text-white hover:opacity-90 flex justify-center items-center"
+            className="w-full rounded-xl bg-(--color-PrimeOrange) py-2 text-sm font-semibold text-white hover:opacity-90 flex justify-center items-center cursor-pointer"
           >
             <LogOut className="w-5! h-5! ml-2" /> خروج از حساب
           </button>

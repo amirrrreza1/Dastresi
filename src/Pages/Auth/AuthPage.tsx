@@ -7,7 +7,6 @@ import SignInForm from "../../Components/Auth/SignInForm";
 import AuthShell from "../../Components/Auth/AuthShell";
 import { supabase } from "../../supabase";
 import { clearGuestAccess, enableGuestAccess } from "../../Utils/guestAccess";
-import { getProfileRole } from "../../Utils/profileRole";
 
 type Mode = "signin" | "signup" | "forgot" | "reset";
 
@@ -67,12 +66,6 @@ export default function AuthPage() {
     const { data } = await supabase.auth.getUser();
     if (!data.user) {
       navigate("/login?mode=signin", { replace: true });
-      return;
-    }
-
-    const role = await getProfileRole(data.user.id);
-    if (role === "admin") {
-      navigate("/admin", { replace: true });
       return;
     }
 

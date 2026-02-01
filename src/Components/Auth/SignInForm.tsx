@@ -28,6 +28,8 @@ export default function SignInForm({ onModeChange, onDone, onGuest }: Props) {
         });
 
       console.log("sign in Data: ", signInData);
+      console.log("session:", signInData.session);
+      console.log("user:", signInData.user);
 
       if (signInError) throw signInError;
 

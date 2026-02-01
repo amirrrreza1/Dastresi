@@ -2,16 +2,14 @@ import React, { useEffect } from "react";
 import Home from "../../Pages/Home/Home";
 import NotFound from "../../Pages/NotFound/NotFound";
 
-import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
-import {
-  RedirectIfAuth,
-  RequireAdmin,
-  RequireUserOrGuest,
-} from "../../Routes/guards";
-import Dashboard from "../Dashboard/Dashboard";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { RedirectIfAuth, RequireUserOrGuest } from "../../Routes/guards";
 import AuthPage from "../../Pages/Auth/AuthPage";
 import { initSupabaseCookieSync } from "../../Utils/syncAuthCookie";
 import AdminLayout from "../../Layouts/AdminLayout";
+import AdminDashboard from "../Dashboard/AdminDashboard";
+import AdminSliders from "../Dashboard/Admin/Slider";
+import { ToastContainer } from "react-toastify";
 
 const App: React.FC = () => {
   useEffect(() => {
@@ -20,12 +18,8 @@ const App: React.FC = () => {
   }, []);
 
   return (
-    <BrowserRouter
-      future={{
-        v7_startTransition: true,
-        v7_relativeSplatPath: true,
-      }}
-    >
+    <BrowserRouter>
+      <ToastContainer />
       <Routes>
         <Route path="/" element={<Home />} />
 
@@ -38,15 +32,11 @@ const App: React.FC = () => {
             <Route index element={<AdminDashboard />} />
             <Route path="products" element={<div>Products</div>} />
             <Route path="categories" element={<div>Categories</div>} />
-            <Route path="sliders" element={<div>Sliders</div>} />
+            <Route path="sliders" element={<AdminSliders />} />
             <Route path="new" element={<div>Newly Available</div>} />
             <Route path="brands" element={<div>Brands</div>} />
             <Route path="blogs" element={<div>Blogs</div>} />
           </Route>
-        </Route>
-
-        <Route element={<RequireAdmin />}>
-          <Route path="/admin" element={<Dashboard />} />
         </Route>
         <Route path="*" element={<NotFound />} />
       </Routes>
