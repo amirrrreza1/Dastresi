@@ -11,13 +11,16 @@
     "server": "json-server --watch db.json --port 3001"
   },
   "dependencies": {
+    "@supabase/supabase-js": "^2.87.1",
     "@tailwindcss/vite": "^4.1.18",
-    "axios": "^1.13.2",
-    "json-server": "^1.0.0-beta.3",
-    "react": "^19.2.3",
-    "react-dom": "^19.2.3",
+    "axios": "^1.13.4",
+    "json-server": "1.0.0-beta.5",
+    "lucide-react": "^0.563.0",
+    "react": "^19.2.4",
+    "react-dom": "^19.2.4",
     "react-redux": "^9.2.0",
     "react-router-dom": "^7.10.1",
+    "react-toastify": "^11.0.5",
     "react-tooltip": "^5.30.0",
     "redux": "^5.0.1",
     "redux-thunk": "^3.1.0",
@@ -26,6 +29,7 @@
   },
   "devDependencies": {
     "@eslint/js": "^9.39.2",
+    "@types/node": "^25.0.2",
     "@types/react": "^19.2.7",
     "@types/react-dom": "^19.2.3",
     "@types/swiper": "^6.0.0",

@@ -1,29 +1,34 @@
 import React, { useState } from "react";
 import { Link, NavLink } from "react-router-dom";
 import data from "../../../db.json";
+import { hasValidToken } from "../../Utils/validateToken";
 
 type NavbarSubmenu = {
   id: number;
   SubMenuText: string;
 };
 
-type NavbarData = {
+type NavbarCategory = {
   id: number;
   text: string;
-  PersianText: string;
-  EnglishText: string;
   Submenu?: NavbarSubmenu[];
 };
 
+type NavbarBrands = {
+  id: number;
+  EnglishText: string;
+  PersianText: string;
+};
+
 type NavbarItem = {
-  Home: NavbarData[];
-  Accessories: NavbarData[];
-  Cable: NavbarData[];
-  ContentCrator: NavbarData[];
-  Networking: NavbarData[];
-  GameConsole: NavbarData[];
-  Personal: NavbarData[];
-  Brands: NavbarData[];
+  Home: NavbarCategory[];
+  Accessories: NavbarCategory[];
+  Cable: NavbarCategory[];
+  ContentCrator: NavbarCategory[];
+  Networking: NavbarCategory[];
+  GameConsole: NavbarCategory[];
+  Personal: NavbarCategory[];
+  Brands: NavbarBrands[];
 };
 
 const Header: React.FC = () => {
@@ -31,7 +36,7 @@ const Header: React.FC = () => {
 
   const [openSubMenu, setOpenSubMenu] = useState<string | null>(null);
   const [openNestedSubMenu, setOpenNestedSubMenu] = useState<string | null>(
-    null
+    null,
   );
 
   const [isOpen, setIsOpen] = useState(false);
@@ -44,6 +49,8 @@ const Header: React.FC = () => {
   const toggleNestedSubMenu = (submenu: string) => {
     setOpenNestedSubMenu(openNestedSubMenu === submenu ? null : submenu);
   };
+
+  const isLogin = hasValidToken();
 
   return (
     <>
@@ -114,10 +121,10 @@ const Header: React.FC = () => {
                   </div>
                 </div>
                 <Link
-                  to="#"
+                  to="/dashboard"
                   className="h-10 shadow leading-10 px-3 bg-(--color-PrimeBlue) text-white rounded-lg hover:bg-black transition-bg-color duration-300"
                 >
-                  پنل ادمین
+                  {isLogin ? "داشبورد" : "ورود / ثبت نام"}
                 </Link>
               </div>
             </div>
@@ -205,7 +212,7 @@ const Header: React.FC = () => {
                                   >
                                     {subItem.SubMenuText}
                                   </p>
-                                )
+                                ),
                               )}
                             </div>
                           </>
@@ -272,7 +279,7 @@ const Header: React.FC = () => {
                                   >
                                     {subItem.SubMenuText}
                                   </div>
-                                )
+                                ),
                               )}
                             </div>
                           </>
@@ -339,7 +346,7 @@ const Header: React.FC = () => {
                                   >
                                     {subItem.SubMenuText}
                                   </div>
-                                )
+                                ),
                               )}
                             </div>
                           </>
@@ -406,7 +413,7 @@ const Header: React.FC = () => {
                                   >
                                     {subItem.SubMenuText}
                                   </div>
-                                )
+                                ),
                               )}
                             </div>
                           </>
@@ -451,7 +458,6 @@ const Header: React.FC = () => {
                     />
                   </div>
 
-                  {/* Dropdown Menu */}
                   <div className="absolute right-0 top-10 hidden w-[250px] bg-white shadow-lg group-hover:block">
                     {navbar?.GameConsole?.map((item, index) => (
                       <div key={index} className="relative group/item">
@@ -474,7 +480,7 @@ const Header: React.FC = () => {
                                   >
                                     {subItem.SubMenuText}
                                   </div>
-                                )
+                                ),
                               )}
                             </div>
                           </>
@@ -519,7 +525,6 @@ const Header: React.FC = () => {
                     />
                   </div>
 
-                  {/* Dropdown Menu */}
                   <div className="absolute right-0 top-10 hidden w-[250px] bg-white shadow-lg group-hover:block">
                     {navbar?.Personal?.map((item, index) => (
                       <div key={index} className="relative group/item">
@@ -542,7 +547,7 @@ const Header: React.FC = () => {
                                   >
                                     {subItem.SubMenuText}
                                   </div>
-                                )
+                                ),
                               )}
                             </div>
                           </>
@@ -587,7 +592,6 @@ const Header: React.FC = () => {
                     />
                   </div>
 
-                  {/* Dropdown Menu */}
                   <div className="absolute left-1/2 top-[120px] hidden Width w-[98%]  bg-white shadow-2xl transform -translate-x-1/2  group-hover:block overflow-hidden">
                     <div className="group-hover:flex flex-wrap">
                       {navbar?.Brands?.map((item, index) => (
@@ -609,10 +613,7 @@ const Header: React.FC = () => {
               )}
             </NavLink>
           </nav>
-          {/* Navbar End */}
         </header>
-        {/* Desktop Header End */}
-        {/* Desktop Mobile Strat */}
         <header className="w-full h-15 shadow-md bg-white z-40 fixed top-0 left-0 right-0 flex lg:hidden justify-between items-center p-3">
           <div className="flex items-center gap-3">
             <button onClick={() => setIsOpen(true)}>
@@ -630,7 +631,7 @@ const Header: React.FC = () => {
                 width="25"
               />
             </div>
-            <Link to="/Profile">
+            <Link to="/dashboard">
               <img src="./Images/SVG/UserIcon.svg" alt="UserIcon" width="25" />
             </Link>
             <div className="w-[45px] h-[45px] relative flex justify-center items-center">
@@ -652,9 +653,7 @@ const Header: React.FC = () => {
             </div>
           </div>
         </header>
-        {/* Desktop Mobile End */}
       </div>
-      {/* Header Wrapper End */}
       <div
         className={`fixed top-0 right-0 h-screen w-[300px] bg-white shadow-2xl transform transition-transform duration-300 ease-in-out z-50 
         ${isOpen ? "translate-x-0" : "translate-x-full"}`}
@@ -728,7 +727,7 @@ const Header: React.FC = () => {
                     </Link>
 
                     {navbar?.Accessories?.map(
-                      (item: NavbarData, index: number) => (
+                      (item: NavbarCategory, index: number) => (
                         <div key={index} className="relative">
                           {item.Submenu && item.Submenu.length > 0 ? (
                             <>
@@ -760,7 +759,7 @@ const Header: React.FC = () => {
                                   {item.Submenu.map(
                                     (
                                       subItem: NavbarSubmenu,
-                                      subIndex: number
+                                      subIndex: number,
                                     ) => (
                                       <NavLink
                                         key={subIndex}
@@ -770,7 +769,7 @@ const Header: React.FC = () => {
                                       >
                                         {subItem.SubMenuText}
                                       </NavLink>
-                                    )
+                                    ),
                                   )}
                                 </div>
                               )}
@@ -785,7 +784,7 @@ const Header: React.FC = () => {
                             </NavLink>
                           )}
                         </div>
-                      )
+                      ),
                     )}
                   </div>
                 )}
@@ -803,7 +802,6 @@ const Header: React.FC = () => {
                   />
                 </button>
 
-                {/* داینامیک کردن زیرمنو */}
                 {openSubMenu === "Cable" && (
                   <div className="bg-[#F5F5F5] px-6 py-2 mr-2">
                     <Link
@@ -817,97 +815,8 @@ const Header: React.FC = () => {
                         width={12}
                       />
                     </Link>
-                    {navbar?.Cable?.map((item: NavbarData, index: number) => (
-                      <div key={index} className="relative">
-                        {item.Submenu && item.Submenu.length > 0 ? (
-                          <>
-                            <button
-                              className="w-full text-right flex justify-between items-center py-1 text-[14px]"
-                              onClick={() => toggleNestedSubMenu(item.text)}
-                            >
-                              {item.text}
-                              <img
-                                src="/Images/SVG/TriangleBlack.svg"
-                                alt="Arrow"
-                                width={8}
-                              />
-                            </button>
-
-                            {/* زیرمنوی تو در تو */}
-                            {openNestedSubMenu === item.text && (
-                              <div className="px-4 py-1 border-r-[3px] border-(--color-PrimeOrange)">
-                                <Link
-                                  to={`/${openSubMenu}`}
-                                  className="py-1 text-[12px] flex items-center text-(--color-TextGray)"
-                                >
-                                  همه موارد این دسته
-                                  <img
-                                    src="/Images/SVG/ToLeftArrow.svg"
-                                    alt="Arrow"
-                                    width={12}
-                                  />
-                                </Link>
-                                {item.Submenu.map(
-                                  (
-                                    subItem: NavbarSubmenu,
-                                    subIndex: number
-                                  ) => (
-                                    <NavLink
-                                      key={subIndex}
-                                      to={`/${subItem.SubMenuText}`}
-                                      className="block py-1 text-[12px]"
-                                      onClick={toggleMenu}
-                                    >
-                                      {subItem.SubMenuText}
-                                    </NavLink>
-                                  )
-                                )}
-                              </div>
-                            )}
-                          </>
-                        ) : (
-                          <NavLink
-                            to={`/${item.text}`}
-                            className="block py-1 text-[14px]"
-                            onClick={toggleMenu}
-                          >
-                            {item.text}
-                          </NavLink>
-                        )}
-                      </div>
-                    ))}
-                  </div>
-                )}
-              </div>
-              <div className="relative">
-                <button
-                  className="w-full text-right flex justify-between items-center px-4 py-2"
-                  onClick={() => toggleSubMenu("ContentCrator")}
-                >
-                  لوازم تولید محتوا
-                  <img
-                    src="/Images/SVG/TriangleBlack.svg"
-                    alt="Arrow"
-                    width={8}
-                  />
-                </button>
-
-                {/* داینامیک کردن زیرمنو */}
-                {openSubMenu === "ContentCrator" && (
-                  <div className="bg-[#F5F5F5] px-6 py-2 mr-2">
-                    <Link
-                      to={`/${openSubMenu}`}
-                      className="py-1 text-[12px] flex items-center text-(--color-TextGray)"
-                    >
-                      همه موارد این دسته
-                      <img
-                        src="/Images/SVG/ToLeftArrow.svg"
-                        alt="Arrow"
-                        width={12}
-                      />
-                    </Link>
-                    {navbar?.ContentCrator?.map(
-                      (item: NavbarData, index: number) => (
+                    {navbar?.Cable?.map(
+                      (item: NavbarCategory, index: number) => (
                         <div key={index} className="relative">
                           {item.Submenu && item.Submenu.length > 0 ? (
                             <>
@@ -923,7 +832,6 @@ const Header: React.FC = () => {
                                 />
                               </button>
 
-                              {/* زیرمنوی تو در تو */}
                               {openNestedSubMenu === item.text && (
                                 <div className="px-4 py-1 border-r-[3px] border-(--color-PrimeOrange)">
                                   <Link
@@ -940,7 +848,7 @@ const Header: React.FC = () => {
                                   {item.Submenu.map(
                                     (
                                       subItem: NavbarSubmenu,
-                                      subIndex: number
+                                      subIndex: number,
                                     ) => (
                                       <NavLink
                                         key={subIndex}
@@ -950,7 +858,7 @@ const Header: React.FC = () => {
                                       >
                                         {subItem.SubMenuText}
                                       </NavLink>
-                                    )
+                                    ),
                                   )}
                                 </div>
                               )}
@@ -965,7 +873,96 @@ const Header: React.FC = () => {
                             </NavLink>
                           )}
                         </div>
-                      )
+                      ),
+                    )}
+                  </div>
+                )}
+              </div>
+              <div className="relative">
+                <button
+                  className="w-full text-right flex justify-between items-center px-4 py-2"
+                  onClick={() => toggleSubMenu("ContentCrator")}
+                >
+                  لوازم تولید محتوا
+                  <img
+                    src="/Images/SVG/TriangleBlack.svg"
+                    alt="Arrow"
+                    width={8}
+                  />
+                </button>
+
+                {openSubMenu === "ContentCrator" && (
+                  <div className="bg-[#F5F5F5] px-6 py-2 mr-2">
+                    <Link
+                      to={`/${openSubMenu}`}
+                      className="py-1 text-[12px] flex items-center text-(--color-TextGray)"
+                    >
+                      همه موارد این دسته
+                      <img
+                        src="/Images/SVG/ToLeftArrow.svg"
+                        alt="Arrow"
+                        width={12}
+                      />
+                    </Link>
+                    {navbar?.ContentCrator?.map(
+                      (item: NavbarCategory, index: number) => (
+                        <div key={index} className="relative">
+                          {item.Submenu && item.Submenu.length > 0 ? (
+                            <>
+                              <button
+                                className="w-full text-right flex justify-between items-center py-1 text-[14px]"
+                                onClick={() => toggleNestedSubMenu(item.text)}
+                              >
+                                {item.text}
+                                <img
+                                  src="/Images/SVG/TriangleBlack.svg"
+                                  alt="Arrow"
+                                  width={8}
+                                />
+                              </button>
+
+                              {openNestedSubMenu === item.text && (
+                                <div className="px-4 py-1 border-r-[3px] border-(--color-PrimeOrange)">
+                                  <Link
+                                    to={`/${openSubMenu}`}
+                                    className="py-1 text-[12px] flex items-center text-(--color-TextGray)"
+                                  >
+                                    همه موارد این دسته
+                                    <img
+                                      src="/Images/SVG/ToLeftArrow.svg"
+                                      alt="Arrow"
+                                      width={12}
+                                    />
+                                  </Link>
+                                  {item.Submenu.map(
+                                    (
+                                      subItem: NavbarSubmenu,
+                                      subIndex: number,
+                                    ) => (
+                                      <NavLink
+                                        key={subIndex}
+                                        to={`/${subItem.SubMenuText}`}
+                                        className="block py-1 text-[12px]"
+                                        onClick={toggleMenu}
+                                      >
+                                        {subItem.SubMenuText}
+                                      </NavLink>
+                                    ),
+                                  )}
+                                </div>
+                              )}
+                            </>
+                          ) : (
+                            <NavLink
+                              to={`/${item.text}`}
+                              className="block py-1 text-[14px]"
+                              onClick={toggleMenu}
+                            >
+                              {item.text}
+                            </NavLink>
+                          )}
+                        </div>
+                      ),
                     )}
                   </div>
                 )}
@@ -983,7 +980,6 @@ const Header: React.FC = () => {
                   />
                 </button>
 
-                {/* داینامیک کردن زیرمنو */}
                 {openSubMenu === "Networking" && (
                   <div className="bg-[#F5F5F5] px-6 py-2 mr-2">
                     <Link
@@ -998,7 +994,7 @@ const Header: React.FC = () => {
                       />
                     </Link>
                     {navbar?.Networking?.map(
-                      (item: NavbarData, index: number) => (
+                      (item: NavbarCategory, index: number) => (
                         <div key={index} className="relative">
                           {item.Submenu && item.Submenu.length > 0 ? (
                             <>
@@ -1014,7 +1010,6 @@ const Header: React.FC = () => {
                                 />
                               </button>
 
-                              {/* زیرمنوی تو در تو */}
                               {openNestedSubMenu === item.text && (
                                 <div className="px-4 py-1 border-r-[3px] border-(--color-PrimeOrange)">
                                   <Link
@@ -1031,7 +1026,7 @@ const Header: React.FC = () => {
                                   {item.Submenu.map(
                                     (
                                       subItem: NavbarSubmenu,
-                                      subIndex: number
+                                      subIndex: number,
                                     ) => (
                                       <NavLink
                                         key={subIndex}
@@ -1041,7 +1036,7 @@ const Header: React.FC = () => {
                                       >
                                         {subItem.SubMenuText}
                                       </NavLink>
-                                    )
+                                    ),
                                   )}
                                 </div>
                               )}
@@ -1056,7 +1051,7 @@ const Header: React.FC = () => {
                             </NavLink>
                           )}
                         </div>
-                      )
+                      ),
                     )}
                   </div>
                 )}
@@ -1088,7 +1083,7 @@ const Header: React.FC = () => {
                       />
                     </Link>
                     {navbar?.GameConsole?.map(
-                      (item: NavbarData, index: number) => (
+                      (item: NavbarCategory, index: number) => (
                         <div key={index} className="relative">
                           {item.Submenu && item.Submenu.length > 0 ? (
                             <>
@@ -1120,7 +1115,7 @@ const Header: React.FC = () => {
                                   {item.Submenu.map(
                                     (
                                       subItem: NavbarSubmenu,
-                                      subIndex: number
+                                      subIndex: number,
                                     ) => (
                                       <NavLink
                                         key={subIndex}
@@ -1130,7 +1125,7 @@ const Header: React.FC = () => {
                                       >
                                         {subItem.SubMenuText}
                                       </NavLink>
-                                    )
+                                    ),
                                   )}
                                 </div>
                               )}
@@ -1145,7 +1140,7 @@ const Header: React.FC = () => {
                             </NavLink>
                           )}
                         </div>
-                      )
+                      ),
                     )}
                   </div>
                 )}
@@ -1177,7 +1172,7 @@ const Header: React.FC = () => {
                       />
                     </Link>
                     {navbar?.Personal?.map(
-                      (item: NavbarData, index: number) => (
+                      (item: NavbarCategory, index: number) => (
                         <div key={index} className="relative">
                           {item.Submenu && item.Submenu.length > 0 ? (
                             <>
@@ -1209,7 +1204,7 @@ const Header: React.FC = () => {
                                   {item.Submenu.map(
                                     (
                                       subItem: NavbarSubmenu,
-                                      subIndex: number
+                                      subIndex: number,
                                     ) => (
                                       <NavLink
                                         key={subIndex}
@@ -1219,7 +1214,7 @@ const Header: React.FC = () => {
                                       >
                                         {subItem.SubMenuText}
                                       </NavLink>
-                                    )
+                                    ),
                                   )}
                                 </div>
                               )}
@@ -1234,7 +1229,7 @@ const Header: React.FC = () => {
                             </NavLink>
                           )}
                         </div>
-                      )
+                      ),
                     )}
                   </div>
                 )}
@@ -1252,24 +1247,25 @@ const Header: React.FC = () => {
                   />
                 </button>
 
-                {/* داینامیک کردن زیرمنو */}
                 {openSubMenu === "Brands" && (
                   <>
-                    {navbar?.Brands?.map((item: NavbarData, index: number) => (
-                      <div key={index} className="relative px-4 py-1">
-                        {item.PersianText} | {item.EnglishText}
-                      </div>
-                    ))}
+                    {navbar?.Brands?.map(
+                      (item: NavbarBrands, index: number) => (
+                        <div key={index} className="relative px-4 py-1">
+                          {item.PersianText} | {item.EnglishText}
+                        </div>
+                      ),
+                    )}
                   </>
                 )}
               </div>
             </div>
 
             <Link
-              to="/#"
+              to="/dashboard"
               className="w-[80%] h-10 text-center leading-10 rounded-lg bg-[#0B295A] text-white my-10 "
             >
-              ورود به پنل ادمین
+              {isLogin ? "ورود به داشبورد" : "ورود / ثبت نام"}
             </Link>
           </div>
         </div>

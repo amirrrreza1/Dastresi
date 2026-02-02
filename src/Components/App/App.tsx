@@ -1,18 +1,46 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Home from "../../Pages/Home/Home";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
 import NotFound from "../../Pages/NotFound/NotFound";
 
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { RedirectIfAuth, RequireUserOrGuest } from "../../Routes/guards";
+import AuthPage from "../../Pages/Auth/AuthPage";
+import { initSupabaseCookieSync } from "../../Utils/syncAuthCookie";
+import AdminLayout from "../../Layouts/AdminLayout";
+import AdminDashboard from "../Dashboard/AdminDashboard";
+import AdminSliders from "../Dashboard/Admin/Slider";
+import { ToastContainer } from "react-toastify";
+import AdminBlogs from "../Dashboard/Admin/Blogs";
+import AdminBrands from "../Dashboard/Admin/Brands";
+import AdminCategories from "../Dashboard/Admin/Categories";
+import AdminProducts from "../Dashboard/Admin/Products";
+
 const App: React.FC = () => {
+  useEffect(() => {
+    const cleanup = initSupabaseCookieSync();
+    return cleanup;
+  }, []);
+
   return (
-    <BrowserRouter
-      future={{
-        v7_startTransition: true,
-        v7_relativeSplatPath: true,
-      }}
-    >
+    <BrowserRouter>
+      <ToastContainer />
       <Routes>
         <Route path="/" element={<Home />} />
+
+        <Route element={<RedirectIfAuth />}>
+          <Route path="/login" element={<AuthPage />} />
+        </Route>
+
+        <Route element={<RequireUserOrGuest />}>
+          <Route path="/dashboard" element={<AdminLayout />}>
+            <Route index element={<AdminDashboard />} />
+            <Route path="products" element={<AdminProducts />} />
+            <Route path="categories" element={<AdminCategories />} />
+            <Route path="sliders" element={<AdminSliders />} />
+            <Route path="brands" element={<AdminBrands />} />
+            <Route path="blogs" element={<AdminBlogs />} />
+          </Route>
+        </Route>
         <Route path="*" element={<NotFound />} />
       </Routes>
     </BrowserRouter>

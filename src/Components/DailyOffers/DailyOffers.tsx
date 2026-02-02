@@ -1,24 +1,37 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import DailyOffersCounter from "./DailyOfferCounter";
-import data from "../../../db.json";
-
-type DailyOfferItem = {
-  id: number;
-  src: string;
-  alt: string;
-  Des: string;
-  PurePrice: string;
-  Off: string;
-  Price: string;
-};
-
-type DailyOffersData = {
-  DailyOffersBig: DailyOfferItem[];
-  DailyOfferSmall: DailyOfferItem[];
-};
+import { supabase } from "../../supabase";
+import { Product } from "../Dashboard/Admin/Products/Type";
 
 const DailyOffers: React.FC = () => {
-  const dailyOffers: DailyOffersData = data.DailyOffers;
+  const [dailyOffers, setDailyOffers] = useState<Product[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchBrands = async () => {
+      try {
+        const { data, error } = await supabase
+          .from("products")
+          .select("*")
+          .eq("is_special", true)
+          .order("created_at", { ascending: false });
+
+        if (error) throw error;
+        if (data) setDailyOffers(data);
+      } catch (err) {
+        console.error("Error fetching brands:", err);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchBrands();
+  }, []);
+
+  if (loading)
+    return (
+      <div className="w-[90%] max-w-[1200px] h-[920px] md:h-[610px] mx-auto bg-gray-200 animate-pulse rounded-2xl mb-12 mt-6" />
+    );
 
   return (
     <>
@@ -38,31 +51,31 @@ const DailyOffers: React.FC = () => {
         </div>
         <div className="flex flex-col lg:flex-row justify-evenly mt-5 gap-3">
           <div className="flex w-full lg:w-[55%] gap-3 flex-col lg:flex-row">
-            {dailyOffers?.DailyOffersBig?.map((item) => (
+            {dailyOffers?.slice(0, 2).map((item: Product) => (
               <div
                 key={item.id}
                 className="bg-white p-4 rounded-lg shadow-sm hover:shadow-xl flex justify-between flex-row lg:flex-col"
               >
                 <img
-                  src={item.src}
-                  alt={item.alt}
+                  src={item.image_url}
+                  alt={item.title}
                   className="w-[140px] h-[140px] lg:w-full lg:h-auto rounded-md"
                 />{" "}
                 <div className="w-full">
                   <h3 className="lg:h-25 text-sm lg:text-lg mt-2">
-                    {item.Des}
+                    {item.title}
                   </h3>
                   <div className="">
                     <div className="">
                       <p className="text-gray-500 line-through">
-                        {item.PurePrice}
+                        {item.price.toLocaleString("fa-IR")} تومان
                       </p>
                       <p className="text-red-500 text-sm">
-                        {item.Off} تومان تخفیف
+                        {item.discount_price.toLocaleString("fa-IR")} تخفیف
                       </p>
                     </div>
                     <p className="text-(--color-PrimeBlue) font-bold text-end">
-                      {item.Price}
+                      {item.price.toLocaleString("fa-IR")} تومان
                     </p>
                   </div>
                 </div>
@@ -70,28 +83,30 @@ const DailyOffers: React.FC = () => {
             ))}
           </div>
           <div className="lg:w-[40%] flex flex-col gap-3">
-            {dailyOffers?.DailyOfferSmall?.map((item) => (
+            {dailyOffers?.slice(2, 5).map((item) => (
               <div
                 key={item.id}
                 className="bg-white p-4 rounded-lg shadow-sm hover:shadow-xl flex justify-between gap-3"
               >
                 <img
-                  src={item.src}
-                  alt={item.alt}
+                  src={item.image_url}
+                  alt={item.title}
                   className="w-[130px] h-[130px]"
                 />
                 <div className="w-full">
                   <h3 className="lg:w-[90%] xl:h-15 text-sm mt-2 overflow-hidden line-clamp-3">
-                    {item.Des}
+                    {item.title}
                   </h3>
-                  <div className="h-10 xl:flex justify-between  text-sm">
+                  <div className="h-10 xl:flex justify-between text-sm">
                     <p className="text-gray-500 line-through">
-                      {item.PurePrice}
+                      {item.price.toLocaleString("fa-IR")} تومان
                     </p>
-                    <p className="text-red-500">{item.Off} تومان تخفیف</p>
+                    <p className="text-red-500">
+                      {item.discount_price.toLocaleString("fa-IR")} تخفیف
+                    </p>
                   </div>
                   <p className="text-(--color-PrimeBlue) font-bold text-lg text-end">
-                    {item.Price}
+                    {item.price.toLocaleString("fa-IR")}
                   </p>
                 </div>
               </div>
