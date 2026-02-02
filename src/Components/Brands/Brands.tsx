@@ -21,6 +21,11 @@ type BrandItem = {
 };
 
 const Brands: React.FC = () => {
+  const swiperRef = useRef<any>(null);
+  const prevRef = useRef(null);
+  const nextRef = useRef(null);
+  const [isReady, setIsReady] = useState(false);
+
   const [brands, setBrands] = useState<BrandItem[]>([]);
   const [loading, setLoading] = useState(true);
 
@@ -43,11 +48,6 @@ const Brands: React.FC = () => {
 
     fetchBrands();
   }, []);
-
-  const swiperRef = useRef<any>(null);
-  const prevRef = useRef(null);
-  const nextRef = useRef(null);
-  const [isReady, setIsReady] = useState(false);
 
   useEffect(() => {
     if (swiperRef.current && prevRef.current && nextRef.current) {

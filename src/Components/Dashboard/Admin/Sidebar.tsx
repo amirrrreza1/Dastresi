@@ -8,7 +8,6 @@ const menuItems = [
   { label: "اسلایدرها", path: "/dashboard/sliders" },
   { label: "دسته‌بندی‌ها", path: "/dashboard/categories" },
   { label: "محصولات", path: "/dashboard/products" },
-  { label: "محصولات جدید", path: "/dashboard/new" },
   { label: "برندها", path: "/dashboard/brands" },
   { label: "بلاگ‌ها", path: "/dashboard/blogs" },
 ];

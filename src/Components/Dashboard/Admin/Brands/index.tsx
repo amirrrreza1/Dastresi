@@ -179,8 +179,10 @@ const AdminBrands = () => {
                       className="h-16 w-24 rounded-lg object-cover"
                     />
                   </td>
-                  <td className="p-4 font-medium " title={brand.name}>
-                    {brand.name}
+                  <td className="p-4 text-gray-600">
+                    <span className="bg-gray-100 px-2 py-1 rounded text-xs">
+                      {brand.name}
+                    </span>
                   </td>
                   <td className="p-4">
                     <div className="flex justify-center gap-3">
@@ -202,14 +204,21 @@ const AdminBrands = () => {
                   </td>
                 </tr>
               ))}
+              {loading && (
+                <tr>
+                  <td colSpan={3} className="py-12 text-center">
+                    <p>در حال بارگذاری...</p>
+                  </td>
+                </tr>
+              )}
+              {brands.length === 0 && !loading && (
+                <tr>
+                  <td colSpan={3} className="py-12 text-center text-gray-400">
+                    هیچ بلاگی فعالی یافت نشد
+                  </td>
+                </tr>
+              )}{" "}
             </tbody>
-            {brands.length === 0 && !loading && (
-              <tr>
-                <td colSpan={3} className="py-12 text-center text-gray-400">
-                  هیچ بلاگی فعالی یافت نشد
-                </td>
-              </tr>
-            )}
           </table>
         </div>
       </div>

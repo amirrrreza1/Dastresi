@@ -278,6 +278,13 @@ const AdminSliders = () => {
                     </td>
                   </tr>
                 ))}
+                {slidersLoading && (
+                  <tr>
+                    <td colSpan={3} className="py-12 text-center">
+                      <p>در حال بارگذاری...</p>
+                    </td>
+                  </tr>
+                )}
                 {sliders.length === 0 && !slidersLoading && (
                   <tr>
                     <td colSpan={3} className="py-12 text-center text-gray-400">
