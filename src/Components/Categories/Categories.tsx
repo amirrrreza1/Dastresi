@@ -1,5 +1,4 @@
 import { Swiper, SwiperSlide } from "swiper/react";
-import data from "../../../db.json";
 
 // @ts-expect-error ts-migrate(2339) FIXME: Property 'freeMode' does not exist on type 'SwiperOptions'.
 import "swiper/css";
@@ -13,11 +12,12 @@ import "./Categories.css";
 import { FreeMode, Autoplay, Navigation } from "swiper/modules";
 import { useEffect, useRef, useState } from "react";
 import { NextButton, PrevButton } from "../SwiperButton/SwiperButton";
+import { supabase } from "../../supabase";
 
 type CategoryItem = {
   id: string;
-  src: string;
-  alt: string;
+  image_url: string;
+  name: string;
 };
 
 export default function Categories() {
@@ -26,7 +26,28 @@ export default function Categories() {
   const nextRef = useRef(null);
   const [isReady, setIsReady] = useState(false);
 
-  const categories: CategoryItem[] = data.Categories;
+  const [categories, setCategories] = useState<CategoryItem[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchCategories = async () => {
+      try {
+        const { data, error } = await supabase
+          .from("categories")
+          .select("*")
+          .order("created_at", { ascending: false });
+
+        if (error) throw error;
+        if (data) setCategories(data);
+      } catch (err) {
+        console.error("Error fetching categories:", err);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchCategories();
+  }, []);
 
   useEffect(() => {
     if (swiperRef.current && prevRef.current && nextRef.current) {
@@ -37,6 +58,11 @@ export default function Categories() {
       setIsReady(true);
     }
   }, [categories]);
+
+  if (loading)
+    return (
+      <div className="w-[90%] max-w-[1200px] h-[220px] mx-auto bg-gray-200 animate-pulse rounded-2xl mb-12" />
+    );
 
   return (
     <>
@@ -68,7 +94,7 @@ export default function Categories() {
             >
               {categories.map((item, index) => (
                 <SwiperSlide key={index} className="cursor-pointer">
-                  <img src={item.src} alt={item.alt} />
+                  <img src={item.image_url} alt={item.name} />
                 </SwiperSlide>
               ))}
             </Swiper>
@@ -79,7 +105,7 @@ export default function Categories() {
                 key={index}
                 className="bg-white rounded-lg flex justify-center items-center w-[40%]"
               >
-                <img src={item.src} alt={item.alt} />
+                <img src={item.image_url} alt={item.name} />
               </div>
             ))}
           </div>

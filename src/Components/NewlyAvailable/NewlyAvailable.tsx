@@ -14,25 +14,38 @@ import { FreeMode, Autoplay, Navigation } from "swiper/modules";
 import { useEffect, useRef, useState } from "react";
 import { NextButton, PrevButton } from "../SwiperButton/SwiperButton";
 import { Tooltip } from "react-tooltip";
-import data from "../../../db.json";
-
-type newlyAvailableItem = {
-  id: string;
-  src: string;
-  alt: string;
-  text: string;
-  color: string;
-  category: string;
-  price: string;
-  Inventory: number;
-};
+import { Product } from "../Dashboard/Admin/Products/Type";
+import { supabase } from "../../supabase";
 
 const NewlyAvailable: React.FC = () => {
-  const newlyAvailable: newlyAvailableItem[] = data.NewlyAvailable;
   const swiperRef = useRef<any>(null);
   const prevRef = useRef(null);
   const nextRef = useRef(null);
   const [isReady, setIsReady] = useState(false);
+
+  const [newlyAvailable, setNewlyAvailable] = useState<Product[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchBrands = async () => {
+      try {
+        const { data, error } = await supabase
+          .from("products")
+          .select("*")
+          .eq("is_new", true)
+          .order("created_at", { ascending: false });
+
+        if (error) throw error;
+        if (data) setNewlyAvailable(data);
+      } catch (err) {
+        console.error("Error fetching newly available products:", err);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchBrands();
+  }, []);
 
   useEffect(() => {
     if (swiperRef.current && prevRef.current && nextRef.current) {
@@ -43,6 +56,11 @@ const NewlyAvailable: React.FC = () => {
       setIsReady(true);
     }
   }, [newlyAvailable]);
+
+  if (loading)
+    return (
+      <div className="w-[90%] max-w-[1200px] h-[420px] mx-auto bg-gray-200 animate-pulse rounded-2xl mb-12" />
+    );
 
   return (
     <>
@@ -105,48 +123,39 @@ const NewlyAvailable: React.FC = () => {
                   className="cursor-pointer rounded-lg flex flex-col justify-center items-center group "
                 >
                   <img
-                    src={item.src}
-                    alt={item.alt}
+                    src={item.image_url}
+                    alt={item.title}
                     className="w-full rounded-lg"
                   />
                   <div
-                    className={`w-4 h-4 rounded-full absolute top-3 left-3 shadow border border-gray-100 ${
-                      item.color === "white"
-                        ? "bg-white"
-                        : item.color === "black"
-                          ? "bg-black"
-                          : item.color === "blue"
-                            ? "bg-blue-500"
-                            : item.color === "glass"
-                              ? "bg-transparent border-gray-300"
-                              : ""
-                    }`}
-                  ></div>
+                    className={`w-4 h-4 rounded-full absolute top-3 left-3 shadow border border-gray-100`}
+                    style={{ backgroundColor: item.color.hex }}
+                  />
                   <div className="text-[12px] text-black/60 mt-4 line-clamp-1">
                     {item.category}
                   </div>
                   <div
                     data-tooltip-id={`NewlyAvailable${item.id}`}
-                    data-tooltip-content={item.text}
+                    data-tooltip-content={item.title}
                     data-tooltip-place="top"
                     className="w-[85%] line-clamp-1 text-[10px] md:text-[14px] mt-2 group-hover:text-(--color-PrimeBlue) transition duration-200"
                   >
-                    {item.text}
+                    {item.title}
                   </div>
                   <Tooltip
                     className="z-[999]!"
                     positionStrategy="fixed"
-                    id={`NewlyAvailable${item.id}`}
+                    id={`NewlyAvailable-${item.id}`}
                   />
                   <div className="text-end w-full mt-4 p-0 text-[8px] md:text-[14px] flex flex-row gap-1 justify-end">
-                    {item.Inventory === 0 ? (
-                      <div className="w-full bg-[#FEF5F5] text-[#9B2B2C] p-2 text-center text-[10px] md:text-[16px]">
+                    {item.inventory === 0 ? (
+                      <div className="w-full bg-[#FEF5F5] text-[#9B2B2C] p-2 text-center text-[10px] md:text-[16px] rounded-b-lg">
                         ناموجود
                       </div>
                     ) : (
                       <div className="p-2 flex flex-row gap-1 items-center">
                         <span className="text-(--color-PrimeBlue) font-bold text-[10px] md:text-[16px]">
-                          {item.price}
+                          {item.price.toLocaleString("fa-IR")}
                         </span>
                         <span>تومان</span>
                       </div>

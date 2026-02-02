@@ -2,15 +2,18 @@ import React, { useEffect } from "react";
 import Home from "../../Pages/Home/Home";
 import NotFound from "../../Pages/NotFound/NotFound";
 
-import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
-import {
-  RedirectIfAuth,
-  RequireAdmin,
-  RequireUserOrGuest,
-} from "../../Routes/guards";
-import Dashboard from "../Dashboard/Dashboard";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { RedirectIfAuth, RequireUserOrGuest } from "../../Routes/guards";
 import AuthPage from "../../Pages/Auth/AuthPage";
 import { initSupabaseCookieSync } from "../../Utils/syncAuthCookie";
+import AdminLayout from "../../Layouts/AdminLayout";
+import AdminDashboard from "../Dashboard/AdminDashboard";
+import AdminSliders from "../Dashboard/Admin/Slider";
+import { ToastContainer } from "react-toastify";
+import AdminBlogs from "../Dashboard/Admin/Blogs";
+import AdminBrands from "../Dashboard/Admin/Brands";
+import AdminCategories from "../Dashboard/Admin/Categories";
+import AdminProducts from "../Dashboard/Admin/Products";
 
 const App: React.FC = () => {
   useEffect(() => {
@@ -19,12 +22,8 @@ const App: React.FC = () => {
   }, []);
 
   return (
-    <BrowserRouter
-      future={{
-        v7_startTransition: true,
-        v7_relativeSplatPath: true,
-      }}
-    >
+    <BrowserRouter>
+      <ToastContainer />
       <Routes>
         <Route path="/" element={<Home />} />
 
@@ -33,11 +32,14 @@ const App: React.FC = () => {
         </Route>
 
         <Route element={<RequireUserOrGuest />}>
-          <Route path="/dashboard" element={<Dashboard />} />
-        </Route>
-
-        <Route element={<RequireAdmin />}>
-          <Route path="/admin" element={<Dashboard />} />
+          <Route path="/dashboard" element={<AdminLayout />}>
+            <Route index element={<AdminDashboard />} />
+            <Route path="products" element={<AdminProducts />} />
+            <Route path="categories" element={<AdminCategories />} />
+            <Route path="sliders" element={<AdminSliders />} />
+            <Route path="brands" element={<AdminBrands />} />
+            <Route path="blogs" element={<AdminBlogs />} />
+          </Route>
         </Route>
         <Route path="*" element={<NotFound />} />
       </Routes>

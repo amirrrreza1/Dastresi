@@ -7,9 +7,7 @@ const Footer: React.FC = () => {
   };
   return (
     <>
-      {/* Footer Wrapper Start */}
       <footer className="w-full h-fit bg-white">
-        {/* Footer Top Part Start */}
         <div className="w-full h-fit flex justify-between items-center bg-[#E2E2E2] p-4">
           <div className="Width h-full mx-auto block lg:flex space-y-3 lg:space-y-0  justify-between items-center flex-wrap">
             <div className="FooterGrayItems">
@@ -55,8 +53,6 @@ const Footer: React.FC = () => {
             </button>
           </div>
         </div>
-        {/* Footer Top Part End */}
-        {/* Footer Center Part Start */}
         <div className="w-full bg-(--color-PrimeGray) p-4">
           <div className="Width h-full mx-auto block lg:flex space-y-3 lg:space-y-0  justify-around items-center flex-wrap">
             <div className="w-[95%] lg:w-[17%] mx-auto flex flex-wrap items-center justify-center lg:flex-col gap-3  p-4">
@@ -120,12 +116,9 @@ const Footer: React.FC = () => {
             </div>
           </div>
         </div>
-        {/* Footer Center Part End */}
-        {/* Footer Bottom Part Start */}
         <div className="w-full h-fit bg-(--color-PrimeBlue) p-4 text-white text-center">
       این سایت توسط امیررضا آذریون و از روی سایت دسترسی ساخته شده
         </div>
-        {/* Footer Bottom Part End */}
       </footer>
     </>
   );
