@@ -23,6 +23,7 @@ const ProductModal: React.FC<ProductModalProps> = ({
   const [discountPrice, setDiscountPrice] = useState("");
   const [imageUrl, setImageUrl] = useState<string | null>(null);
   const [features, setFeatures] = useState<string[]>(["", "", "", ""]);
+  const [inventory, setInventory] = useState("");
 
   const [imageUploading, setImageUploading] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -36,6 +37,7 @@ const ProductModal: React.FC<ProductModalProps> = ({
         setCategory(productToEdit.category);
         setColor(productToEdit.color);
         setPrice(productToEdit.price.toString());
+        setInventory(productToEdit.inventory.toString());
         setDiscountPrice(productToEdit.discount_price.toString());
         setImageUrl(productToEdit.image_url);
         const feats = [...productToEdit.features];
@@ -45,6 +47,7 @@ const ProductModal: React.FC<ProductModalProps> = ({
         setTitle("");
         setDescription("");
         setBrand("");
+        setCategory("");
         setCategory("");
         setColor(null);
         setPrice("");
@@ -97,7 +100,8 @@ const ProductModal: React.FC<ProductModalProps> = ({
       !category ||
       !price ||
       !discountPrice ||
-      !color
+      !color ||
+      !inventory
     ) {
       Swal.fire("خطا", "لطفا تمام فیلدها از جمله رنگ را انتخاب کنید", "error");
       return;
@@ -110,12 +114,14 @@ const ProductModal: React.FC<ProductModalProps> = ({
 
     const cleanPrice = Number(cleanNumber(price));
     const cleanDiscountPrice = Number(cleanNumber(discountPrice));
+    const cleanInventory = Number(cleanNumber(inventory));
 
     if (
       isNaN(cleanPrice) ||
       isNaN(cleanDiscountPrice) ||
       cleanPrice <= 0 ||
-      cleanDiscountPrice <= 0
+      cleanDiscountPrice <= 0 ||
+      cleanInventory <= 0
     ) {
       Swal.fire("خطا", "لطفا قیمت‌ها را به درستی وارد کنید", "error");
       return;
@@ -129,6 +135,7 @@ const ProductModal: React.FC<ProductModalProps> = ({
       brand,
       category,
       color: color,
+      inventory: cleanInventory,
       features: validFeatures,
       price: cleanPrice,
       discount_price: cleanDiscountPrice,
@@ -248,22 +255,42 @@ const ProductModal: React.FC<ProductModalProps> = ({
               </div>
             </div>
 
-            <div className="space-y-1">
-              <label className="text-xs font-bold text-gray-500">رنگ</label>
-              <select
-                value={color ? JSON.stringify(color) : ""}
-                onChange={(e) =>
-                  setColor(e.target.value ? JSON.parse(e.target.value) : null)
-                }
-                className="w-full h-11 rounded-xl border border-gray-200 px-3 bg-white outline-none"
-              >
-                <option value="">انتخاب...</option>
-                {POPULAR_COLORS.map((c) => (
-                  <option key={c.name} value={JSON.stringify(c)}>
-                    {c.name}
-                  </option>
-                ))}
-              </select>
+            <div className="grid grid-cols-2 gap-3">
+              <div className="space-y-1">
+                <label className="text-xs font-bold text-gray-500">رنگ</label>
+                <select
+                  value={color ? JSON.stringify(color) : ""}
+                  onChange={(e) =>
+                    setColor(e.target.value ? JSON.parse(e.target.value) : null)
+                  }
+                  className="w-full h-11 rounded-xl border border-gray-200 px-3 bg-white outline-none"
+                >
+                  <option value="">انتخاب...</option>
+                  {POPULAR_COLORS.map((c) => (
+                    <option key={c.name} value={JSON.stringify(c)}>
+                      {c.name}
+                    </option>
+                  ))}
+                </select>
+              </div>
+              <div className="space-y-1">
+                <label className="text-xs font-bold text-gray-500">
+                  موجودی
+                </label>
+                <input
+                  type="text"
+                  dir="ltr"
+                  value={formatDisplay(inventory)}
+                  onChange={(e) => {
+                    const rawValue = cleanNumber(e.target.value);
+                    if (/^\d*$/.test(rawValue)) {
+                      setInventory(rawValue);
+                    }
+                  }}
+                  className="w-full h-11 rounded-xl border border-gray-200 px-3 outline-none text-left font-sans"
+                  placeholder="0"
+                />
+              </div>
             </div>
 
             <div className="grid grid-cols-2 gap-3">

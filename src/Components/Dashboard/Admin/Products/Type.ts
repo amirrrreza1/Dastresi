@@ -21,6 +21,8 @@ export interface Product {
   image_url: string;
   is_new: boolean;
   is_special: boolean;
+  inventory: number;
+  most_sell: boolean;
 }
 
 export interface ProductModalProps {

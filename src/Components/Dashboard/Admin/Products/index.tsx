@@ -8,6 +8,7 @@ import {
   Star,
   ChevronLeft,
   ChevronRight,
+  CircleDollarSign,
 } from "lucide-react";
 import Swal from "sweetalert2";
 import { supabase } from "../../../../supabase";
@@ -18,7 +19,6 @@ import { LookupItem, Product } from "./Type";
 import { formatPrice } from "../../../../Utils/formatPrice";
 
 const PAGE_SIZE = 10;
-
 
 const AdminProducts = () => {
   const [products, setProducts] = useState<Product[]>([]);
@@ -187,6 +187,7 @@ const AdminProducts = () => {
                 <tr>
                   <th className="p-4 text-center">تصویر</th>
                   <th className="p-4">نام محصول</th>
+                  <th className="p-4 text-center">پرفروش</th>
                   <th className="p-4 text-center">جدید</th>
                   <th className="p-4 text-center">ویژه</th>
                   <th className="p-4 text-center">قیمت</th>
@@ -218,6 +219,14 @@ const AdminProducts = () => {
                         <p className="text-xs text-gray-400">
                           {p.category} | {p.brand}
                         </p>
+                      </td>
+                      <td className="p-3 text-center">
+                        <button
+                          onClick={() => toggleFlag(p.id, "most_sell", p.most_sell)}
+                          className={`p-2 rounded-full transition-colors ${p.most_sell ? "bg-blue-100 text-blue-600" : "bg-gray-100 text-gray-400 hover:bg-gray-200"}`}
+                        >
+                          <CircleDollarSign className="w-5! h-5!" />
+                        </button>
                       </td>
                       <td className="p-3 text-center">
                         <button
