@@ -138,7 +138,7 @@ const AdminBrands = () => {
             </div>
 
             <div className="flex flex-col justify-between py-2">
-              <div className="space-y-2">
+              <div className="space-y-2 mb-4">
                 <label className="text-sm font-medium text-gray-600">
                   نام برند
                 </label>

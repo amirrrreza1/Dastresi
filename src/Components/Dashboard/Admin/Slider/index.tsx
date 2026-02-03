@@ -186,7 +186,7 @@ const AdminSliders = () => {
             </div>
 
             <div className="flex flex-col justify-between">
-              <div className="space-y-2">
+              <div className="space-y-2 mb-4">
                 <label className="text-sm font-medium text-gray-600">
                   لینک مقصد
                 </label>
