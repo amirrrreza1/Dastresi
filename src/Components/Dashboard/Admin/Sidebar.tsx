@@ -32,7 +32,7 @@ const Sidebar = () => {
 
   return (
     <>
-      <div className="bg-white fixed left-0 top-0 w-full flex h-16 items-center justify-between px-4 shadow-md md:hidden z-[999]">
+      <div className="bg-white fixed left-0 top-0 w-full flex h-16 items-center justify-between px-4 shadow-md md:hidden !z-50">
         <div className="flex items-center gap-2">
           <button
             onClick={() => setOpen(true)}

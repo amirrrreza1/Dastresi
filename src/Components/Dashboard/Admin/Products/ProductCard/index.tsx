@@ -1,5 +1,6 @@
 import { Edit2, Trash, Zap, Star, CircleDollarSign } from "lucide-react";
 import { ProductCardProps } from "../Type";
+import protectedAction from "../../../../../Utils/guestFunction";
 
 const ProductCard = ({
   product,
@@ -39,7 +40,11 @@ const ProductCard = ({
       <div className="flex items-center justify-between gap-2">
         <div className="flex items-center gap-2">
           <button
-            onClick={() => onToggleFlag(product.id, "is_new", product.is_new)}
+            onClick={() =>
+              protectedAction(() =>
+                onToggleFlag(product.id, "is_new", product.is_new),
+              )
+            }
             className={`p-2 rounded-full transition-colors ${
               product.is_new
                 ? "bg-blue-100 text-blue-600"
@@ -51,7 +56,9 @@ const ProductCard = ({
           </button>
           <button
             onClick={() =>
-              onToggleFlag(product.id, "is_special", product.is_special)
+              protectedAction(() =>
+                onToggleFlag(product.id, "is_special", product.is_special),
+              )
             }
             className={`p-2 rounded-full transition-colors ${
               product.is_special
@@ -64,7 +71,9 @@ const ProductCard = ({
           </button>
           <button
             onClick={() =>
-              onToggleFlag(product.id, "most_sell", product.most_sell)
+              protectedAction(() =>
+                onToggleFlag(product.id, "most_sell", product.most_sell),
+              )
             }
             className={`p-2 rounded-full transition-colors ${product.most_sell ? "bg-green-100 text-green-600" : "bg-gray-100 text-gray-400 hover:bg-gray-200"}`}
           >

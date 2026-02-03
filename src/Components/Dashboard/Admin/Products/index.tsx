@@ -223,7 +223,9 @@ const AdminProducts = () => {
                     <td className="p-3 text-center">
                       <button
                         onClick={() =>
-                          toggleFlag(p.id, "most_sell", p.most_sell)
+                          protectedAction(() =>
+                            toggleFlag(p.id, "most_sell", p.most_sell),
+                          )
                         }
                         className={`p-2 rounded-full transition-colors ${p.most_sell ? "bg-green-100 text-green-600" : "bg-gray-100 text-gray-400 hover:bg-gray-200"}`}
                       >
@@ -232,7 +234,11 @@ const AdminProducts = () => {
                     </td>
                     <td className="p-3 text-center">
                       <button
-                        onClick={() => toggleFlag(p.id, "is_new", p.is_new)}
+                        onClick={() =>
+                          protectedAction(() =>
+                            toggleFlag(p.id, "is_new", p.is_new),
+                          )
+                        }
                         className={`p-2 rounded-full transition-colors ${p.is_new ? "bg-blue-100 text-blue-600" : "bg-gray-100 text-gray-400 hover:bg-gray-200"}`}
                       >
                         <Zap className="w-5! h-5!" />
@@ -241,7 +247,9 @@ const AdminProducts = () => {
                     <td className="p-3 text-center">
                       <button
                         onClick={() =>
-                          toggleFlag(p.id, "is_special", p.is_special)
+                          protectedAction(() =>
+                            toggleFlag(p.id, "is_special", p.is_special),
+                          )
                         }
                         className={`p-2 rounded-full transition-colors ${p.is_special ? "bg-amber-100 text-amber-600" : "bg-gray-100 text-gray-400 hover:bg-gray-200"}`}
                       >
