@@ -7,7 +7,6 @@ import { RedirectIfAuth, RequireUserOrGuest } from "../../Routes/guards";
 import AuthPage from "../../Pages/Auth/AuthPage";
 import { initSupabaseCookieSync } from "../../Utils/syncAuthCookie";
 import AdminLayout from "../../Layouts/AdminLayout";
-import AdminDashboard from "../Dashboard/AdminDashboard";
 import AdminSliders from "../Dashboard/Admin/Slider";
 import { ToastContainer } from "react-toastify";
 import AdminBlogs from "../Dashboard/Admin/Blogs";
@@ -38,8 +37,7 @@ const App: React.FC = () => {
 
         <Route element={<RequireUserOrGuest />}>
           <Route path="/dashboard" element={<AdminLayout />}>
-            <Route index element={<AdminDashboard />} />
-            <Route path="products" element={<AdminProducts />} />
+            <Route index element={<AdminProducts />} />
             <Route path="categories" element={<AdminCategories />} />
             <Route path="sliders" element={<AdminSliders />} />
             <Route path="brands" element={<AdminBrands />} />

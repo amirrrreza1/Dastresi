@@ -126,7 +126,6 @@ const AdminCategories = () => {
           مدیریت دسته‌بندی‌ها
         </p>
 
-        {/* Form Section */}
         <div className="rounded-2xl bg-white p-6 shadow-sm border border-gray-100 space-y-6">
           <h2 className="text-lg font-bold border-b pb-3">
             {editingCategory ? "ویرایش دسته‌بندی" : "افزودن دسته‌بندی جدید"}
@@ -134,7 +133,7 @@ const AdminCategories = () => {
           <div className="grid md:grid-cols-2 gap-6">
             <div className="space-y-2">
               <label className="text-sm font-medium text-gray-600">
-                تصویر آیکون/دسته
+                تصویر دسته بندی
               </label>
               <div className="relative h-48 w-full rounded-2xl border-2 border-dashed border-blue-100 bg-blue-50/30 flex flex-col items-center justify-center overflow-hidden group">
                 {imageUrl ? (
@@ -146,7 +145,7 @@ const AdminCategories = () => {
                 ) : (
                   <div className="flex flex-col items-center text-gray-400">
                     <Upload className="w-8! h-8! mb-2" />
-                    <span className="text-xs">انتخاب تصویر</span>
+                    <span className="text-xs">انتخاب تصویر دسته بندی</span>
                   </div>
                 )}
                 <input

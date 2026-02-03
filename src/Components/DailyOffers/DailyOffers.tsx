@@ -51,17 +51,17 @@ const DailyOffers: React.FC = () => {
           <DailyOffersCounter />
         </div>
         <div className="flex flex-col lg:flex-row justify-evenly mt-5 gap-3">
-          <div className="flex w-full lg:w-[55%] gap-3 flex-col lg:flex-row">
+          <div className="flex w-full lg:w-[55%] gap-3 flex-col lg:flex-row items-stretch">
             {dailyOffers?.slice(0, 2).map((item: Product) => (
-              <Link to={`/product/${item.id}`}>
+              <Link to={`/product/${item.id}`} className="lg:w-1/2 flex">
                 <div
                   key={item.id}
-                  className="bg-white p-4 rounded-lg shadow-sm hover:shadow-xl flex justify-between flex-row lg:flex-col"
+                  className="bg-white p-4 rounded-lg shadow-sm hover:shadow-xl flex lg:flex-col gap-3 justify-between flex-1"
                 >
                   <img
                     src={item.image_url}
                     alt={item.title}
-                    className="w-[140px] h-[140px] lg:w-full lg:h-auto rounded-md"
+                    className="w-[130px] h-[130px] lg:w-full lg:h-auto rounded-md"
                   />{" "}
                   <div className="w-full">
                     <h3 className="lg:h-25 text-sm lg:text-lg mt-2">
@@ -87,7 +87,8 @@ const DailyOffers: React.FC = () => {
           </div>
           <div className="lg:w-[40%] flex flex-col gap-3">
             {dailyOffers?.slice(2, 5).map((item) => (
-              <div
+              <Link
+                to={`/product/${item.id}`}
                 key={item.id}
                 className="bg-white p-4 rounded-lg shadow-sm hover:shadow-xl flex justify-between gap-3"
               >
@@ -112,7 +113,7 @@ const DailyOffers: React.FC = () => {
                     {item.price.toLocaleString("fa-IR")}
                   </p>
                 </div>
-              </div>
+              </Link>
             ))}
           </div>
         </div>

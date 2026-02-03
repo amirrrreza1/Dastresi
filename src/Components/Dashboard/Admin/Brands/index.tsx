@@ -123,7 +123,10 @@ const AdminBrands = () => {
                     className="w-full h-full object-contain p-4"
                   />
                 ) : (
-                  <Upload className="w-8! h-8! text-gray-400" />
+                  <div className="flex flex-col gap-2 items-center text-gray-400">
+                    <Upload className="w-8! h-8! text-gray-400" />
+                    <span className="text-xs">انتخاب تصویر برند </span>
+                  </div>
                 )}
                 <input
                   type="file"

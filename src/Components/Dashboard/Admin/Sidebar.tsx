@@ -4,10 +4,9 @@ import { Home, LogOut, Menu, Plus, X } from "lucide-react";
 import HoveredButton from "../../UI/Buttons/HoveredButton";
 
 const menuItems = [
-  { label: "داشبورد", path: "/dashboard" },
+  { label: "محصولات", path: "/dashboard" },
   { label: "اسلایدرها", path: "/dashboard/sliders" },
   { label: "دسته‌بندی‌ها", path: "/dashboard/categories" },
-  { label: "محصولات", path: "/dashboard/products" },
   { label: "برندها", path: "/dashboard/brands" },
   { label: "بلاگ‌ها", path: "/dashboard/blogs" },
 ];
