@@ -148,13 +148,13 @@ const AdminProducts = () => {
   return (
     <div className="bg-(--color-PrimeGray) min-h-screen py-4 sm:py-8">
       <div className="max-w-[1200px] mx-auto md:px-4">
-        <div className="flex flex-col sm:flex-row justify-between items-stretch sm:items-center gap-3 sm:gap-4 mb-6 sm:mb-8">
-          <p className="text-xl sm:text-2xl font-bold text-(--color-SecondaryBlue) flex items-center gap-2">
+        <div className="flex flex-col lg:flex-row justify-between items-stretch sm:items-center gap-3 sm:gap-4 mb-6 sm:mb-8">
+          <p className="text-xl sm:text-2xl font-bold text-(--color-SecondaryBlue) flex items-center gap-2 shrink-0">
             مدیریت محصولات
           </p>
 
-          <div className="flex flex-col items-center sm:flex-row gap-3 sm:gap-4 sm:flex-1 sm:justify-end sm:max-w-2xl">
-            <div className="flex-1 sm:max-w-md relative">
+          <div className="flex flex-col items-center lg:flex-row gap-3 lg:gap-4 lg:justify-end w-full">
+            <div className="flex-1 lg:max-w-md relative w-full">
               <Search className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 w-5! h-5!" />
               <input
                 type="text"
@@ -173,7 +173,7 @@ const AdminProducts = () => {
                 setEditingProduct(null);
                 setIsModalOpen(true);
               }}
-              className="bg-[var(--color-PrimeBlue)] h-10 text-white px-6 py-3 rounded-xl font-bold shadow-lg flex items-center justify-center gap-2 hover:opacity-90 transition-opacity whitespace-nowrap"
+              className="bg-[var(--color-PrimeBlue)] w-full lg:w-fit h-10 text-white px-6 py-3 rounded-xl font-bold shadow-lg flex items-center justify-center gap-2 hover:opacity-90 transition-opacity whitespace-nowrap"
             >
               <Plus className="w-5! h-5!" /> محصول جدید
             </button>

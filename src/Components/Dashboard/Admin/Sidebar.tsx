@@ -32,35 +32,38 @@ const Sidebar = () => {
 
   return (
     <>
-      <button
-        onClick={() => setOpen(true)}
-        className="md:hidden fixed top-4 right-4 z-50 rounded-lg bg-white p-2 shadow cursor-pointer"
-        aria-label="Open menu"
-      >
-        <Menu className="w-5! h-5!" />
-      </button>
-      <img
-        alt="Logo"
-        width="60"
-        src="/Images/Header/logo.png"
-        className="md:hidden fixed top-4 left-4 "
-      />
-      <HoveredButton
-        text="افزودن محصول"
-        icon={<Plus className="w-5! h-5!" color="black" />}
-        className="w-9 h-9 fixed top-4 right-15"
-      />
-
-      {open && (
-        <div
-          onClick={closeSidebar}
-          className="fixed inset-0 z-40 bg-black/40 md:hidden"
+      <div className="bg-white fixed left-0 top-0 w-full flex h-16 items-center justify-between px-4 shadow-md md:hidden z-[999]">
+        <div className="flex items-center gap-2">
+          <button
+            onClick={() => setOpen(true)}
+            className="md:hidden rounded-lg bg-white p-2 shadow cursor-pointer"
+            aria-label="Open menu"
+          >
+            <Menu className="w-5! h-5!" />
+          </button>{" "}
+          <HoveredButton
+            text="افزودن محصول"
+            icon={<Plus className="w-5! h-5!" color="black" />}
+            className="w-9 h-9"
+          />
+        </div>
+        <img
+          alt="Logo"
+          width="60"
+          src="/Images/Header/logo.png"
+          className="md:hidden"
         />
-      )}
+        {open && (
+          <div
+            onClick={closeSidebar}
+            className="fixed inset-0 z-40 bg-black/40 md:hidden"
+          />
+        )}
+      </div>
 
       <aside
         className={`
-          fixed z-50 h-screen w-64 bg-white shadow-lg flex flex-col
+          fixed z-50 h-dvh w-64 bg-white shadow-lg flex flex-col
           transform transition-transform duration-300
           ${open ? "translate-x-0" : "translate-x-full"}
           md:sticky md:top-0 md:translate-x-0
