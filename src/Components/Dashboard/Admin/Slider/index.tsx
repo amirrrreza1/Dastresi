@@ -258,7 +258,7 @@ const AdminSliders = () => {
                       </span>
                     </td>
                     <td className="p-4">
-                      <div className="flex justify-center gap-3">
+                      <div className="flex flex-col md:flex-row justify-center gap-3">
                         <button
                           onClick={() => startEditing(slider)}
                           className="p-2 text-blue-500 hover:bg-blue-50 rounded-lg transition-colors"

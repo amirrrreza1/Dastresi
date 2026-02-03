@@ -189,7 +189,7 @@ const AdminBrands = () => {
                     </span>
                   </td>
                   <td className="p-4">
-                    <div className="flex justify-center gap-3">
+                    <div className="flex flex-col md:flex-row justify-center gap-3">
                       <button
                         onClick={() => startEditing(brand)}
                         className="p-2 text-blue-500"
