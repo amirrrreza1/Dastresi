@@ -21,15 +21,10 @@ export default function SignInForm({ onModeChange, onDone, onGuest }: Props) {
     setLoading(true);
 
     try {
-      const { data: signInData, error: signInError } =
-        await supabase.auth.signInWithPassword({
-          email,
-          password,
-        });
-
-      console.log("sign in Data: ", signInData);
-      console.log("session:", signInData.session);
-      console.log("user:", signInData.user);
+      const { error: signInError } = await supabase.auth.signInWithPassword({
+        email,
+        password,
+      });
 
       if (signInError) throw signInError;
 
@@ -57,9 +52,7 @@ export default function SignInForm({ onModeChange, onDone, onGuest }: Props) {
       </div>
 
       <div className="space-y-2">
-        <label className="text-sm text-(--color-SecondaryBlue)">
-          رمز عبور
-        </label>
+        <label className="text-sm text-(--color-SecondaryBlue)">رمز عبور</label>
         <input
           className="w-full rounded-xl border border-[#0a5abd]/20 bg-white px-3 py-2 text-sm text-(--color-SecondaryBlue) outline-none
                      focus:border-[#0a5abd]/40 focus:ring-2 focus:ring-[#0a5abd]/15"
