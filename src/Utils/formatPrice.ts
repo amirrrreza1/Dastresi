@@ -1,3 +1,3 @@
 export const formatPrice = (price: number | string) => {
-  return Number(price).toLocaleString();
+  return Number(price).toLocaleString("fa-IR");
 };

@@ -147,13 +147,13 @@ const AdminProducts = () => {
   const totalPages = Math.ceil(totalCount / PAGE_SIZE);
   return (
     <div className="bg-(--color-PrimeGray) min-h-screen py-4 sm:py-8">
-      <div className="max-w-[1200px] mx-auto px-4 overflow-visible">
+      <div className="max-w-[1200px] mx-auto md:px-4">
         <div className="flex flex-col sm:flex-row justify-between items-stretch sm:items-center gap-3 sm:gap-4 mb-6 sm:mb-8">
           <p className="text-xl sm:text-2xl font-bold text-(--color-SecondaryBlue) flex items-center gap-2">
             مدیریت محصولات
           </p>
 
-          <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 sm:flex-1 sm:justify-end sm:max-w-2xl">
+          <div className="flex flex-col items-center sm:flex-row gap-3 sm:gap-4 sm:flex-1 sm:justify-end sm:max-w-2xl">
             <div className="flex-1 sm:max-w-md relative">
               <Search className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 w-5! h-5!" />
               <input
@@ -173,114 +173,111 @@ const AdminProducts = () => {
                 setEditingProduct(null);
                 setIsModalOpen(true);
               }}
-              className="bg-[var(--color-PrimeBlue)] text-white px-6 py-3 rounded-xl font-bold shadow-lg flex items-center justify-center gap-2 hover:opacity-90 transition-opacity whitespace-nowrap"
+              className="bg-[var(--color-PrimeBlue)] h-10 text-white px-6 py-3 rounded-xl font-bold shadow-lg flex items-center justify-center gap-2 hover:opacity-90 transition-opacity whitespace-nowrap"
             >
               <Plus className="w-5! h-5!" /> محصول جدید
             </button>
           </div>
         </div>
 
-        <div className="hidden md:block bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden">
-          <div className="overflow-x-auto">
-            <table className="w-full text-right text-sm">
-              <thead className="bg-gray-50 text-gray-500">
+        <div className="hidden lg:block bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden">
+          <table className="w-full text-right text-sm">
+            <thead className="bg-gray-50 text-gray-500">
+              <tr>
+                <th className="p-4 text-center">تصویر</th>
+                <th className="p-4">نام محصول</th>
+                <th className="p-4 text-center">پرفروش</th>
+                <th className="p-4 text-center">جدید</th>
+                <th className="p-4 text-center">ویژه</th>
+                <th className="p-4 text-center">قیمت</th>
+                <th className="p-4 text-center">عملیات</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-gray-100">
+              {loading ? (
                 <tr>
-                  <th className="p-4 text-center">تصویر</th>
-                  <th className="p-4">نام محصول</th>
-                  <th className="p-4 text-center">پرفروش</th>
-                  <th className="p-4 text-center">جدید</th>
-                  <th className="p-4 text-center">ویژه</th>
-                  <th className="p-4 text-center">قیمت</th>
-                  <th className="p-4 text-center">عملیات</th>
+                  <td colSpan={6} className="text-center py-10">
+                    در حال بارگذاری...
+                  </td>
                 </tr>
-              </thead>
-              <tbody className="divide-y divide-gray-100">
-                {loading ? (
-                  <tr>
-                    <td colSpan={6} className="text-center py-10">
-                      در حال بارگذاری...
+              ) : (
+                products.map((p) => (
+                  <tr key={p.id} className="hover:bg-gray-50 transition-colors">
+                    <td className="p-3 flex justify-center">
+                      <img
+                        src={p.image_url}
+                        alt={p.title}
+                        className="h-12 w-12 rounded-lg object-cover"
+                      />
+                    </td>
+                    <td className="p-3">
+                      <p className="font-bold text-gray-800">{p.title.slice(0, 50)}{p.title.length > 40 && "..."}</p>
+                      <p className="text-xs text-gray-400">
+                        {p.category} | {p.brand}
+                      </p>
+                    </td>
+                    <td className="p-3 text-center">
+                      <button
+                        onClick={() =>
+                          toggleFlag(p.id, "most_sell", p.most_sell)
+                        }
+                        className={`p-2 rounded-full transition-colors ${p.most_sell ? "bg-green-100 text-green-600" : "bg-gray-100 text-gray-400 hover:bg-gray-200"}`}
+                      >
+                        <CircleDollarSign className="w-5! h-5!" />
+                      </button>
+                    </td>
+                    <td className="p-3 text-center">
+                      <button
+                        onClick={() => toggleFlag(p.id, "is_new", p.is_new)}
+                        className={`p-2 rounded-full transition-colors ${p.is_new ? "bg-blue-100 text-blue-600" : "bg-gray-100 text-gray-400 hover:bg-gray-200"}`}
+                      >
+                        <Zap className="w-5! h-5!" />
+                      </button>
+                    </td>
+                    <td className="p-3 text-center">
+                      <button
+                        onClick={() =>
+                          toggleFlag(p.id, "is_special", p.is_special)
+                        }
+                        className={`p-2 rounded-full transition-colors ${p.is_special ? "bg-amber-100 text-amber-600" : "bg-gray-100 text-gray-400 hover:bg-gray-200"}`}
+                      >
+                        <Star className="w-5! h-5!" />
+                      </button>
+                    </td>
+                    <td className="p-3 text-center font-bold text-green-600">
+                      {formatPrice(p.discount_price)}
+                    </td>
+                    <td className="p-3 text-center">
+                      <div className="flex justify-center gap-2">
+                        <button
+                          onClick={() => {
+                            setEditingProduct(p);
+                            setIsModalOpen(true);
+                          }}
+                          className="p-2 text-blue-500 bg-blue-50 rounded-lg hover:bg-blue-100 transition-colors"
+                        >
+                          <Edit2 className="w-5! h-5!" />
+                        </button>
+                        <button
+                          onClick={() => handleDelete(p.id, p.title)}
+                          className="p-2 text-red-500 bg-red-50 rounded-lg hover:bg-red-100 transition-colors"
+                        >
+                          <Trash className="w-5! h-5!" />
+                        </button>
+                      </div>
                     </td>
                   </tr>
-                ) : (
-                  products.map((p) => (
-                    <tr
-                      key={p.id}
-                      className="hover:bg-gray-50 transition-colors"
-                    >
-                      <td className="p-3 flex justify-center">
-                        <img
-                          src={p.image_url}
-                          alt={p.title}
-                          className="h-12 w-12 rounded-lg object-cover border"
-                        />
-                      </td>
-                      <td className="p-3">
-                        <p className="font-bold text-gray-800">{p.title}</p>
-                        <p className="text-xs text-gray-400">
-                          {p.category} | {p.brand}
-                        </p>
-                      </td>
-                      <td className="p-3 text-center">
-                        <button
-                          onClick={() => toggleFlag(p.id, "most_sell", p.most_sell)}
-                          className={`p-2 rounded-full transition-colors ${p.most_sell ? "bg-blue-100 text-blue-600" : "bg-gray-100 text-gray-400 hover:bg-gray-200"}`}
-                        >
-                          <CircleDollarSign className="w-5! h-5!" />
-                        </button>
-                      </td>
-                      <td className="p-3 text-center">
-                        <button
-                          onClick={() => toggleFlag(p.id, "is_new", p.is_new)}
-                          className={`p-2 rounded-full transition-colors ${p.is_new ? "bg-blue-100 text-blue-600" : "bg-gray-100 text-gray-400 hover:bg-gray-200"}`}
-                        >
-                          <Zap className="w-5! h-5!" />
-                        </button>
-                      </td>
-                      <td className="p-3 text-center">
-                        <button
-                          onClick={() =>
-                            toggleFlag(p.id, "is_special", p.is_special)
-                          }
-                          className={`p-2 rounded-full transition-colors ${p.is_special ? "bg-amber-100 text-amber-600" : "bg-gray-100 text-gray-400 hover:bg-gray-200"}`}
-                        >
-                          <Star className="w-5! h-5!" />
-                        </button>
-                      </td>
-                      <td className="p-3 text-center font-bold text-green-600">
-                        {formatPrice(p.discount_price)}
-                      </td>
-                      <td className="p-3 text-center">
-                        <div className="flex justify-center gap-2">
-                          <button
-                            onClick={() => {
-                              setEditingProduct(p);
-                              setIsModalOpen(true);
-                            }}
-                            className="p-2 text-blue-500 bg-blue-50 rounded-lg hover:bg-blue-100 transition-colors"
-                          >
-                            <Edit2 className="w-5! h-5!" />
-                          </button>
-                          <button
-                            onClick={() => handleDelete(p.id, p.title)}
-                            className="p-2 text-red-500 bg-red-50 rounded-lg hover:bg-red-100 transition-colors"
-                          >
-                            <Trash className="w-5! h-5!" />
-                          </button>
-                        </div>
-                      </td>
-                    </tr>
-                  ))
-                )}
-                {products.length === 0 && !loading && (
-                  <tr>
-                    <td colSpan={6} className="text-center py-10">
-                      هیچ محصولی یافت نشد
-                    </td>
-                  </tr>
-                )}
-              </tbody>
-            </table>
-          </div>
+                ))
+              )}
+              {products.length === 0 && !loading && (
+                <tr>
+                  <td colSpan={6} className="text-center py-10">
+                    هیچ محصولی یافت نشد
+                  </td>
+                </tr>
+              )}
+            </tbody>
+          </table>
 
           {totalCount > PAGE_SIZE && (
             <div className="p-4 bg-gray-50 border-t flex items-center justify-between">
@@ -316,7 +313,7 @@ const AdminProducts = () => {
           )}
         </div>
 
-        <div className="md:hidden space-y-4">
+        <div className="lg:hidden space-y-4">
           {loading ? (
             <div className="bg-white rounded-xl shadow-sm border border-gray-100 p-8 text-center">
               در حال بارگذاری...

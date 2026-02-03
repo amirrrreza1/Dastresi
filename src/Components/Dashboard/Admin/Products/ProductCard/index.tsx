@@ -1,4 +1,4 @@
-import { Edit2, Trash, Zap, Star } from "lucide-react";
+import { Edit2, Trash, Zap, Star, CircleDollarSign } from "lucide-react";
 import { ProductCardProps } from "../Type";
 
 const ProductCard = ({
@@ -20,8 +20,9 @@ const ProductCard = ({
         </div>
 
         <div className="flex-1 min-w-0">
-          <h3 className="font-bold text-gray-800 text-base mb-1 truncate">
-            {product.title}
+          <h3 className="font-bold text-gray-800 text-base mb-1">
+            {product.title.slice(0, 40)}
+            {product.title.length > 40 && "..."}
           </h3>
           <p className="text-xs text-gray-400 mb-3">
             {product.category} | {product.brand}
@@ -33,54 +34,59 @@ const ProductCard = ({
               {formatPrice(product.discount_price)} تومان
             </span>
           </div>
+        </div>
+      </div>
+      <div className="flex items-center justify-between gap-2">
+        <div className="flex items-center gap-2">
+          <button
+            onClick={() => onToggleFlag(product.id, "is_new", product.is_new)}
+            className={`p-2 rounded-full transition-colors ${
+              product.is_new
+                ? "bg-blue-100 text-blue-600"
+                : "bg-gray-100 text-gray-400 hover:bg-gray-200"
+            }`}
+            title="جدید"
+          >
+            <Zap className="w-4! h-4!" />
+          </button>
+          <button
+            onClick={() =>
+              onToggleFlag(product.id, "is_special", product.is_special)
+            }
+            className={`p-2 rounded-full transition-colors ${
+              product.is_special
+                ? "bg-amber-100 text-amber-600"
+                : "bg-gray-100 text-gray-400 hover:bg-gray-200"
+            }`}
+            title="ویژه"
+          >
+            <Star className="w-4! h-4!" />
+          </button>
+          <button
+            onClick={() =>
+              onToggleFlag(product.id, "most_sell", product.most_sell)
+            }
+            className={`p-2 rounded-full transition-colors ${product.most_sell ? "bg-green-100 text-green-600" : "bg-gray-100 text-gray-400 hover:bg-gray-200"}`}
+          >
+            <CircleDollarSign className="w-5! h-5!" />
+          </button>
+        </div>
 
-          <div className="flex items-center justify-between gap-2">
-            <div className="flex items-center gap-2">
-              <button
-                onClick={() =>
-                  onToggleFlag(product.id, "is_new", product.is_new)
-                }
-                className={`p-2 rounded-full transition-colors ${
-                  product.is_new
-                    ? "bg-blue-100 text-blue-600"
-                    : "bg-gray-100 text-gray-400 hover:bg-gray-200"
-                }`}
-                title="جدید"
-              >
-                <Zap className="w-4! h-4!" />
-              </button>
-              <button
-                onClick={() =>
-                  onToggleFlag(product.id, "is_special", product.is_special)
-                }
-                className={`p-2 rounded-full transition-colors ${
-                  product.is_special
-                    ? "bg-amber-100 text-amber-600"
-                    : "bg-gray-100 text-gray-400 hover:bg-gray-200"
-                }`}
-                title="ویژه"
-              >
-                <Star className="w-4! h-4!" />
-              </button>
-            </div>
-
-            <div className="flex gap-2">
-              <button
-                onClick={() => onEdit(product)}
-                className="p-2 text-blue-500 bg-blue-50 rounded-lg hover:bg-blue-100 transition-colors"
-                title="ویرایش"
-              >
-                <Edit2 className="w-4! h-4!" />
-              </button>
-              <button
-                onClick={() => onDelete(product.id, product.title)}
-                className="p-2 text-red-500 bg-red-50 rounded-lg hover:bg-red-100 transition-colors"
-                title="حذف"
-              >
-                <Trash className="w-4! h-4!" />
-              </button>
-            </div>
-          </div>
+        <div className="flex gap-2">
+          <button
+            onClick={() => onEdit(product)}
+            className="p-2 text-blue-500 bg-blue-50 rounded-lg hover:bg-blue-100 transition-colors"
+            title="ویرایش"
+          >
+            <Edit2 className="w-4! h-4!" />
+          </button>
+          <button
+            onClick={() => onDelete(product.id, product.title)}
+            className="p-2 text-red-500 bg-red-50 rounded-lg hover:bg-red-100 transition-colors"
+            title="حذف"
+          >
+            <Trash className="w-4! h-4!" />
+          </button>
         </div>
       </div>
     </div>

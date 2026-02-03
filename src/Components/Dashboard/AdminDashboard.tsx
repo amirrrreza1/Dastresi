@@ -1,4 +1,5 @@
 import { Plus } from "lucide-react";
+import { Link } from "react-router-dom";
 
 const products = [
   {
@@ -32,10 +33,13 @@ const AdminDashboard = () => {
             </p>
           </div>
           <div className="md:flex flex-wrap gap-2 hidden">
-            <button className="h-10 rounded-xl bg-(--color-PrimeBlue) flex items-center gap-2 px-4 py-2 text-sm font-semibold text-white hover:bg-(--color-SecondaryBlue) cursor-pointer">
-              <Plus className="w-5! h-5!" />
-              افزودن محصول
-            </button>
+              <Link
+                to="/dashboard/products"
+                className="h-10 rounded-xl bg-(--color-PrimeBlue) flex items-center gap-2 px-4 py-2 text-sm font-semibold text-white hover:bg-(--color-SecondaryBlue) cursor-pointer"
+              >
+                <Plus className="w-5! h-5!" />
+                افزودن محصول
+              </Link>
           </div>
         </div>
 
