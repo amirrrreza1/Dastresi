@@ -24,7 +24,7 @@ const Price = ({
           </button>
         </div>
       </div>
-      <div className="fixed bottom-0 left-0 w-full p-4 bg-[#F7FAFB] md:hidden">
+      <div className="fixed bottom-0 left-0 w-full p-4 bg-[#F7FAFB] md:hidden z-30">
         <div className="bg-[#F7F8F9] rounded-xl border border-gray-200 p-4">
           <div className="flex gap-2 items-center justify-center">
             <p className="text-gray-600 line-through">

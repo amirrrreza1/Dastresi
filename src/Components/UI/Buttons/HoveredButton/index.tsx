@@ -15,7 +15,7 @@ const HoveredButton = ({ text, icon, className }: HoveredButtonProps) => {
     >
       <div className="w-5 h-5">{icon}</div>
       <span className="whitespace-nowrap text-black text-sm font-semibold opacity-0 translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300">
-        <Link to="/dashboard/new">{text}</Link>
+        <Link to="/dashboard">{text}</Link>
       </span>
     </button>
   );
