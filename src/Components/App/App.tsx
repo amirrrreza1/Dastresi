@@ -14,6 +14,8 @@ import AdminBlogs from "../Dashboard/Admin/Blogs";
 import AdminBrands from "../Dashboard/Admin/Brands";
 import AdminCategories from "../Dashboard/Admin/Categories";
 import AdminProducts from "../Dashboard/Admin/Products";
+import ProductSingle from "../../Pages/Home/Products";
+import Layout from "../../Layouts/Layout";
 
 const App: React.FC = () => {
   useEffect(() => {
@@ -25,7 +27,10 @@ const App: React.FC = () => {
     <BrowserRouter>
       <ToastContainer />
       <Routes>
-        <Route path="/" element={<Home />} />
+        <Route path="/" element={<Layout />}>
+          <Route index element={<Home />} />
+          <Route path="/product/:id" element={<ProductSingle />} />
+        </Route>
 
         <Route element={<RedirectIfAuth />}>
           <Route path="/login" element={<AuthPage />} />

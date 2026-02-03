@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import DailyOffersCounter from "./DailyOfferCounter";
 import { supabase } from "../../supabase";
 import { Product } from "../Dashboard/Admin/Products/Type";
+import { Link } from "react-router-dom";
 
 const DailyOffers: React.FC = () => {
   const [dailyOffers, setDailyOffers] = useState<Product[]>([]);
@@ -52,34 +53,36 @@ const DailyOffers: React.FC = () => {
         <div className="flex flex-col lg:flex-row justify-evenly mt-5 gap-3">
           <div className="flex w-full lg:w-[55%] gap-3 flex-col lg:flex-row">
             {dailyOffers?.slice(0, 2).map((item: Product) => (
-              <div
-                key={item.id}
-                className="bg-white p-4 rounded-lg shadow-sm hover:shadow-xl flex justify-between flex-row lg:flex-col"
-              >
-                <img
-                  src={item.image_url}
-                  alt={item.title}
-                  className="w-[140px] h-[140px] lg:w-full lg:h-auto rounded-md"
-                />{" "}
-                <div className="w-full">
-                  <h3 className="lg:h-25 text-sm lg:text-lg mt-2">
-                    {item.title}
-                  </h3>
-                  <div className="">
+              <Link to={`/product/${item.id}`}>
+                <div
+                  key={item.id}
+                  className="bg-white p-4 rounded-lg shadow-sm hover:shadow-xl flex justify-between flex-row lg:flex-col"
+                >
+                  <img
+                    src={item.image_url}
+                    alt={item.title}
+                    className="w-[140px] h-[140px] lg:w-full lg:h-auto rounded-md"
+                  />{" "}
+                  <div className="w-full">
+                    <h3 className="lg:h-25 text-sm lg:text-lg mt-2">
+                      {item.title}
+                    </h3>
                     <div className="">
-                      <p className="text-gray-500 line-through">
+                      <div className="">
+                        <p className="text-gray-500 line-through">
+                          {item.price.toLocaleString("fa-IR")} تومان
+                        </p>
+                        <p className="text-red-500 text-sm">
+                          {item.discount_price.toLocaleString("fa-IR")} تخفیف
+                        </p>
+                      </div>
+                      <p className="text-(--color-PrimeBlue) font-bold text-end">
                         {item.price.toLocaleString("fa-IR")} تومان
                       </p>
-                      <p className="text-red-500 text-sm">
-                        {item.discount_price.toLocaleString("fa-IR")} تخفیف
-                      </p>
                     </div>
-                    <p className="text-(--color-PrimeBlue) font-bold text-end">
-                      {item.price.toLocaleString("fa-IR")} تومان
-                    </p>
                   </div>
                 </div>
-              </div>
+              </Link>
             ))}
           </div>
           <div className="lg:w-[40%] flex flex-col gap-3">

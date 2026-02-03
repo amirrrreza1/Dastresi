@@ -59,7 +59,7 @@ const Header: React.FC = () => {
           <div className="Width h-20 mx-auto flex justify-between  items-center gap-5 px-4">
             <NavLink to="/" className="flex items-center">
               <img
-                src="./Images/Header/logo.png"
+                src="/Images/Header/logo.png"
                 alt="Logo"
                 width="100"
                 height="40"
@@ -68,7 +68,7 @@ const Header: React.FC = () => {
             <div className="w-[30%]">
               <button className="w-full h-10 px-3 rounded-xl bg-(--color-PrimeGray) shadow flex items-center justify-center">
                 <img
-                  src="./Images/SVG/SearchIcon.svg"
+                  src="/Images/SVG/SearchIcon.svg"
                   alt=""
                   width="20"
                   height="20"
@@ -102,14 +102,14 @@ const Header: React.FC = () => {
                     className="w-10 h-10 bg-(--color-PrimeGray) flex items-center justify-center shadow-md rounded-lg group"
                   >
                     <img
-                      src="./Images/SVG/ShoppingCartOrange.svg"
+                      src="/Images/SVG/ShoppingCartOrange.svg"
                       alt=""
                       width="20"
                       height="20"
                       className="absolute w-5 h-5 flex justify-center items-center transition-opacity duration-300 group-hover:opacity-0"
                     />
                     <img
-                      src="./Images/SVG/ShoppingCartBlack.svg"
+                      src="/Images/SVG/ShoppingCartBlack.svg"
                       alt=""
                       width="20"
                       height="20"
@@ -198,7 +198,7 @@ const Header: React.FC = () => {
                             <button className="w-full text-right hover:bg-gray-100 text-black hover:text-(--color-PrimeBlue) font-light flex items-center justify-between px-2">
                               {item.text}
                               <img
-                                src="./Images/SVG/ToLeftArrow.svg"
+                                src="/Images/SVG/ToLeftArrow.svg"
                                 alt="to left arrow"
                                 width={15}
                               />
@@ -265,7 +265,7 @@ const Header: React.FC = () => {
                             <button className="w-full text-right hover:bg-gray-100 text-black hover:text-(--color-PrimeBlue) font-light flex items-center justify-between px-2">
                               {item.text}
                               <img
-                                src="./Images/SVG/ToLeftArrow.svg"
+                                src="/Images/SVG/ToLeftArrow.svg"
                                 alt="to left arrow"
                                 width={15}
                               />
@@ -332,7 +332,7 @@ const Header: React.FC = () => {
                             <button className="w-full text-right hover:bg-gray-100 text-black hover:text-(--color-PrimeBlue) font-light flex items-center justify-between px-2">
                               {item.text}
                               <img
-                                src="./Images/SVG/ToLeftArrow.svg"
+                                src="/Images/SVG/ToLeftArrow.svg"
                                 alt="to left arrow"
                                 width={15}
                               />
@@ -399,7 +399,7 @@ const Header: React.FC = () => {
                             <button className="w-full text-right hover:bg-gray-100 text-black hover:text-(--color-PrimeBlue) font-light flex items-center justify-between px-2">
                               {item.text}
                               <img
-                                src="./Images/SVG/ToLeftArrow.svg"
+                                src="/Images/SVG/ToLeftArrow.svg"
                                 alt="to left arrow"
                                 width={15}
                               />
@@ -466,7 +466,7 @@ const Header: React.FC = () => {
                             <button className="w-full text-right hover:bg-gray-100 text-black hover:text-(--color-PrimeBlue) font-light flex items-center justify-between px-2">
                               {item.text}
                               <img
-                                src="./Images/SVG/ToLeftArrow.svg"
+                                src="/Images/SVG/ToLeftArrow.svg"
                                 alt="to left arrow"
                                 width={15}
                               />
@@ -533,7 +533,7 @@ const Header: React.FC = () => {
                             <button className="w-full text-right hover:bg-gray-100 text-black hover:text-(--color-PrimeBlue) font-light flex items-center justify-between px-2">
                               {item.text}
                               <img
-                                src="./Images/SVG/ToLeftArrow.svg"
+                                src="/Images/SVG/ToLeftArrow.svg"
                                 alt="to left arrow"
                                 width={15}
                               />
@@ -617,22 +617,22 @@ const Header: React.FC = () => {
         <header className="w-full h-15 shadow-md bg-white z-40 fixed top-0 left-0 right-0 flex lg:hidden justify-between items-center p-3">
           <div className="flex items-center gap-3">
             <button onClick={() => setIsOpen(true)}>
-              <img src="./Images/SVG/MenuIcon.svg" alt="Menu Icon" width="30" />
+              <img src="/Images/SVG/MenuIcon.svg" alt="Menu Icon" width="30" />
             </button>
             <Link to="/">
-              <img src="./Images/Header/logo.png" alt="Logo" width="60" />
+              <img src="/Images/Header/logo.png" alt="Logo" width="60" />
             </Link>
           </div>
           <div className="flex items-center gap-3">
             <div className="">
               <img
-                src="./Images/SVG/SearchIconBlack.svg"
+                src="/Images/SVG/SearchIconBlack.svg"
                 alt="SearchIcon"
                 width="25"
               />
             </div>
             <Link to="/dashboard">
-              <img src="./Images/SVG/UserIcon.svg" alt="UserIcon" width="25" />
+              <img src="/Images/SVG/UserIcon.svg" alt="UserIcon" width="25" />
             </Link>
             <div className="w-[45px] h-[45px] relative flex justify-center items-center">
               <Link
@@ -640,7 +640,7 @@ const Header: React.FC = () => {
                 className="w-10 h-10 flex items-center justify-center  group"
               >
                 <img
-                  src="./Images/SVG/ShoppingCartBlack.svg"
+                  src="/Images/SVG/ShoppingCartBlack.svg"
                   alt=""
                   width="20"
                   height="20"
@@ -677,7 +677,7 @@ const Header: React.FC = () => {
           </button>
           <div className="bg-white flex flex-col justify-center items-center">
             <img
-              src="./Images/Header/logo.png"
+              src="/Images/Header/logo.png"
               alt="Menu Icon"
               width="220"
               className="p-10"
