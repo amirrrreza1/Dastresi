@@ -15,6 +15,7 @@ import { useEffect, useRef, useState } from "react";
 import { NextButton, PrevButton } from "../SwiperButton/SwiperButton";
 import { Product } from "../Dashboard/Admin/Products/Type";
 import { supabase } from "../../supabase";
+import { toast } from "react-toastify";
 
 const MostSell: React.FC = () => {
   const swiperRef = useRef<any>(null);
@@ -37,7 +38,7 @@ const MostSell: React.FC = () => {
         if (error) throw error;
         if (data) setMostSell(data);
       } catch (err) {
-        console.error("Error fetching most sell products:", err);
+        toast("خطا در بارگذاری محصولات با تخفیف بیشتر: " + (err as Error).message);
       } finally {
         setLoading(false);
       }

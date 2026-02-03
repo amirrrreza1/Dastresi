@@ -5,6 +5,7 @@ import { supabase } from "../../../../../supabase";
 import protectedAction from "../../../../../Utils/guestFunction";
 import { ColorType, Product, ProductModalProps } from "../Type";
 import { POPULAR_COLORS } from "../../../../../Utils/Colors";
+import { toast } from "react-toastify";
 
 const ProductModal: React.FC<ProductModalProps> = ({
   isOpen,
@@ -74,7 +75,7 @@ const ProductModal: React.FC<ProductModalProps> = ({
         setImageUrl(data.publicUrl);
       }
     } catch (error) {
-      console.error("Upload error", error);
+      toast("خطا در بارگذاری تصویر محصول: " + (error as Error).message);
     } finally {
       setImageUploading(false);
     }

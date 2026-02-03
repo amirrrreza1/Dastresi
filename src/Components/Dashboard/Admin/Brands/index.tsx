@@ -3,6 +3,7 @@ import { Trash, Edit2, Upload } from "lucide-react";
 import Swal from "sweetalert2";
 import { supabase } from "../../../../supabase";
 import protectedAction from "../../../../Utils/guestFunction";
+import { toast } from "react-toastify";
 
 type Brand = {
   id: string;
@@ -49,7 +50,7 @@ const AdminBrands = () => {
         setImageUrl(data.publicUrl);
       }
     } catch (error) {
-      console.error(error);
+      toast("خطا در بارگذاری تصویر برند: " + (error as Error).message);
     } finally {
       setImageUploading(false);
     }

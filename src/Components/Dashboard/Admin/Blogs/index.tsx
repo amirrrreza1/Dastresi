@@ -3,6 +3,7 @@ import { Trash, Edit2, Upload } from "lucide-react";
 import Swal from "sweetalert2";
 import { supabase } from "../../../../supabase";
 import protectedAction from "../../../../Utils/guestFunction";
+import { toast } from "react-toastify";
 
 type Blog = {
   id: string;
@@ -52,7 +53,7 @@ const AdminBlogs = () => {
         setImageUrl(data.publicUrl);
       }
     } catch (error) {
-      console.error("Upload error:", error);
+      toast("خطا در بارگذاری تصویر مقاله: " + (error as Error).message);
     } finally {
       setImageUploading(false);
     }

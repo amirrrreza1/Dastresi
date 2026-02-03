@@ -16,6 +16,7 @@ import { NextButton, PrevButton } from "../SwiperButton/SwiperButton";
 import { Tooltip } from "react-tooltip";
 import { Product } from "../Dashboard/Admin/Products/Type";
 import { supabase } from "../../supabase";
+import { toast } from "react-toastify";
 
 const NewlyAvailable: React.FC = () => {
   const swiperRef = useRef<any>(null);
@@ -38,7 +39,7 @@ const NewlyAvailable: React.FC = () => {
         if (error) throw error;
         if (data) setNewlyAvailable(data);
       } catch (err) {
-        console.error("Error fetching newly available products:", err);
+        toast("خطا در بارگذاری محصولات تازه موجود: " + (err as Error).message);
       } finally {
         setLoading(false);
       }

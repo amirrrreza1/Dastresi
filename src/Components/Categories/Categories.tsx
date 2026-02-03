@@ -13,6 +13,7 @@ import { FreeMode, Autoplay, Navigation } from "swiper/modules";
 import { useEffect, useRef, useState } from "react";
 import { NextButton, PrevButton } from "../SwiperButton/SwiperButton";
 import { supabase } from "../../supabase";
+import { toast } from "react-toastify";
 
 type CategoryItem = {
   id: string;
@@ -40,7 +41,7 @@ export default function Categories() {
         if (error) throw error;
         if (data) setCategories(data);
       } catch (err) {
-        console.error("Error fetching categories:", err);
+        toast("خطا در بارگذاری دسته بندی ها: " + (err as Error).message);
       } finally {
         setLoading(false);
       }

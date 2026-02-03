@@ -6,6 +6,7 @@ import DastresiFetures from "../../../Components/ProductSingle/DastresiFetures";
 import Description from "../../../Components/ProductSingle/Description";
 import SameCategory from "../../../Components/ProductSingle/SameCategory";
 import Details from "../../../Components/ProductSingle/Details";
+import { toast } from "react-toastify";
 
 const ProductSingle = () => {
   const { id } = useParams();
@@ -23,7 +24,7 @@ const ProductSingle = () => {
         if (error) throw error;
         if (data) setProduct(data);
       } catch (err) {
-        console.error("Error fetching products:", err);
+        toast("خطا در بارگذاری محصول: " + (err as Error).message);
       } finally {
         setLoading(false);
       }

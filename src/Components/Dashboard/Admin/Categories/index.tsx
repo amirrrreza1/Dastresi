@@ -3,6 +3,7 @@ import { Trash, Edit2, Upload } from "lucide-react";
 import Swal from "sweetalert2";
 import { supabase } from "../../../../supabase";
 import protectedAction from "../../../../Utils/guestFunction";
+import { toast } from "react-toastify";
 
 type Category = {
   id: string;
@@ -54,7 +55,7 @@ const AdminCategories = () => {
         setImageUrl(data.publicUrl);
       }
     } catch (error) {
-      console.error("Upload error:", error);
+      toast("خطا در بارگذاری تصویر دسته بندی: " + (error as Error).message);
     } finally {
       setImageUploading(false);
     }

@@ -13,6 +13,7 @@ import { Product } from "../../Dashboard/Admin/Products/Type";
 import { supabase } from "../../../supabase";
 import { NextButton, PrevButton } from "../../SwiperButton/SwiperButton";
 import { Link } from "react-router-dom";
+import { toast } from "react-toastify";
 
 const SameCategory = ({
   categoryName,
@@ -40,7 +41,7 @@ const SameCategory = ({
         if (error) throw error;
         if (data) setProduct(data);
       } catch (err) {
-        console.error("Error fetching products:", err);
+        toast("خطا در بارگذاری محصولات در این دسته: " + (err as Error).message);
       } finally {
         setLoading(false);
       }

@@ -8,6 +8,7 @@ import "swiper/css";
 // @ts-expect-error ts-migrate(2339) FIXME: Property 'freeMode' does not exist on type 'SwiperOptions'.
 import "swiper/css/pagination";
 import "./MainSlider.css";
+import { toast } from "react-toastify";
 
 type SliderItem = {
   id: string;
@@ -30,7 +31,7 @@ const MainSlider: React.FC = () => {
         if (error) throw error;
         if (data) setSliders(data);
       } catch (err) {
-        console.error("Error fetching sliders:", err);
+        toast("خطا در بارگذاری اسلایدرها: " + (err as Error).message);
       } finally {
         setLoading(false);
       }

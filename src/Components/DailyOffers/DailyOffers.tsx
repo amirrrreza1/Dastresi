@@ -3,6 +3,7 @@ import DailyOffersCounter from "./DailyOfferCounter";
 import { supabase } from "../../supabase";
 import { Product } from "../Dashboard/Admin/Products/Type";
 import { Link } from "react-router-dom";
+import { toast } from "react-toastify";
 
 const DailyOffers: React.FC = () => {
   const [dailyOffers, setDailyOffers] = useState<Product[]>([]);
@@ -20,7 +21,7 @@ const DailyOffers: React.FC = () => {
         if (error) throw error;
         if (data) setDailyOffers(data);
       } catch (err) {
-        console.error("Error fetching brands:", err);
+        toast("خطا در بارگذاری تخفیف های روزانه: " + (err as Error).message);
       } finally {
         setLoading(false);
       }
@@ -39,11 +40,7 @@ const DailyOffers: React.FC = () => {
       <div className="Width w-[90%] bg-[#E2E2E2] p-5 rounded-2xl my-5">
         <div className="flex justify-between items-center">
           <div className="flex items-center gap-2">
-            <img
-              src="/Images/SVG/Percent.svg"
-              alt="Percent"
-              width={35}
-            />
+            <img src="/Images/SVG/Percent.svg" alt="Percent" width={35} />
             <h2 className="text-xl lg:text-3xl text-[#757575] font-bold">
               تخفیف‌های روزانه دسترسی
             </h2>

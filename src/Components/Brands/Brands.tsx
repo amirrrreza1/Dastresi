@@ -13,6 +13,7 @@ import "swiper/css/navigation";
 
 import "./Brands.css";
 import { supabase } from "../../supabase";
+import { toast } from "react-toastify";
 
 type BrandItem = {
   id: string;
@@ -40,7 +41,7 @@ const Brands: React.FC = () => {
         if (error) throw error;
         if (data) setBrands(data);
       } catch (err) {
-        console.error("Error fetching brands:", err);
+        toast("خطا در بارگذاری برندها: " + (err as Error).message);
       } finally {
         setLoading(false);
       }

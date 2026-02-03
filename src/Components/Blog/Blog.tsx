@@ -14,6 +14,7 @@ import "swiper/css/navigation";
 import "./Blog.css";
 import { supabase } from "../../supabase";
 import { useEffect, useState } from "react";
+import { toast } from "react-toastify";
 
 type blogItem = {
   id: string;
@@ -36,7 +37,7 @@ export default function Blog() {
         if (error) throw error;
         if (data) setBlogs(data);
       } catch (err) {
-        console.error("Error fetching blogs:", err);
+        toast("خطا در بارگذاری مقالات: " + (err as Error).message);
       } finally {
         setLoading(false);
       }

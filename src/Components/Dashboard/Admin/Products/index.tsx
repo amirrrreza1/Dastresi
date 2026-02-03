@@ -17,6 +17,7 @@ import ProductModal from "./ProductModal";
 import ProductCard from "./ProductCard";
 import { LookupItem, Product } from "./Type";
 import { formatPrice } from "../../../../Utils/formatPrice";
+import { toast } from "react-toastify";
 
 const PAGE_SIZE = 10;
 
@@ -73,7 +74,7 @@ const AdminProducts = () => {
           if (b.data) setBrands(b.data as LookupItem[]);
         }
       } catch (error) {
-        console.error("Failed to fetch filters:", error);
+        toast("خطا در بارگذاری فیلترها: " + (error as Error).message);
       }
     };
 
@@ -211,7 +212,10 @@ const AdminProducts = () => {
                       />
                     </td>
                     <td className="p-3">
-                      <p className="font-bold text-gray-800">{p.title.slice(0, 50)}{p.title.length > 40 && "..."}</p>
+                      <p className="font-bold text-gray-800">
+                        {p.title.slice(0, 50)}
+                        {p.title.length > 40 && "..."}
+                      </p>
                       <p className="text-xs text-gray-400">
                         {p.category} | {p.brand}
                       </p>
